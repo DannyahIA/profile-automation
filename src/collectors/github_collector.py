@@ -193,7 +193,7 @@ class GitHubCollector:
                 })
             except Exception as e:
                 print(f"Error collecting issues from {repo.name}: {e}")
-            continue
+                continue
         
         return issues_data
         
