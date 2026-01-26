@@ -61,6 +61,7 @@ class GitHubCollector:
                 'language': repo.language,
                 'stars': repo.stargazers_count,
                 'forks': repo.forks_count,
+                'html_url': repo.html_url,
                 'created_at': repo.created_at.isoformat(),
                 'updated_at': repo.updated_at.isoformat(),
                 'pushed_at': repo.pushed_at.isoformat() if repo.pushed_at else None,

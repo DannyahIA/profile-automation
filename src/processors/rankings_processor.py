@@ -71,6 +71,7 @@ class RankingsProcessor:
                 ranked.append({
                     'name': name,
                     'full_name': repo['full_name'],
+                    'html_url': repo.get('html_url', ''),
                     'language': repo['language'],
                     'score': total_score,
                     'breakdown': scores,
