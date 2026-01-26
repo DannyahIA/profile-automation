@@ -27,31 +27,61 @@ Este projeto automatiza completamente seu perfil do GitHub:
 ## 📈 Métricas em Tempo Real
 
 <!-- METRICS_START -->
-### 📊 Estatísticas Gerais
+## 📊 GitHub Statistics
 
-- 📝 **6** commits nos últimos 30 dias
-- 🔀 **1** pull requests
-- 🐛 **0** issues trabalhadas
-- 📦 **25** repositórios ativos
+<div align="center">
 
-### 🔥 Streak Atual
+| 📝 Commits | 🔀 Pull Requests | 🐛 Issues | 📦 Repositories |
+|:----------:|:----------------:|:---------:|:---------------:|
+| **12** | **1** | **0** | **25** |
 
-- 🎯 Sequência atual: **1** dias
-- 🏆 Maior sequência: **1** dias
+</div>
 
-### 📅 Mês Atual (2026-01)
+### 🔥 Contribution Streak
 
-- ✨ 4 commits
-- 🔀 0 pull requests
-- ✅ 0 issues
+```
+Current Streak: 1 days �
+Longest Streak: 1 days 🏆
+```
 
-### 💻 Linguagens Mais Usadas
+### 📅 This Month (2026-01)
 
-- **Python**: █████ 27.3%
-- **TypeScript**: █████ 27.3%
-- **Go**: █ 9.1%
-- **PHP**: █ 9.1%
-- **Pascal**:  4.5%
+<table>
+<tr>
+<td>
+
+**Activity Overview**
+- ✨ `10` commits
+- 🔀 `0` pull requests  
+- ✅ `0` issues
+
+</td>
+<td>
+
+**Daily Average**
+- 📊 `0.3` commits/day
+- 🎯 `0.3` actions/day
+
+</td>
+</tr>
+</table>
+
+### 💻 Language Distribution
+
+<div align="center">
+
+| Language | Usage |
+|:---------|:------|
+| **Python** | `█████░░░░░░░░░░░░░░░ 27.3%` |
+| **TypeScript** | `█████░░░░░░░░░░░░░░░ 27.3%` |
+| **Go** | `█░░░░░░░░░░░░░░░░░░░ 9.1%` |
+| **PHP** | `█░░░░░░░░░░░░░░░░░░░ 9.1%` |
+| **Pascal** | `░░░░░░░░░░░░░░░░░░░░ 4.5%` |
+| **JavaScript** | `░░░░░░░░░░░░░░░░░░░░ 4.5%` |
+| **Shell** | `░░░░░░░░░░░░░░░░░░░░ 4.5%` |
+| **Kotlin** | `░░░░░░░░░░░░░░░░░░░░ 4.5%` |
+
+</div>
 
 <!-- METRICS_END -->
 
@@ -64,32 +94,56 @@ Este projeto automatiza completamente seu perfil do GitHub:
 ## 🏆 Top Projetos
 
 <!-- RANKINGS_START -->
-### 🏆 Top Projetos (por atividade)
+## 🏆 Project Rankings
 
-1. 🔒 **profile-automation** (Python) - Score: 4 
-   - 💻 4 commits | 🔀 0 PRs | 🐛 0 issues
-
-2. 📂 **orkut** (PHP) - Score: 2 
-   - 💻 2 commits | 🔀 0 PRs | 🐛 0 issues
-
-3. 📂 **nexus** (TypeScript) - Score: 1 ⭐ 1
-   - 💻 0 commits | 🔀 1 PRs | 🐛 0 issues
+*Projects ranked by activity (commits + PRs + issues)*
 
 
-### ⭐ Projetos com Mais Estrelas
+### 📊 Tier D+
+*Score Range: 10+ points*
 
-- **ai-daily-resume**: ⭐ 2 | 🍴 0 forks
-  *Python agent that monitors screen activity, uses AI to understand context, and generates daily work summaries.*
-- **nexus**: ⭐ 1 | 🍴 0 forks
-  *Create a platform that integrates Real-Time Communication (Chat, Voice, Video) with Agile and Structured Task Management (Kanban, Lists, Status).*
+| Project | Language | Score | Breakdown | Stars |
+|:--------|:---------|------:|:----------|------:|
+| 🔒 **profile-automation** | Python | **10** | `💻 10` `� 0` `� 0` | - |
 
-### 🚀 Trabalhando Recentemente Em
+### 💤 Tier F
+*Score Range: 0+ points*
 
-- 🔒 **profile-automation** (Python) - hoje
-- 📂 **DannyahIA** (N/A) - hoje
-- 📂 **nexus** (TypeScript) - 4 dias atrás
-- 📂 **orkut** (PHP) - 4 semanas atrás
-- 🔒 **mc-msg-sync** (JavaScript) - 1 mês atrás
+| Project | Language | Score | Breakdown | Stars |
+|:--------|:---------|------:|:----------|------:|
+| 📂 **orkut** | PHP | **2** | `💻 2` `� 0` `� 0` | - |
+| 📂 **nexus** | TypeScript | **1** | `💻 0` `� 1` `� 0` | ⭐ 1 |
+
+---
+
+## ⭐ Most Starred Projects
+
+### 1. ai-daily-resume
+**⭐ 2 stars** | 🍴 0 forks | 💻 Python
+
+> Python agent that monitors screen activity, uses AI to understand context, and generates daily work summaries.
+
+### 2. nexus
+**⭐ 1 stars** | 🍴 0 forks | 💻 TypeScript
+
+> Create a platform that integrates Real-Time Communication (Chat, Voice, Video) with Agile and Structured Task Management (Kanban, Lists, Status).
+
+
+
+## 🚀 Recent Activity
+
+*Projects I'm currently working on*
+
+| Project | Language | Last Active |
+|:--------|:---------|:-----------:|
+| 🔒 **profile-automation** | Python | 🟢 Today |
+| 📂 **DannyahIA** | N/A | 🟢 Today |
+| 📂 **nexus** | TypeScript | 🟡 4 days ago |
+| 📂 **orkut** | PHP | 🟡 4 weeks ago |
+| 🔒 **mc-msg-sync** | JavaScript | 🔴 1 month ago |
+| 📂 **n8n-docker** | Shell | 🔴 1 month ago |
+| 📂 **sevtechages-server** | ZenScript | 🔴 1 month ago |
+| 📂 **nn-dl-tests** | Python | 🔴 1 month ago |
 
 <!-- RANKINGS_END -->
 
