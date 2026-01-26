@@ -82,15 +82,11 @@ class ReadmeGenerator:
 
 <div align="center">
 
-### 📊 Project Rankings
-
 ![Tier Ranking](./assets/tier_ranking.svg)
 
 </div>
 
 <div align="center">
-
-### 🗂️ Top Repositories
 
 ![Repository Grid](./assets/repo_grid.svg)
 
@@ -128,6 +124,46 @@ class ReadmeGenerator:
 </td>
 </tr>
 </table>
+
+</details>
+
+<details>
+<summary><b>📊 Comparative Analytics</b></summary>
+
+<br>
+
+<div align="center">
+
+### Daily Performance
+
+![Daily Comparison](./assets/daily_comparison.svg)
+
+### Trends & Patterns
+
+![Weekly Trend](./assets/weekly_trend.svg)
+
+### Language Breakdown
+
+<table>
+<tr>
+<td align="center">
+
+![Language Pie](./assets/language_pie.svg)
+
+</td>
+<td align="center">
+
+![Streak Progress](./assets/streak_progress.svg)
+
+</td>
+</tr>
+</table>
+
+### Project Distribution
+
+![Tier Evolution](./assets/tier_evolution.svg)
+
+</div>
 
 </details>
 
