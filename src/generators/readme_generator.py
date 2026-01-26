@@ -167,17 +167,17 @@ class ReadmeGenerator:
 
 **This Month**
 
-📝 `{monthly.get('commits_this_month', 0)}` commits  
-🔀 `{monthly.get('prs_this_month', 0)}` pull requests  
-✅ `{monthly.get('issues_this_month', 0)}` issues  
+{monthly.get('commits_this_month', 0)}` commits  
+{monthly.get('prs_this_month', 0)}` pull requests  
+{monthly.get('issues_this_month', 0)}` issues  
 
 </td>
 <td align="center" width="50%">
 
 **Contribution Streak**
 
-🔥 `{streak.get('current', 0)}` days current  
-🏆 `{streak.get('longest', 0)}` days record  
+{streak.get('current', 0)}` days current  
+{streak.get('longest', 0)}` days record  
 
 </td>
 </tr>
@@ -186,7 +186,7 @@ class ReadmeGenerator:
 </details>
 
 <details>
-<summary><b>📊 Comparative Analytics</b></summary>
+<summary><b>Comparative Analytics</b></summary>
 
 <br>
 
@@ -244,25 +244,25 @@ class ReadmeGenerator:
         """
         content = """
 <details>
-<summary><b>📈 Advanced Analytics (Click to expand)</b></summary>
+<summary><b>Advanced Analytics (Click to expand)</b></summary>
 
 <br>
 
 <div align="center">
 
-### 📊 Comparative Performance
+### Comparative Performance
 
 ![Daily Comparison](./assets/daily_comparison.svg)
 
 <br>
 
-### 📉 Trends & Patterns
+### Trends & Patterns
 
 ![Weekly Trend](./assets/weekly_trend.svg)
 
 <br>
 
-### 🎯 Distribution Analysis
+### Distribution Analysis
 
 <table>
 <tr>
@@ -281,7 +281,7 @@ class ReadmeGenerator:
 
 <br>
 
-### 🏅 Project Tier Evolution
+### Project Tier Evolution
 
 ![Tier Evolution](./assets/tier_evolution.svg)
 
