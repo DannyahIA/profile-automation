@@ -70,8 +70,6 @@ class ReadmeGenerator:
         content = f"""
 <div align="center">
 
-## 📊 GitHub Activity
-
 ![Stats](./assets/stats_card.svg)
 
 </div>
@@ -79,6 +77,22 @@ class ReadmeGenerator:
 <div align="center">
 
 ![Languages](./assets/language_chart.svg)
+
+</div>
+
+<div align="center">
+
+### 📊 Project Rankings
+
+![Tier Ranking](./assets/tier_ranking.svg)
+
+</div>
+
+<div align="center">
+
+### 🗂️ Top Repositories
+
+![Repository Grid](./assets/repo_grid.svg)
 
 </div>
 
@@ -122,37 +136,39 @@ class ReadmeGenerator:
     
     def generate_rankings_section(self) -> str:
         """
-        Generate clean project rankings section.
+        Generate minimal rankings section.
         
-        Why minimal rankings?
-        - Focus on top projects only
-        - Use collapsible sections for details
-        - Visual tier indicators
+        Why minimal?
+        - Visual SVG grids do the heavy lifting
+        - Only show elite projects in text
+        - Everything else in collapsed sections
         
         Returns:
             Markdown formatted string
         """
         content = "\n## 🏆 Featured Projects\n\n"
         
-        top_projects = self.rankings.get('top_projects', [])[:10]  # Top 10 only
+        top_projects = self.rankings.get('top_projects', [])[:15]  # Top 15
         
         if not top_projects:
             content += "_No recent project activity._\n\n"
             return content
         
         # Group by tier
-        tier_groups = {'S+': [], 'S': [], 'A': [], 'Other': []}
+        tier_groups = {'S+': [], 'S': [], 'Other': []}
         
         for project in top_projects:
             tier, emoji, color = self._get_tier(project['score'])
             project_data = {**project, 'tier': tier, 'emoji': emoji}
             
-            if tier in ['S+', 'S', 'A']:
-                tier_groups[tier].append(project_data)
+            if tier == 'S+':
+                tier_groups['S+'].append(project_data)
+            elif tier == 'S':
+                tier_groups['S'].append(project_data)
             else:
                 tier_groups['Other'].append(project_data)
         
-        # Show S+ projects (if any)
+        # Show S+ projects (if any) - these are the real stars
         if tier_groups['S+']:
             content += "<div align=\"center\">\n\n"
             content += "### 👑 Elite Projects (100+ activity)\n\n"
@@ -161,52 +177,26 @@ class ReadmeGenerator:
             for proj in tier_groups['S+']:
                 icon = "🔒" if proj['private'] else "📂"
                 lang = proj['language'] or 'Various'
-                content += f"- {icon} **[{proj['name']}]({proj.get('html_url', '#')})** • {lang} • "
+                content += f"<div align=\"center\">\n\n"
+                content += f"{icon} **[{proj['name']}]({proj.get('html_url', '#')})** • {lang} • "
                 content += f"⚡ {proj['score']} points"
                 if proj['stars'] > 0:
                     content += f" • ⭐ {proj['stars']}"
-                content += "\n"
+                content += "\n\n</div>\n\n"
             content += "\n"
         
-        # Show S projects (if any)
-        if tier_groups['S']:
-            content += "<div align=\"center\">\n\n"
-            content += "### 🏆 Top Projects (50+ activity)\n\n"
-            content += "</div>\n\n"
-            
-            for proj in tier_groups['S']:
-                icon = "🔒" if proj['private'] else "📂"
-                lang = proj['language'] or 'Various'
-                content += f"- {icon} **[{proj['name']}]({proj.get('html_url', '#')})** • {lang} • "
-                content += f"⚡ {proj['score']} points"
-                if proj['stars'] > 0:
-                    content += f" • ⭐ {proj['stars']}"
-                content += "\n"
-            content += "\n"
-        
-        # Show A projects (if any)
-        if tier_groups['A']:
+        # All other projects in collapsed details
+        other_projects = tier_groups['S'] + tier_groups['Other']
+        if other_projects:
             content += "<details>\n"
-            content += "<summary><b>🥇 Active Projects (30+ activity)</b></summary>\n\n"
+            content += "<summary><b>� View All Projects</b></summary>\n\n"
             content += "<br>\n\n"
             
-            for proj in tier_groups['A']:
+            for proj in other_projects:
                 icon = "🔒" if proj['private'] else "📂"
                 lang = proj['language'] or 'Various'
-                content += f"- {icon} **{proj['name']}** • {lang} • ⚡ {proj['score']} points\n"
-            
-            content += "\n</details>\n\n"
-        
-        # Show other projects in collapsed section
-        if tier_groups['Other']:
-            content += "<details>\n"
-            content += "<summary><b>📦 Other Projects</b></summary>\n\n"
-            content += "<br>\n\n"
-            
-            for proj in tier_groups['Other'][:5]:  # Limit to 5
-                icon = "🔒" if proj['private'] else "📂"
-                lang = proj['language'] or 'Various'
-                content += f"- {icon} **{proj['name']}** • {lang}\n"
+                tier = proj['tier']
+                content += f"- {icon} **[{proj['name']}]({proj.get('html_url', '#')})** • {tier} • {lang} • ⚡ {proj['score']}\n"
             
             content += "\n</details>\n\n"
         

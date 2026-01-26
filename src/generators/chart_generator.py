@@ -396,6 +396,16 @@ class ChartGenerator:
             charts['tier_distribution'] = chart
             print(f"   ✅ Tier distribution generated")
         
+        chart = self.generate_tier_ranking_chart()
+        if chart:
+            charts['tier_ranking'] = chart
+            print(f"   ✅ Tier ranking generated")
+        
+        chart = self.generate_repo_grid(limit=12)
+        if chart:
+            charts['repo_grid'] = chart
+            print(f"   ✅ Repository grid generated")
+        
         return charts
     
     # Helper methods
@@ -446,3 +456,270 @@ class ChartGenerator:
         """Calculate sine (angle in degrees)."""
         import math
         return math.sin(math.radians(angle))
+    
+    def _truncate_text(self, text: str, max_length: int) -> str:
+        """Truncate text with ellipsis if too long."""
+        if not text:
+            return ""
+        return text[:max_length] + "..." if len(text) > max_length else text
+    
+    def _escape_xml(self, text: str) -> str:
+        """Escape special XML characters."""
+        if not text:
+            return ""
+        return (text.replace('&', '&amp;')
+                    .replace('<', '&lt;')
+                    .replace('>', '&gt;')
+                    .replace('"', '&quot;')
+                    .replace("'", '&apos;'))
+    
+    def generate_repo_grid(self, limit: int = 12) -> str:
+        """
+        Generate a grid of repository cards (3 columns).
+        
+        Why grid layout?
+        - Professional, portfolio-like appearance
+        - Easy to scan visually
+        - Makes good use of horizontal space
+        - Each card is clickable
+        
+        Args:
+            limit: Maximum number of repos to display
+            
+        Returns:
+            Path to generated SVG file
+        """
+        top_projects = self.rankings.get('top_projects', [])[:limit]
+        
+        if not top_projects:
+            return None
+        
+        # Grid configuration
+        cols = 3
+        card_width = 260
+        card_height = 140
+        gap = 15
+        margin = 20
+        
+        rows = (len(top_projects) + cols - 1) // cols
+        
+        width = cols * card_width + (cols - 1) * gap + 2 * margin
+        height = rows * card_height + (rows - 1) * gap + 2 * margin + 60  # +60 for title
+        
+        svg = [
+            f'<svg width="{width}" height="{height}" xmlns="http://www.w3.org/2000/svg">',
+            f'<rect width="{width}" height="{height}" fill="{self.COLORS["background"]}"/>',
+            
+            # Title
+            f'<text x="{width/2}" y="40" font-family="Arial, sans-serif" font-size="24" '
+            f'font-weight="bold" fill="{self.COLORS["text"]}" text-anchor="middle">',
+            '🏆 Top Repositories',
+            '</text>',
+        ]
+        
+        # Generate cards
+        for i, project in enumerate(top_projects):
+            row = i // cols
+            col = i % cols
+            
+            x = margin + col * (card_width + gap)
+            y = 70 + row * (card_height + gap)  # 70 offset for title
+            
+            # Calculate tier
+            tier = self._calculate_tier(project['score'])
+            tier_color = self.TIER_COLORS[tier]
+            
+            # Prepare data
+            name = self._truncate_text(project['name'], 25)
+            lang = project['language'] or 'N/A'
+            stars = project['stars']
+            score = project['score']
+            url = project.get('html_url', '#')
+            private = project['private']
+            
+            # Card with link
+            svg.append(f'<a href="{self._escape_xml(url)}" target="_blank">')
+            
+            # Card background
+            svg.append(
+                f'<rect x="{x}" y="{y}" width="{card_width}" height="{card_height}" '
+                f'fill="{self.COLORS["surface"]}" rx="10" '
+                f'stroke="{tier_color}" stroke-width="2">'
+                f'<animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite"/>'
+                f'</rect>'
+            )
+            
+            # Tier badge (top-left)
+            svg.append(
+                f'<rect x="{x + 10}" y="{y + 10}" width="40" height="24" '
+                f'fill="{tier_color}" rx="5"/>'
+            )
+            svg.append(
+                f'<text x="{x + 30}" y="{y + 26}" font-family="monospace" font-size="14" '
+                f'font-weight="bold" fill="white" text-anchor="middle">{tier}</text>'
+            )
+            
+            # Private/Public icon (top-right)
+            icon = "🔒" if private else "📂"
+            svg.append(
+                f'<text x="{x + card_width - 25}" y="{y + 28}" font-size="20">{icon}</text>'
+            )
+            
+            # Repository name
+            svg.append(
+                f'<text x="{x + card_width/2}" y="{y + 55}" font-family="Arial, sans-serif" '
+                f'font-size="16" font-weight="bold" fill="{self.COLORS["text"]}" '
+                f'text-anchor="middle">{self._escape_xml(name)}</text>'
+            )
+            
+            # Language
+            svg.append(
+                f'<text x="{x + card_width/2}" y="{y + 78}" font-family="monospace" '
+                f'font-size="12" fill="{self.COLORS["muted"]}" text-anchor="middle">{lang}</text>'
+            )
+            
+            # Stats row
+            stats_y = y + 105
+            
+            # Score
+            svg.append(
+                f'<text x="{x + 35}" y="{stats_y}" font-family="monospace" font-size="13" '
+                f'fill="{self.COLORS["primary"]}" font-weight="bold">⚡ {score}</text>'
+            )
+            
+            # Stars (if any)
+            if stars > 0:
+                svg.append(
+                    f'<text x="{x + card_width - 60}" y="{stats_y}" font-family="monospace" '
+                    f'font-size="13" fill="{self.COLORS["tertiary"]}" font-weight="bold">⭐ {stars}</text>'
+                )
+            
+            # Hover effect (make it obvious it's clickable)
+            svg.append(
+                f'<rect x="{x}" y="{y}" width="{card_width}" height="{card_height}" '
+                f'fill="white" opacity="0" rx="10">'
+                f'<set attributeName="opacity" to="0.1" begin="mouseover" end="mouseout"/>'
+                f'</rect>'
+            )
+            
+            svg.append('</a>')
+        
+        svg.append('</svg>')
+        
+        # Save file
+        output_path = self.output_dir / 'repo_grid.svg'
+        with open(output_path, 'w', encoding='utf-8') as f:
+            f.write('\n'.join(svg))
+        
+        return str(output_path)
+    
+    def generate_tier_ranking_chart(self) -> str:
+        """
+        Generate a horizontal tier ranking chart.
+        
+        Why horizontal?
+        - Better use of screen width
+        - Shows tier progression clearly
+        - Clean, modern look
+        
+        Returns:
+            Path to generated SVG file
+        """
+        top_projects = self.rankings.get('top_projects', [])[:20]
+        
+        if not top_projects:
+            return None
+        
+        # Group by tier
+        tier_groups = {'S+': [], 'S': [], 'A': [], 'B': [], 'C': [], 'D': [], 'F': []}
+        
+        for project in top_projects:
+            tier = self._calculate_tier(project['score'])
+            tier_groups[tier].append(project)
+        
+        # Filter non-empty tiers
+        active_tiers = {k: v for k, v in tier_groups.items() if v}
+        
+        if not active_tiers:
+            return None
+        
+        width = 800
+        tier_height = 60
+        header_height = 80
+        height = header_height + len(active_tiers) * tier_height + 40
+        
+        svg = [
+            f'<svg width="{width}" height="{height}" xmlns="http://www.w3.org/2000/svg">',
+            f'<rect width="{width}" height="{height}" fill="{self.COLORS["background"]}"/>',
+            
+            # Title
+            f'<text x="{width/2}" y="40" font-family="Arial, sans-serif" font-size="26" '
+            f'font-weight="bold" fill="{self.COLORS["text"]}" text-anchor="middle">',
+            '🎖️ Project Tier Rankings',
+            '</text>',
+            f'<text x="{width/2}" y="65" font-family="Arial, sans-serif" font-size="13" '
+            f'fill="{self.COLORS["muted"]}" text-anchor="middle">',
+            'Ranked by activity score (commits + PRs + issues)',
+            '</text>',
+        ]
+        
+        y_offset = header_height
+        
+        for tier, projects in active_tiers.items():
+            tier_color = self.TIER_COLORS[tier]
+            count = len(projects)
+            
+            # Tier row background
+            svg.append(
+                f'<rect x="20" y="{y_offset}" width="{width - 40}" height="{tier_height - 10}" '
+                f'fill="{self.COLORS["surface"]}" rx="8"/>'
+            )
+            
+            # Tier badge
+            svg.append(
+                f'<rect x="35" y="{y_offset + 10}" width="60" height="35" '
+                f'fill="{tier_color}" rx="6"/>'
+            )
+            svg.append(
+                f'<text x="65" y="{y_offset + 35}" font-family="monospace" font-size="20" '
+                f'font-weight="bold" fill="white" text-anchor="middle">{tier}</text>'
+            )
+            
+            # Project count
+            svg.append(
+                f'<text x="120" y="{y_offset + 35}" font-family="Arial, sans-serif" '
+                f'font-size="16" fill="{self.COLORS["text"]}" font-weight="bold">'
+                f'{count} project{"s" if count > 1 else ""}</text>'
+            )
+            
+            # Top projects in this tier (show names)
+            x_start = 280
+            for i, proj in enumerate(projects[:4]):  # Max 4 names
+                proj_name = self._truncate_text(proj['name'], 15)
+                x_pos = x_start + i * 130
+                
+                if x_pos + 120 > width - 40:
+                    break
+                
+                svg.append(
+                    f'<text x="{x_pos}" y="{y_offset + 35}" font-family="monospace" '
+                    f'font-size="12" fill="{self.COLORS["muted"]}">'
+                    f'{"🔒" if proj["private"] else "📂"} {self._escape_xml(proj_name)}</text>'
+                )
+            
+            if count > 4:
+                svg.append(
+                    f'<text x="{width - 80}" y="{y_offset + 35}" font-family="monospace" '
+                    f'font-size="12" fill="{self.COLORS["muted"]}" font-style="italic">+{count - 4} more</text>'
+                )
+            
+            y_offset += tier_height
+        
+        svg.append('</svg>')
+        
+        # Save file
+        output_path = self.output_dir / 'tier_ranking.svg'
+        with open(output_path, 'w', encoding='utf-8') as f:
+            f.write('\n'.join(svg))
+        
+        return str(output_path)
