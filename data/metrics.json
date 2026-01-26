@@ -1,25 +1,52 @@
 {
-    "last_update": null,
-    "total_commits": 0,
-    "total_prs": 0,
-    "total_issues": 0,
-    "total_repos": 0,
-    "daily_stats": {
-        "commits_per_day": [],
-        "average_commits": 0
-    },
-    "weekly_stats": {
-        "prs_per_week": [],
-        "issues_closed_per_week": []
-    },
-    "monthly_stats": {
-        "commits_this_month": 0,
-        "prs_this_month": 0,
-        "issues_this_month": 0
-    },
-    "top_languages": {},
-    "activity_streak": {
-        "current": 0,
-        "longest": 0
-    }
+  "last_update": "2026-01-26T17:55:26.585424+00:00",
+  "total_commits": 6,
+  "total_prs": 1,
+  "total_issues": 0,
+  "total_repos": 25,
+  "daily_stats": {
+    "commits_per_day": [
+      {
+        "date": "2025-12-27",
+        "count": 2
+      },
+      {
+        "date": "2026-01-26",
+        "count": 4
+      }
+    ],
+    "average_commits": 3.0,
+    "total_days_active": 2
+  },
+  "weekly_stats": {
+    "prs_per_week": [
+      {
+        "week": "2025-W49",
+        "count": 1
+      }
+    ],
+    "issues_closed_per_week": []
+  },
+  "monthly_stats": {
+    "commits_this_month": 4,
+    "prs_this_month": 0,
+    "issues_this_month": 0,
+    "month": "2026-01"
+  },
+  "top_languages": {
+    "Python": 6,
+    "TypeScript": 6,
+    "Go": 2,
+    "PHP": 2,
+    "Pascal": 1,
+    "JavaScript": 1,
+    "Shell": 1,
+    "Kotlin": 1,
+    "ZenScript": 1,
+    "HTML": 1
+  },
+  "activity_streak": {
+    "current": 1,
+    "longest": 1
+  }
 }
