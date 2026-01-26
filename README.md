@@ -20,13 +20,32 @@ _Creator of the [Nexus](https://github.com/DannyahIA/nexus) real-time chat._
 
 <div align="center">
 
-## 📊 GitHub Statistics
-
-![Stats Card](./assets/stats_card.svg)
+![Stats](./assets/stats_card.svg)
 
 </div>
 
-### 🔥 Activity Streak
+<div align="center">
+
+![Languages](./assets/language_chart.svg)
+
+</div>
+
+<div align="center">
+
+![Tier Ranking](./assets/tier_ranking.svg)
+
+</div>
+
+<div align="center">
+
+![Repository Grid](./assets/repo_grid.svg)
+
+</div>
+
+<details>
+<summary><b>📈 View Detailed Stats</b></summary>
+
+<br>
 
 <div align="center">
 
@@ -36,33 +55,68 @@ _Creator of the [Nexus](https://github.com/DannyahIA/nexus) real-time chat._
 
 <table align="center">
 <tr>
-<td align="center">
+<td align="center" width="50%">
 
-**📊 Monthly Activity**
+**This Month**
 
-- ✨ `0` commits
-- 🔀 `0` pull requests  
-- ✅ `0` issues
+📝 `16` commits  
+🔀 `0` pull requests  
+✅ `0` issues  
 
 </td>
-<td align="center">
+<td align="center" width="50%">
 
-**📈 Daily Average**
+**Contribution Streak**
 
-- 💻 `0.0` commits/day
-- 🎯 `0.0` actions/day
+🔥 `1` days current  
+🏆 `1` days record  
 
 </td>
 </tr>
 </table>
 
-### 💻 Language Distribution
+</details>
+
+<details>
+<summary><b>📊 Comparative Analytics</b></summary>
+
+<br>
 
 <div align="center">
 
-![Language Chart](./assets/language_chart.svg)
+### Daily Performance
+
+![Daily Comparison](./assets/daily_comparison.svg)
+
+### Trends & Patterns
+
+![Weekly Trend](./assets/weekly_trend.svg)
+
+### Language Breakdown
+
+<table>
+<tr>
+<td align="center">
+
+![Language Pie](./assets/language_pie.svg)
+
+</td>
+<td align="center">
+
+![Streak Progress](./assets/streak_progress.svg)
+
+</td>
+</tr>
+</table>
+
+### Project Distribution
+
+![Tier Evolution](./assets/tier_evolution.svg)
 
 </div>
+
+</details>
+
 
 <!-- METRICS_END -->
 
@@ -70,57 +124,32 @@ _Creator of the [Nexus](https://github.com/DannyahIA/nexus) real-time chat._
 
 <!-- RANKINGS_START -->
 
-<div align="center">
+## 🏆 Featured Projects
 
-## 🏆 Project Rankings
+<details>
+<summary><b>� View All Projects</b></summary>
 
-![Tier Distribution](./assets/tier_distribution.svg)
+<br>
 
-</div>
+- 📂 **[profile-automation](https://github.com/DannyahIA/profile-automation)** • C • Python • ⚡ 16
+- 📂 **[orkut](https://github.com/DannyahIA/orkut)** • F • PHP • ⚡ 2
+- 📂 **[nexus](https://github.com/DannyahIA/nexus)** • F • TypeScript • ⚡ 1
 
-_Projects are ranked by activity score (commits + PRs + issues) and organized into tiers from F to S+_
+</details>
 
-### 👑 Tier S+ (100+ points)
+<details>
+<summary><b>🚀 Recent Work</b></summary>
 
-*Legendary Projects_
+<br>
 
-| Project | Language | Score | Activity | Stars |
-|:--------|:---------|------:|:---------|------:|
-| _No projects yet_ | - | - | - | - |
+- 📂 **profile-automation** • Python • _today_
+- 📂 **DannyahIA** • Various • _today_
+- 📂 **nexus** • TypeScript • _4d ago_
+- 📂 **orkut** • PHP • _4w ago_
+- 🔒 **mc-msg-sync** • JavaScript • _1mo ago_
 
-### 🏆 Tier S (50-99 points)
+</details>
 
-*Highly Active Projects_
-
-| Project | Language | Score | Activity | Stars |
-|:--------|:---------|------:|:---------|------:|
-| _No projects yet_ | - | - | - | - |
-
-### 🥇 Tier A (30-49 points)
-
-*Very Active Projects_
-
-| Project | Language | Score | Activity | Stars |
-|:--------|:---------|------:|:---------|------:|
-| _No projects yet_ | - | - | - | - |
-
-### 🥈 Tier B-F (0-29 points)
-
-*Other Active Projects_
-
-| Project | Language | Score | Activity | Stars |
-|:--------|:---------|------:|:---------|------:|
-| _No projects yet_ | - | - | - | - |
-
----
-
-## 🚀 Recent Activity
-
-_What I've been working on lately_
-
-| Project | Language | Last Active |
-|:--------|:---------|:-----------:|
-| _No recent activity_ | - | - |
 
 <!-- RANKINGS_END -->
 
