@@ -18,139 +18,121 @@ _Creator of the [Nexus](https://github.com/DannyahIA/nexus) real-time chat._
 
 <!-- METRICS_START -->
 
-<div align="center">
+            <!-- DASHBOARD: Visual Analytics -->
+            <div align="center">
 
-![Stats](./assets/stats_card.svg)
+            ## 📊 GitHub Analytics Dashboard
 
-</div>
+            <!-- Row 1: Full-width Stats Card -->
+            ![Stats Card](./assets/stats_card.svg)
 
-<div align="center">
+            <br>
 
-![Languages](./assets/language_chart.svg)
+            <!-- Row 2: Two-column layout - Tier Ranking + Languages -->
+            <table>
+            <tr>
+            <td width="50%" valign="top">
 
-</div>
+            ### 🏆 Project Tiers
 
-<div align="center">
+            ![Tier Ranking](./assets/tier_ranking.svg)
 
-![Tier Ranking](./assets/tier_ranking.svg)
+            </td>
+            <td width="50%" valign="top">
 
-</div>
+            ### 💻 Language Stack
 
-<div align="center">
+            ![Language Chart](./assets/language_chart.svg)
 
-![Repository Grid](./assets/repo_grid.svg)
+            </td>
+            </tr>
+            </table>
 
-</div>
+            <br>
 
-<details>
-<summary><b>📈 View Detailed Stats</b></summary>
+            <!-- Row 3: Two-column layout - Recent Activity + Achievements -->
+            <table>
+            <tr>
+            <td width="50%" valign="top">
 
-<br>
+            ### 🚀 Latest Activity
 
-<div align="center">
+            ![Recent Activity](./assets/recent_activity.svg)
 
-![Activity Timeline](./assets/activity_timeline.svg)
+            </td>
+            <td width="50%" valign="top">
 
-</div>
+            ### 🎮 Achievements
 
-<table align="center">
-<tr>
-<td align="center" width="50%">
+            ![Achievements](./assets/achievements.svg)
 
-**This Month**
+            </td>
+            </tr>
+            </table>
 
-📝 `16` commits  
-🔀 `0` pull requests  
-✅ `0` issues  
+            <br>
 
-</td>
-<td align="center" width="50%">
+            <!-- Row 4: Full-width Repository Grid -->
+            ### 🗂️ Featured Repositories
 
-**Contribution Streak**
+            ![Repository Grid](./assets/repo_grid.svg)
 
-🔥 `1` days current  
-🏆 `1` days record  
+            </div>
 
-</td>
-</tr>
-</table>
-
-</details>
-
-<details>
-<summary><b>📊 Comparative Analytics</b></summary>
-
-<br>
-
-<div align="center">
-
-### Daily Performance
-
-![Daily Comparison](./assets/daily_comparison.svg)
-
-### Trends & Patterns
-
-![Weekly Trend](./assets/weekly_trend.svg)
-
-### Language Breakdown
-
-<table>
-<tr>
-<td align="center">
-
-![Language Pie](./assets/language_pie.svg)
-
-</td>
-<td align="center">
-
-![Streak Progress](./assets/streak_progress.svg)
-
-</td>
-</tr>
-</table>
-
-### Project Distribution
-
-![Tier Evolution](./assets/tier_evolution.svg)
-
-</div>
-
-</details>
-
-
+            
 <!-- METRICS_END -->
 
 <br>
 
 <!-- RANKINGS_START -->
 
-## 🏆 Featured Projects
+            <details>
+            <summary><b>Advanced Analytics (Click to expand)</b></summary>
 
-<details>
-<summary><b>� View All Projects</b></summary>
+            <br>
 
-<br>
+            <div align="center">
 
-- 📂 **[profile-automation](https://github.com/DannyahIA/profile-automation)** • C • Python • ⚡ 16
-- 📂 **[orkut](https://github.com/DannyahIA/orkut)** • F • PHP • ⚡ 2
-- 📂 **[nexus](https://github.com/DannyahIA/nexus)** • F • TypeScript • ⚡ 1
+            ### Comparative Performance
 
-</details>
+            ![Daily Comparison](./assets/daily_comparison.svg)
 
-<details>
-<summary><b>🚀 Recent Work</b></summary>
+            <br>
 
-<br>
+            ### Trends & Patterns
 
-- 📂 **profile-automation** • Python • _today_
-- 📂 **DannyahIA** • Various • _today_
-- 📂 **nexus** • TypeScript • _4d ago_
-- 📂 **orkut** • PHP • _4w ago_
-- 🔒 **mc-msg-sync** • JavaScript • _1mo ago_
+            ![Weekly Trend](./assets/weekly_trend.svg)
 
-</details>
+            <br>
 
+            ### Distribution Analysis
 
+            <table>
+            <tr>
+            <td align="center" width="50%">
+
+            ![Language Pie](./assets/language_pie.svg)
+
+            </td>
+            <td align="center" width="50%">
+
+            ![Streak Progress](./assets/streak_progress.svg)
+
+            </td>
+            </tr>
+            </table>
+
+            <br>
+
+            ### Project Tier Evolution
+
+            ![Tier Evolution](./assets/tier_evolution.svg)
+
+            </div>
+
+            </details>
+
+            
 <!-- RANKINGS_END -->
 
 <br>
