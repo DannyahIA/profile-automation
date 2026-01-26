@@ -23,56 +23,24 @@ _Creator of the [Nexus](https://github.com/DannyahIA/nexus) real-time chat._
 
 ## 📊 GitHub Analytics Dashboard
 
-<!-- Row 1: Full-width Stats Card -->
 ![Stats Card](./assets/stats_card.svg)
-
-<br>
-
-<!-- Row 2: Two-column layout - Tier Ranking + Languages -->
-<table>
-<tr>
-<td width="50%" valign="top">
 
 ### 🏆 Project Tiers
 
 ![Tier Ranking](./assets/tier_ranking.svg)
 
-</td>
-<td width="50%" valign="top">
-
 ### 💻 Language Stack
 
 ![Language Chart](./assets/language_chart.svg)
-
-</td>
-</tr>
-</table>
-
-<br>
-
-<!-- Row 3: Two-column layout - Recent Activity + Achievements -->
-<table>
-<tr>
-<td width="50%" valign="top">
 
 ### 🚀 Latest Activity
 
 ![Recent Activity](./assets/recent_activity.svg)
 
-</td>
-<td width="50%" valign="top">
-
 ### 🎮 Achievements
 
 ![Achievements](./assets/achievements.svg)
 
-</td>
-</tr>
-</table>
-
-<br>
-
-<!-- Row 4: Full-width Repository Grid -->
 ### 🗂️ Featured Repositories
 
 ![Repository Grid](./assets/repo_grid.svg)
@@ -96,32 +64,15 @@ _Creator of the [Nexus](https://github.com/DannyahIA/nexus) real-time chat._
 
 ![Daily Comparison](./assets/daily_comparison.svg)
 
-<br>
-
 ### 📉 Trends & Patterns
 
 ![Weekly Trend](./assets/weekly_trend.svg)
 
-<br>
-
 ### 🎯 Distribution Analysis
-
-<table>
-<tr>
-<td align="center" width="50%">
 
 ![Language Pie](./assets/language_pie.svg)
 
-</td>
-<td align="center" width="50%">
-
 ![Streak Progress](./assets/streak_progress.svg)
-
-</td>
-</tr>
-</table>
-
-<br>
 
 ### 🏅 Project Tier Evolution
 

@@ -35,14 +35,14 @@
 </circle>
 <text x="85.0" y="267.0" font-size="36" text-anchor="middle" opacity="1.0">⚡</text>
 <text x="85.0" y="320" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#E0DEF4" text-anchor="middle" opacity="1.0">Speed Demon</text>
-<text x="85.0" y="335" font-family="Arial, sans-serif" font-size="9" fill="#6E6A86" text-anchor="middle" opacity="1.0">28.0 commits/day</text>
+<text x="85.0" y="335" font-family="Arial, sans-serif" font-size="9" fill="#6E6A86" text-anchor="middle" opacity="1.0">30.0 commits/day</text>
 </g>
 <g id="achievement-4">
 <circle cx="205.0" cy="255.0" r="45.0" fill="#1F1D2E" stroke="#6E6A86" stroke-width="3" opacity="0.3">
 </circle>
 <text x="205.0" y="267.0" font-size="30" text-anchor="middle" opacity="0.3">🏆</text>
 <text x="205.0" y="320" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#E0DEF4" text-anchor="middle" opacity="0.3">Century Club</text>
-<text x="205.0" y="335" font-family="Arial, sans-serif" font-size="9" fill="#6E6A86" text-anchor="middle" opacity="0.3">28 commits</text>
+<text x="205.0" y="335" font-family="Arial, sans-serif" font-size="9" fill="#6E6A86" text-anchor="middle" opacity="0.3">30 commits</text>
 </g>
 <g id="achievement-5">
 <circle cx="325.0" cy="255.0" r="45.0" fill="#1F1D2E" stroke="#6E6A86" stroke-width="3" opacity="0.3">

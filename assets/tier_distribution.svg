@@ -3,8 +3,8 @@
 <text x="300.0" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#E0DEF4" text-anchor="middle">
 🏆 Project Tier Distribution
 </text>
-<path d="M 300.0 200.0 L 300.0 66.66666666666666 A 133.33333333333334 133.33333333333334 0 0 1 300.0 333.33333333333337 Z" fill="#4A90E2" stroke="#191724" stroke-width="2"/>
-<text x="393.3333333333333" y="200.0" font-family="monospace" font-size="16" font-weight="bold" fill="white" text-anchor="middle">B</text>
+<path d="M 300.0 200.0 L 300.0 66.66666666666666 A 133.33333333333334 133.33333333333334 0 0 1 300.0 333.33333333333337 Z" fill="#CD7F32" stroke="#191724" stroke-width="2"/>
+<text x="393.3333333333333" y="200.0" font-family="monospace" font-size="16" font-weight="bold" fill="white" text-anchor="middle">A</text>
 <text x="393.3333333333333" y="218.0" font-family="monospace" font-size="12" fill="white" text-anchor="middle">(1)</text>
 <path d="M 300.0 200.0 L 300.0 333.33333333333337 A 133.33333333333334 133.33333333333334 0 0 1 300.0 66.66666666666666 Z" fill="#808080" stroke="#191724" stroke-width="2"/>
 <text x="206.66666666666669" y="200.0" font-family="monospace" font-size="16" font-weight="bold" fill="white" text-anchor="middle">F</text>
