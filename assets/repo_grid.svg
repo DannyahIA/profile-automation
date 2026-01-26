@@ -1,0 +1,37 @@
+<svg width="850" height="240" xmlns="http://www.w3.org/2000/svg">
+<rect width="850" height="240" fill="#191724"/>
+<text x="425.0" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#E0DEF4" text-anchor="middle">
+🏆 Top Repositories
+</text>
+<a href="https://github.com/DannyahIA/profile-automation" target="_blank">
+<rect x="20" y="70" width="260" height="140" fill="#1F1D2E" rx="10" stroke="#50C878" stroke-width="2"><animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite"/></rect>
+<rect x="30" y="80" width="40" height="24" fill="#50C878" rx="5"/>
+<text x="50" y="96" font-family="monospace" font-size="14" font-weight="bold" fill="white" text-anchor="middle">C</text>
+<text x="255" y="98" font-size="20">🔒</text>
+<text x="150.0" y="125" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#E0DEF4" text-anchor="middle">profile-automation</text>
+<text x="150.0" y="148" font-family="monospace" font-size="12" fill="#6E6A86" text-anchor="middle">Python</text>
+<text x="55" y="175" font-family="monospace" font-size="13" fill="#EB6F92" font-weight="bold">⚡ 13</text>
+<rect x="20" y="70" width="260" height="140" fill="white" opacity="0" rx="10"><set attributeName="opacity" to="0.1" begin="mouseover" end="mouseout"/></rect>
+</a>
+<a href="https://github.com/DannyahIA/orkut" target="_blank">
+<rect x="295" y="70" width="260" height="140" fill="#1F1D2E" rx="10" stroke="#808080" stroke-width="2"><animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite"/></rect>
+<rect x="305" y="80" width="40" height="24" fill="#808080" rx="5"/>
+<text x="325" y="96" font-family="monospace" font-size="14" font-weight="bold" fill="white" text-anchor="middle">F</text>
+<text x="530" y="98" font-size="20">📂</text>
+<text x="425.0" y="125" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#E0DEF4" text-anchor="middle">orkut</text>
+<text x="425.0" y="148" font-family="monospace" font-size="12" fill="#6E6A86" text-anchor="middle">PHP</text>
+<text x="330" y="175" font-family="monospace" font-size="13" fill="#EB6F92" font-weight="bold">⚡ 2</text>
+<rect x="295" y="70" width="260" height="140" fill="white" opacity="0" rx="10"><set attributeName="opacity" to="0.1" begin="mouseover" end="mouseout"/></rect>
+</a>
+<a href="https://github.com/DannyahIA/nexus" target="_blank">
+<rect x="570" y="70" width="260" height="140" fill="#1F1D2E" rx="10" stroke="#808080" stroke-width="2"><animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite"/></rect>
+<rect x="580" y="80" width="40" height="24" fill="#808080" rx="5"/>
+<text x="600" y="96" font-family="monospace" font-size="14" font-weight="bold" fill="white" text-anchor="middle">F</text>
+<text x="805" y="98" font-size="20">📂</text>
+<text x="700.0" y="125" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#E0DEF4" text-anchor="middle">nexus</text>
+<text x="700.0" y="148" font-family="monospace" font-size="12" fill="#6E6A86" text-anchor="middle">TypeScript</text>
+<text x="605" y="175" font-family="monospace" font-size="13" fill="#EB6F92" font-weight="bold">⚡ 1</text>
+<text x="770" y="175" font-family="monospace" font-size="13" fill="#F6C177" font-weight="bold">⭐ 1</text>
+<rect x="570" y="70" width="260" height="140" fill="white" opacity="0" rx="10"><set attributeName="opacity" to="0.1" begin="mouseover" end="mouseout"/></rect>
+</a>
+</svg>
