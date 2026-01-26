@@ -72,68 +72,68 @@ class ReadmeGenerator:
             Markdown/HTML formatted dashboard string
         """
         content = """
-            <!-- DASHBOARD: Visual Analytics -->
-            <div align="center">
+<!-- DASHBOARD: Visual Analytics -->
+<div align="center">
 
-            ## 📊 GitHub Analytics Dashboard
+## 📊 GitHub Analytics Dashboard
 
-            <!-- Row 1: Full-width Stats Card -->
-            ![Stats Card](./assets/stats_card.svg)
+<!-- Row 1: Full-width Stats Card -->
+![Stats Card](./assets/stats_card.svg)
 
-            <br>
+<br>
 
-            <!-- Row 2: Two-column layout - Tier Ranking + Languages -->
-            <table>
-            <tr>
-            <td width="50%" valign="top">
+<!-- Row 2: Two-column layout - Tier Ranking + Languages -->
+<table>
+<tr>
+<td width="50%" valign="top">
 
-            ### 🏆 Project Tiers
+### 🏆 Project Tiers
 
-            ![Tier Ranking](./assets/tier_ranking.svg)
+![Tier Ranking](./assets/tier_ranking.svg)
 
-            </td>
-            <td width="50%" valign="top">
+</td>
+<td width="50%" valign="top">
 
-            ### 💻 Language Stack
+### 💻 Language Stack
 
-            ![Language Chart](./assets/language_chart.svg)
+![Language Chart](./assets/language_chart.svg)
 
-            </td>
-            </tr>
-            </table>
+</td>
+</tr>
+</table>
 
-            <br>
+<br>
 
-            <!-- Row 3: Two-column layout - Recent Activity + Achievements -->
-            <table>
-            <tr>
-            <td width="50%" valign="top">
+<!-- Row 3: Two-column layout - Recent Activity + Achievements -->
+<table>
+<tr>
+<td width="50%" valign="top">
 
-            ### 🚀 Latest Activity
+### 🚀 Latest Activity
 
-            ![Recent Activity](./assets/recent_activity.svg)
+![Recent Activity](./assets/recent_activity.svg)
 
-            </td>
-            <td width="50%" valign="top">
+</td>
+<td width="50%" valign="top">
 
-            ### 🎮 Achievements
+### 🎮 Achievements
 
-            ![Achievements](./assets/achievements.svg)
+![Achievements](./assets/achievements.svg)
 
-            </td>
-            </tr>
-            </table>
+</td>
+</tr>
+</table>
 
-            <br>
+<br>
 
-            <!-- Row 4: Full-width Repository Grid -->
-            ### 🗂️ Featured Repositories
+<!-- Row 4: Full-width Repository Grid -->
+### 🗂️ Featured Repositories
 
-            ![Repository Grid](./assets/repo_grid.svg)
+![Repository Grid](./assets/repo_grid.svg)
 
-            </div>
+</div>
 
-            """
+"""
         return content
     
     def generate_rankings_section(self) -> str:
@@ -151,52 +151,51 @@ class ReadmeGenerator:
             Markdown formatted string
         """
         content = """
-            <details>
-            <summary><b>Advanced Analytics (Click to expand)</b></summary>
+<details>
+<summary><b>Advanced Analytics (Click to expand)</b></summary>
 
-            <br>
+<br>
 
-            <div align="center">
+<div align="center">
 
-            ### Comparative Performance
+### Comparative Performance
 
-            ![Daily Comparison](./assets/daily_comparison.svg)
+![Daily Comparison](./assets/daily_comparison.svg)
 
-            <br>
+<br>
 
-            ### Trends & Patterns
+### Trends & Patterns
 
-            ![Weekly Trend](./assets/weekly_trend.svg)
+![Weekly Trend](./assets/weekly_trend.svg)
 
-            <br>
+<br>
 
-            ### Distribution Analysis
+### Distribution Analysis
 
-            <table>
-            <tr>
-            <td align="center" width="50%">
+<table>
+<tr>
+<td align="center" width="50%">
 
-            ![Language Pie](./assets/language_pie.svg)
+![Language Pie](./assets/language_pie.svg)
 
-            </td>
-            <td align="center" width="50%">
+</td>
+<td align="center" width="50%">
 
-            ![Streak Progress](./assets/streak_progress.svg)
+![Streak Progress](./assets/streak_progress.svg)
 
-            </td>
-            </tr>
-            </table>
+</td>
+</tr>
+</table>
 
-            <br>
+<br>
 
-            ### Project Tier Evolution
+### Project Tier Evolution
 
-            ![Tier Evolution](./assets/tier_evolution.svg)
+![Tier Evolution](./assets/tier_evolution.svg)
 
-            </div>
+</div>
 
-            </details>
-
+</details>
             """
         return content
         
@@ -247,16 +246,6 @@ class ReadmeGenerator:
             content += "\n</details>\n\n"
         
         return content
-    
-    def generate_recent_activity_section(self) -> str:
-        """
-        DEPRECATED: Recent activity now handled by generate_recent_activity_svg() in chart_generator.
-        This method returns empty string as activity is shown visually in the main dashboard.
-        
-        Returns:
-            Empty string (visual SVG replaces text lists)
-        """
-        return ""
     
     def update_readme(self, readme_path: str) -> bool:
         """
