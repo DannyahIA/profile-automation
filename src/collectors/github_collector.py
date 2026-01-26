@@ -175,22 +175,22 @@ class GitHubCollector:
             try:
                 issues = repo.get_issues(state='all', since=since)
             
-            for issue in issues:
-                # Pull requests also appear as issues, let's filter them out
-                if issue.pull_request is not None:
-                    continue
-                
-                issues_data.append({
-                    'repo': repo.name,
-                    'number': issue.number,
-                    'title': issue.title,
-                    'state': issue.state,
-                    'created_at': issue.created_at.isoformat(),
-                    'updated_at': issue.updated_at.isoformat(),
-                    'closed_at': issue.closed_at.isoformat() if issue.closed_at else None,
-                    'comments': issue.comments,
-                    'labels': [label.name for label in issue.labels]
-                })
+                for issue in issues:
+                    # Pull requests also appear as issues, let's filter them out
+                    if issue.pull_request is not None:
+                        continue
+                    
+                    issues_data.append({
+                        'repo': repo.name,
+                        'number': issue.number,
+                        'title': issue.title,
+                        'state': issue.state,
+                        'created_at': issue.created_at.isoformat(),
+                        'updated_at': issue.updated_at.isoformat(),
+                        'closed_at': issue.closed_at.isoformat() if issue.closed_at else None,
+                        'comments': issue.comments,
+                        'labels': [label.name for label in issue.labels]
+                    })
             except Exception as e:
                 print(f"Error collecting issues from {repo.name}: {e}")
                 continue
