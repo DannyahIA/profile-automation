@@ -33,10 +33,10 @@ on:
 # PERMISSÕES
 # Por quê precisa de permissões?
 # - contents: write = permite commitar arquivos atualizados
-# - actions: read = permite ler informações de workflows
+# - Nota: GITHUB_TOKEN automático NÃO tem acesso a repos do usuário
+#         Por isso, você DEVE criar um Personal Access Token
 permissions:
   contents: write
-  actions: read
 
 # JOBS - O que executar
 jobs:
@@ -56,8 +56,8 @@ jobs:
           # fetch-depth: 0 = pega todo histórico git
           # Por quê? Para acessar commits antigos se necessário
           fetch-depth: 0
-          # token especial que permite push
-          token: ${{ secrets.GITHUB_TOKEN }}
+          # Usa o PAT para poder fazer push depois
+          token: ${{ secrets.GH_TOKEN }}
       
       # 2. SETUP PYTHON - Instala Python
       # Por quê? Scripts são em Python
@@ -81,12 +81,12 @@ jobs:
       # Este é o coração do workflow!
       - name: 🚀 Run daily metrics script
         env:
-          # GITHUB_TOKEN: token automático do Actions
-          # Por quê usar secrets.GITHUB_TOKEN?
-          # - Criado automaticamente pelo GitHub
-          # - Tem permissões do repositório
-          # - Não precisa criar token manualmente
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GITHUB_TOKEN: usa o Personal Access Token que você criou
+          # Por quê usar PAT em vez do token automático?
+          # - Token automático NÃO tem acesso a repos do usuário
+          # - PAT tem permissões completas (repo, read:user)
+          # - Necessário para acessar repos privados
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           python src/scripts/daily_metrics.py
       
