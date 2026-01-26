@@ -151,7 +151,7 @@ class ReadmeGenerator:
 </div>
 
 <details>
-<summary><b>📈 View Detailed Stats</b></summary>
+<summary><b>View Detailed Stats</b></summary>
 
 <br>
 
