@@ -54,19 +54,21 @@ class ReadmeGenerator:
     
     def generate_metrics_section(self) -> str:
         """
-        Generate DASHBOARD-STYLE metrics section with SVG charts arranged in grid layout.
+        Generate DASHBOARD-STYLE metrics section with SVG charts in clean vertical layout.
         
         Design Philosophy:
-        - Remove ALL text lists
-        - Pure visual dashboard using HTML tables for layout
+        - Remove ALL text lists and tables
+        - Pure visual dashboard with simple vertical flow
         - Everything clickable and interactive
         - LinkedIn-style professional appearance
         
         Layout Structure:
-        Row 1: Stats Card (Full width)
-        Row 2: Tier Ranking (Left) | Language Chart (Right)
-        Row 3: Recent Activity Timeline (Left) | Achievements Grid (Right)
-        Row 4: Repo Grid (Full width)
+        - Stats Card (Full width)
+        - Project Tiers
+        - Language Stack
+        - Latest Activity
+        - Achievements
+        - Featured Repositories
         
         Returns:
             Markdown/HTML formatted dashboard string
@@ -77,56 +79,24 @@ class ReadmeGenerator:
 
 ## 📊 GitHub Analytics Dashboard
 
-<!-- Row 1: Full-width Stats Card -->
 ![Stats Card](./assets/stats_card.svg)
-
-<br>
-
-<!-- Row 2: Two-column layout - Tier Ranking + Languages -->
-<table>
-<tr>
-<td width="50%" valign="top">
 
 ### 🏆 Project Tiers
 
 ![Tier Ranking](./assets/tier_ranking.svg)
 
-</td>
-<td width="50%" valign="top">
-
 ### 💻 Language Stack
 
 ![Language Chart](./assets/language_chart.svg)
-
-</td>
-</tr>
-</table>
-
-<br>
-
-<!-- Row 3: Two-column layout - Recent Activity + Achievements -->
-<table>
-<tr>
-<td width="50%" valign="top">
 
 ### 🚀 Latest Activity
 
 ![Recent Activity](./assets/recent_activity.svg)
 
-</td>
-<td width="50%" valign="top">
-
 ### 🎮 Achievements
 
 ![Achievements](./assets/achievements.svg)
 
-</td>
-</tr>
-</table>
-
-<br>
-
-<!-- Row 4: Full-width Repository Grid -->
 ### 🗂️ Featured Repositories
 
 ![Repository Grid](./assets/repo_grid.svg)
@@ -161,32 +131,15 @@ class ReadmeGenerator:
 
 ![Daily Comparison](./assets/daily_comparison.svg)
 
-<br>
-
 ### 📉 Trends & Patterns
 
 ![Weekly Trend](./assets/weekly_trend.svg)
 
-<br>
-
 ### 🎯 Distribution Analysis
-
-<table>
-<tr>
-<td align="center" width="50%">
 
 ![Language Pie](./assets/language_pie.svg)
 
-</td>
-<td align="center" width="50%">
-
 ![Streak Progress](./assets/streak_progress.svg)
-
-</td>
-</tr>
-</table>
-
-<br>
 
 ### 🏅 Project Tier Evolution
 
