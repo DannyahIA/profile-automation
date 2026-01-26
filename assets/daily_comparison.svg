@@ -5,27 +5,27 @@
 </text>
 <rect x="50" y="50" width="200" height="100" fill="#1F1D2E" rx="8" stroke="#EB6F92" stroke-width="2"/>
 <text x="150" y="75" font-family="Arial, sans-serif" font-size="14" fill="#6E6A86" text-anchor="middle">Today</text>
-<text x="150" y="110" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle">23</text>
+<text x="150" y="110" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle">25</text>
 <text x="150" y="135" font-family="Arial, sans-serif" font-size="12" fill="#6E6A86" text-anchor="middle">commits</text>
 <rect x="280" y="50" width="200" height="100" fill="#1F1D2E" rx="8"/>
 <text x="380" y="75" font-family="Arial, sans-serif" font-size="14" fill="#6E6A86" text-anchor="middle">Average</text>
-<text x="380" y="110" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#9CCFD8" text-anchor="middle">12.5</text>
+<text x="380" y="110" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#9CCFD8" text-anchor="middle">13.5</text>
 <text x="380" y="135" font-family="Arial, sans-serif" font-size="12" fill="#6E6A86" text-anchor="middle">commits/day</text>
 <rect x="510" y="50" width="240" height="100" fill="#1F1D2E" rx="8"/>
 <text x="630" y="75" font-family="Arial, sans-serif" font-size="14" fill="#6E6A86" text-anchor="middle">Change</text>
-<text x="630" y="110" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#31748F" text-anchor="middle">↑ 84%</text>
+<text x="630" y="110" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#31748F" text-anchor="middle">↑ 85%</text>
 <text x="630" y="135" font-family="Arial, sans-serif" font-size="12" fill="#6E6A86" text-anchor="middle">vs average</text>
 <text x="400" y="185" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle">Last 7 Days</text>
-<rect x="60" y="272.17391304347825" width="80" height="7.826086956521739" fill="#9CCFD8" rx="4" opacity="0.8">
-<animate attributeName="height" from="0" to="7.826086956521739" dur="0.5s" fill="freeze"/>
-<animate attributeName="y" from="280" to="272.17391304347825" dur="0.5s" fill="freeze"/>
+<rect x="60" y="272.8" width="80" height="7.2" fill="#9CCFD8" rx="4" opacity="0.8">
+<animate attributeName="height" from="0" to="7.2" dur="0.5s" fill="freeze"/>
+<animate attributeName="y" from="280" to="272.8" dur="0.5s" fill="freeze"/>
 </rect>
-<text x="100.0" y="267.17391304347825" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle">2</text>
+<text x="100.0" y="267.8" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle">2</text>
 <text x="100.0" y="300" font-family="Arial, sans-serif" font-size="10" fill="#6E6A86" text-anchor="middle">12-27</text>
 <rect x="160" y="190.0" width="80" height="90.0" fill="#EB6F92" rx="4" opacity="0.8">
 <animate attributeName="height" from="0" to="90.0" dur="0.5s" fill="freeze"/>
 <animate attributeName="y" from="280" to="190.0" dur="0.5s" fill="freeze"/>
 </rect>
-<text x="200.0" y="185.0" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle">23</text>
+<text x="200.0" y="185.0" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle">25</text>
 <text x="200.0" y="300" font-family="Arial, sans-serif" font-size="10" fill="#6E6A86" text-anchor="middle">01-26</text>
 </svg>
