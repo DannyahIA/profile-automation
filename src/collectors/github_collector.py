@@ -1,11 +1,11 @@
 """
 GitHub Data Collector
 
-Este módulo coleta dados da API do GitHub.
-Por quê separar em um módulo?
-- Facilita testar isoladamente
-- Pode ser reutilizado por diferentes jobs
-- Centraliza a lógica de acesso à API
+This module collects data from the GitHub API.
+Why separate it into a module?
+- Makes it easier to test in isolation
+- Can be reused by different jobs
+- Centralizes API access logic
 """
 
 from github import Github
@@ -16,43 +16,44 @@ import os
 
 class GitHubCollector:
     """
-    Coleta dados do GitHub usando a biblioteca PyGithub.
-    
-    Por quê usar PyGithub?
-    - Abstrai a complexidade da API REST do GitHub
-    - Gerencia autenticação e rate limits automaticamente
-    - Tem suporte a repos privados quando autenticado
+    Collects data from GitHub using the PyGithub library.
+
+    Why use PyGithub?
+    - Abstracts away the complexity of the GitHub REST API
+    - Manages authentication and rate limits automatically
+    - Supports private repos when authenticated
     """
     
     def __init__(self, token: str):
         """
-        Inicializa o coletor com um token de acesso.
+        Initializes the collector with an access token.
         
         Args:
             token: GitHub Personal Access Token
-                   Por quê precisa de token?
-                   - Acesso a repos privados
-                   - Rate limit maior (5000 req/hora vs 60/hora)
+                   Why is a token needed?
+                   - Access to private repos
+                   - Higher rate limit (5000 req/hour vs 60/hour)
         """
         self.github = Github(token)
         self.user = self.github.get_user()
     
     def collect_all_repos(self) -> List[Dict[str, Any]]:
         """
-        Coleta informações de TODOS os repositórios (públicos + privados).
+        Collects information from ALL repositories (public + private).
         
         Returns:
-            Lista de dicionários com dados dos repos
+            List of dictionaries with repository data
             
-        Por quê retornar dict e não objetos?
-        - Dicts são serializáveis para JSON
-        - Facilita salvar e manipular depois
+        Why return dict instead of objects?
+        - Dicts are JSON serializable
+        - Makes it easier to save and manipulate later
         """
         repos_data = []
         
-        # affiliation='owner' pega repos que você é dono
-        # Por quê? Porque você quer dados dos seus projetos, não de forks/contribuições
-        for repo in self.user.get_repos(affiliation='owner'):
+        # affiliation='owner,collaborator,organization_member' gets repos you own, 
+        # collaborate on, or are part of through an organization
+        # Why? To capture ALL your contributions, not just repos you created
+        for repo in self.user.get_repos(affiliation='owner,collaborator,organization_member'):
             repos_data.append({
                 'name': repo.name,
                 'full_name': repo.full_name,
@@ -72,36 +73,33 @@ class GitHubCollector:
     
     def collect_commits(self, since: datetime = None, until: datetime = None) -> List[Dict[str, Any]]:
         """
-        Coleta commits de todos os repos em um período.
+        Collects commits from all repos within a time period.
         
         Args:
-            since: Data inicial (padrão: 30 dias atrás)
-            until: Data final (padrão: agora)
+            since: Start date (default: 30 days ago)
+            until: End date (default: now)
             
         Returns:
-            Lista de commits com metadados
+            List of commits with metadata
             
-        Por quê filtrar por data?
-        - Evita processar dados antigos desnecessariamente
-        - Otimiza o rate limit da API
+        Why filter by date?
+        - Avoids processing old data unnecessarily
+        - Optimizes API rate limit
         """
         if since is None:
             since = datetime.now(timezone.utc) - timedelta(days=30)
         elif since.tzinfo is None:
-            # Adiciona timezone se não tiver
             since = since.replace(tzinfo=timezone.utc)
             
         if until is None:
             until = datetime.now(timezone.utc)
         elif until.tzinfo is None:
-            # Adiciona timezone se não tiver
             until = until.replace(tzinfo=timezone.utc)
         
         commits_data = []
         
         for repo in self.user.get_repos(affiliation='owner'):
             try:
-                # Pega commits do autor autenticado neste repo
                 commits = repo.get_commits(author=self.user, since=since, until=until)
                 
                 for commit in commits:
@@ -115,38 +113,24 @@ class GitHubCollector:
                         'total_changes': commit.stats.total if commit.stats else 0
                     })
             except Exception as e:
-                # Por quê capturar exceções?
-                # - Repos vazios podem dar erro
-                # - Não queremos que um erro pare toda a coleta
-                print(f"Erro ao coletar commits de {repo.name}: {e}")
+                print(f"Error collecting commits from {repo.name}: {e}")
                 continue
         
         return commits_data
     
     def collect_pull_requests(self, since: datetime = None) -> List[Dict[str, Any]]:
-        """
-        Coleta Pull Requests criados ou atualizados recentemente.
-        
-        Por quê coletar PRs?
-        - Indicam trabalho colaborativo
-        - Mostram revisão de código
-        - Importantes para métricas de produtividade
-        """
         if since is None:
             since = datetime.now(timezone.utc) - timedelta(days=30)
         elif since.tzinfo is None:
-            # Adiciona timezone se não tiver
             since = since.replace(tzinfo=timezone.utc)
         
         prs_data = []
         
         for repo in self.user.get_repos(affiliation='owner'):
             try:
-                # state='all' pega abertos E fechados
                 prs = repo.get_pulls(state='all', sort='updated', direction='desc')
                 
                 for pr in prs:
-                    # Filtra apenas PRs relevantes para o período
                     if pr.updated_at < since:
                         break
                     
@@ -166,66 +150,56 @@ class GitHubCollector:
                         'comments': pr.comments
                     })
             except Exception as e:
-                print(f"Erro ao coletar PRs de {repo.name}: {e}")
+                print(f"Error collecting PRs from {repo.name}: {e}")
                 continue
         
         return prs_data
-    
-    def collect_issues(self, since: datetime = None) -> List[Dict[str, Any]]:
-        """
-        Coleta Issues (problemas/tarefas) dos repositórios.
         
-        Por quê issues são importantes?
-        - Mostram gestão de tarefas
-        - Indicam problemas resolvidos
-        - Revelam manutenção ativa do projeto
+        def collect_issues(self, since: datetime = None) -> List[Dict[str, Any]]:
+        """
+        Collects Issues (problems/tasks) from repositories.
+        
+        Why are issues important?
+        - Show task management
+        - Indicate resolved problems
+        - Reveal active project maintenance
         """
         if since is None:
             since = datetime.now(timezone.utc) - timedelta(days=30)
         elif since.tzinfo is None:
-            # Adiciona timezone se não tiver
             since = since.replace(tzinfo=timezone.utc)
         
         issues_data = []
         
         for repo in self.user.get_repos(affiliation='owner'):
             try:
-                issues = repo.get_issues(state='all', since=since)
-                
-                for issue in issues:
-                    # Pull requests também aparecem como issues, vamos filtrar
-                    if issue.pull_request is not None:
-                        continue
-                    
-                    issues_data.append({
-                        'repo': repo.name,
-                        'number': issue.number,
-                        'title': issue.title,
-                        'state': issue.state,
-                        'created_at': issue.created_at.isoformat(),
-                        'updated_at': issue.updated_at.isoformat(),
-                        'closed_at': issue.closed_at.isoformat() if issue.closed_at else None,
-                        'comments': issue.comments,
-                        'labels': [label.name for label in issue.labels]
-                    })
-            except Exception as e:
-                print(f"Erro ao coletar issues de {repo.name}: {e}")
+            issues = repo.get_issues(state='all', since=since)
+            
+            for issue in issues:
+                # Pull requests also appear as issues, let's filter them out
+                if issue.pull_request is not None:
                 continue
+                
+                issues_data.append({
+                'repo': repo.name,
+                'number': issue.number,
+                'title': issue.title,
+                'state': issue.state,
+                'created_at': issue.created_at.isoformat(),
+                'updated_at': issue.updated_at.isoformat(),
+                'closed_at': issue.closed_at.isoformat() if issue.closed_at else None,
+                'comments': issue.comments,
+                'labels': [label.name for label in issue.labels]
+                })
+            except Exception as e:
+            print(f"Error collecting issues from {repo.name}: {e}")
+            continue
         
         return issues_data
-    
-    def get_rate_limit_info(self) -> Dict[str, Any]:
-        """
-        Verifica o rate limit da API.
         
-        Por quê isso é importante?
-        - GitHub limita número de requisições
-        - Evita erros por excesso de chamadas
-        - Ajuda a planejar quando rodar os jobs
-        """
+        def get_rate_limit_info(self) -> Dict[str, Any]:
         try:
             rate_limit = self.github.get_rate_limit()
-            # Tenta acessar via atributo
             if hasattr(rate_limit, 'core'):
                 return {
                     'core': {
@@ -234,7 +208,6 @@ class GitHubCollector:
                         'reset': rate_limit.core.reset.isoformat()
                     }
                 }
-            # Fallback: acessa via propriedade rate
             elif hasattr(rate_limit, 'rate'):
                 return {
                     'core': {
@@ -244,7 +217,6 @@ class GitHubCollector:
                     }
                 }
             else:
-                # Fallback simples
                 return {
                     'core': {
                         'remaining': 'N/A',
@@ -253,7 +225,7 @@ class GitHubCollector:
                     }
                 }
         except Exception as e:
-            print(f"⚠️  Não foi possível verificar rate limit: {e}")
+            print(f"⚠️  Could not verify rate limit: {e}")
             return {
                 'core': {
                     'remaining': 'N/A',

@@ -1,192 +1,335 @@
 """
 README Generator
 
-Este módulo atualiza o README.md automaticamente.
+This module automatically updates the README.md file.
 
-Por quê usar marcadores especiais?
-- Permite editar outras partes do README manualmente
-- Atualiza apenas seções específicas
-- Mantém formatação customizada
+Why use special markers?
+- Allows manual editing of other README parts
+- Updates only specific sections
+- Maintains custom formatting
 """
 
 from datetime import datetime, timezone
-from typing import Dict, Any
+from typing import Dict, Any, List, Tuple
 import re
 
 
 class ReadmeGenerator:
     """
-    Gera e atualiza seções do README.md automaticamente.
+    Generates and updates README.md sections automatically.
     """
+    
+    # Tier system configuration
+    TIERS = {
+        'S+': {'min': 100, 'emoji': '👑', 'color': '#FFD700'},
+        'S':  {'min': 80,  'emoji': '🏆', 'color': '#C0C0C0'},
+        'S-': {'min': 70,  'emoji': '🎖️', 'color': '#DAA520'},
+        'A+': {'min': 60,  'emoji': '🥇', 'color': '#CD7F32'},
+        'A':  {'min': 50,  'emoji': '🏅', 'color': '#E6A23C'},
+        'A-': {'min': 40,  'emoji': '🎯', 'color': '#F0AD4E'},
+        'B+': {'min': 35,  'emoji': '🥈', 'color': '#4A90E2'},
+        'B':  {'min': 30,  'emoji': '📘', 'color': '#5DADE2'},
+        'B-': {'min': 25,  'emoji': '📗', 'color': '#85C1E9'},
+        'C+': {'min': 20,  'emoji': '🥉', 'color': '#50C878'},
+        'C':  {'min': 15,  'emoji': '📙', 'color': '#52BE80'},
+        'C-': {'min': 12,  'emoji': '📕', 'color': '#82E0AA'},
+        'D+': {'min': 10,  'emoji': '📊', 'color': '#FFA500'},
+        'D':  {'min': 7,   'emoji': '📈', 'color': '#FFB74D'},
+        'D-': {'min': 5,   'emoji': '📉', 'color': '#FFCC80'},
+        'F+': {'min': 3,   'emoji': '🔰', 'color': '#95A5A6'},
+        'F':  {'min': 0,   'emoji': '💤', 'color': '#808080'}
+    }
     
     def __init__(self, metrics: Dict[str, Any], rankings: Dict[str, Any]):
         """
-        Inicializa com métricas e rankings processados.
+        Initialize with processed metrics and rankings.
         
         Args:
-            metrics: Dicionário com métricas agregadas
-            rankings: Dicionário com rankings de projetos
+            metrics: Dictionary with aggregated metrics
+            rankings: Dictionary with project rankings
         """
         self.metrics = metrics
         self.rankings = rankings
     
+    def _get_tier(self, score: int) -> Tuple[str, str, str]:
+        """
+        Calculate tier based on activity score.
+        
+        Why tier system?
+        - Visual hierarchy for projects
+        - Easy to identify most important repositories
+        - Gamification element that's intuitive
+        
+        Args:
+            score: Activity score (commits + PRs + issues)
+            
+        Returns:
+            Tuple of (tier_name, emoji, color)
+        """
+        for tier, config in self.TIERS.items():
+            if score >= config['min']:
+                return tier, config['emoji'], config['color']
+        return 'F', '📉', '#808080'
+    
+    def _create_progress_bar(self, percentage: float, length: int = 25) -> str:
+        """
+        Create a visual progress bar.
+        
+        Why ASCII bars?
+        - Works in any Markdown viewer
+        - No external dependencies
+        - Clear visual representation
+        
+        Args:
+            percentage: Value from 0 to 100
+            length: Total bar length in characters
+            
+        Returns:
+            Formatted progress bar string
+        """
+        filled = int((percentage / 100) * length)
+        bar = '█' * filled + '░' * (length - filled)
+        return f"{bar} {percentage:.1f}%"
+    
+    def _format_number(self, num: int) -> str:
+        """
+        Format large numbers with K/M suffixes.
+        
+        Args:
+            num: Number to format
+            
+        Returns:
+            Formatted string (e.g., "1.2K", "3.5M")
+        """
+        if num >= 1_000_000:
+            return f"{num/1_000_000:.1f}M"
+        elif num >= 1_000:
+            return f"{num/1_000:.1f}K"
+        return str(num)
+    
     def generate_metrics_section(self) -> str:
         """
-        Gera a seção de métricas em tempo real.
+        Generate real-time metrics section with visual enhancements.
         
-        Por quê badges/emojis?
-        - Visual atrativo
-        - Informação rápida
-        - Padrão em READMEs de perfil
+        Why badges and emojis?
+        - Attractive visual presentation
+        - Quick information scanning
+        - Standard in GitHub profile READMEs
         
         Returns:
-            String formatada em Markdown
+            Markdown formatted string
         """
         streak = self.metrics['activity_streak']
         monthly = self.metrics['monthly_stats']
         
-        content = f"""### 📊 Estatísticas Gerais
+        # Header with stats cards
+        content = f"""## 📊 GitHub Statistics
 
-- 📝 **{self.metrics['total_commits']}** commits nos últimos 30 dias
-- 🔀 **{self.metrics['total_prs']}** pull requests
-- 🐛 **{self.metrics['total_issues']}** issues trabalhadas
-- 📦 **{self.metrics['total_repos']}** repositórios ativos
+<div align="center">
 
-### 🔥 Streak Atual
+| 📝 Commits | 🔀 Pull Requests | 🐛 Issues | 📦 Repositories |
+|:----------:|:----------------:|:---------:|:---------------:|
+| **{self._format_number(self.metrics['total_commits'])}** | **{self._format_number(self.metrics['total_prs'])}** | **{self._format_number(self.metrics['total_issues'])}** | **{self.metrics['total_repos']}** |
 
-- 🎯 Sequência atual: **{streak['current']}** dias
-- 🏆 Maior sequência: **{streak['longest']}** dias
+</div>
 
-### 📅 Mês Atual ({monthly.get('month', 'N/A')})
+### 🔥 Contribution Streak
 
-- ✨ {monthly['commits_this_month']} commits
-- 🔀 {monthly['prs_this_month']} pull requests
-- ✅ {monthly['issues_this_month']} issues
+```
+Current Streak: {streak['current']} days �
+Longest Streak: {streak['longest']} days 🏆
+```
 
-### 💻 Linguagens Mais Usadas
+### 📅 This Month ({monthly.get('month', 'N/A')})
+
+<table>
+<tr>
+<td>
+
+**Activity Overview**
+- ✨ `{monthly['commits_this_month']}` commits
+- 🔀 `{monthly['prs_this_month']}` pull requests  
+- ✅ `{monthly['issues_this_month']}` issues
+
+</td>
+<td>
+
+**Daily Average**
+- 📊 `{monthly['commits_this_month'] / 30:.1f}` commits/day
+- 🎯 `{(monthly['commits_this_month'] + monthly['prs_this_month'] + monthly['issues_this_month']) / 30:.1f}` actions/day
+
+</td>
+</tr>
+</table>
+
+### 💻 Language Distribution
 
 """
         
-        # Adiciona linguagens com barra de progresso visual
+        # Add languages with visual progress bars
         languages = self.metrics['top_languages']
         if languages:
             total = sum(languages.values())
-            for lang, count in list(languages.items())[:5]:  # Top 5
+            content += "<div align=\"center\">\n\n"
+            content += "| Language | Usage |\n"
+            content += "|:---------|:------|\n"
+            
+            for lang, count in list(languages.items())[:8]:  # Top 8
                 percentage = (count / total) * 100
-                bar_length = int(percentage / 5)  # Cada # = 5%
-                bar = '█' * bar_length
-                content += f"- **{lang}**: {bar} {percentage:.1f}%\n"
+                bar = self._create_progress_bar(percentage, 20)
+                content += f"| **{lang}** | `{bar}` |\n"
+            
+            content += "\n</div>\n"
         else:
-            content += "*Nenhuma linguagem detectada ainda.*\n"
+            content += "*No languages detected yet.*\n"
         
         return content
     
     def generate_rankings_section(self) -> str:
         """
-        Gera a seção de top projetos.
+        Generate project rankings with tier system (F to S+).
         
-        Por quê mostrar rankings?
-        - Destaca trabalho mais relevante
-        - Facilita navegação no perfil
-        - Mostra diversidade de projetos
+        Why show rankings?
+        - Highlights most relevant work
+        - Easy profile navigation
+        - Shows project diversity
+        
+        Why tier system?
+        - Intuitive visual hierarchy
+        - Common in gaming/achievement systems
+        - Makes it easy to spot top projects
         """
-        content = "### 🏆 Top Projetos (por atividade)\n\n"
+        content = "## 🏆 Project Rankings\n\n"
+        content += "*Projects ranked by activity (commits + PRs + issues)*\n\n"
         
-        top_projects = self.rankings['top_projects'][:5]  # Top 5
+        top_projects = self.rankings['top_projects'][:15]  # Top 15
         
         if not top_projects:
-            return content + "*Nenhum projeto com atividade recente.*\n"
+            return content + "*No projects with recent activity.*\n"
         
-        for i, project in enumerate(top_projects, 1):
-            icon = "🔒" if project['private'] else "📂"
-            lang = project['language'] or 'N/A'
-            stars = f"⭐ {project['stars']}" if project['stars'] > 0 else ""
+        # Group projects by tier
+        tier_groups = {tier: [] for tier in self.TIERS.keys()}
+        
+        for project in top_projects:
+            tier, emoji, color = self._get_tier(project['score'])
+            tier_groups[tier].append({**project, 'tier': tier, 'emoji': emoji, 'color': color})
+        
+        # Display each tier
+        for tier_name in self.TIERS.keys():
+            projects = tier_groups[tier_name]
+            if not projects:
+                continue
             
-            content += f"{i}. {icon} **{project['name']}** "
-            content += f"({lang}) - Score: {project['score']} {stars}\n"
-            content += f"   - 💻 {project['breakdown']['commits']} commits "
-            content += f"| 🔀 {project['breakdown']['prs']} PRs "
-            content += f"| 🐛 {project['breakdown']['issues']} issues\n\n"
+            tier_config = self.TIERS[tier_name]
+            content += f"\n### {tier_config['emoji']} Tier {tier_name}\n"
+            content += f"*Score Range: {tier_config['min']}+ points*\n\n"
+            
+            # Table header
+            content += "| Project | Language | Score | Breakdown | Stars |\n"
+            content += "|:--------|:---------|------:|:----------|------:|\n"
+            
+            for project in projects:
+                icon = "🔒" if project['private'] else "📂"
+                lang = project['language'] or 'N/A'
+                stars = f"⭐ {project['stars']}" if project['stars'] > 0 else "-"
+                
+                breakdown = f"`💻 {project['breakdown']['commits']}` " \
+                           f"`� {project['breakdown']['prs']}` " \
+                           f"`� {project['breakdown']['issues']}`"
+                
+                content += f"| {icon} **{project['name']}** | {lang} | **{project['score']}** | {breakdown} | {stars} |\n"
         
-        # Adiciona seção de projetos mais estrelas (se houver)
-        starred = self.rankings['most_stars'][:3]
+        # Add most starred projects section
+        starred = self.rankings['most_stars'][:5]
         if starred and any(p['stars'] > 0 for p in starred):
-            content += "\n### ⭐ Projetos com Mais Estrelas\n\n"
-            for project in starred:
+            content += "\n---\n\n"
+            content += "## ⭐ Most Starred Projects\n\n"
+            
+            for i, project in enumerate(starred, 1):
                 if project['stars'] > 0:
-                    content += f"- **{project['name']}**: ⭐ {project['stars']} "
-                    content += f"| 🍴 {project['forks']} forks"
+                    content += f"### {i}. {project['name']}\n"
+                    content += f"**⭐ {self._format_number(project['stars'])} stars** "
+                    content += f"| 🍴 {self._format_number(project['forks'])} forks"
+                    
+                    if project['language']:
+                        content += f" | 💻 {project['language']}"
+                    
+                    content += "\n\n"
+                    
                     if project['description']:
-                        content += f"\n  *{project['description']}*"
-                    content += "\n"
+                        content += f"> {project['description']}\n\n"
         
         return content
     
     def generate_recent_activity_section(self) -> str:
         """
-        Gera seção com atividade recente.
+        Generate recent activity section.
         
-        Por quê mostrar atividade recente?
-        - Indica em que você está trabalhando agora
-        - Mantém perfil atualizado
-        - Mostra engajamento contínuo
+        Why show recent activity?
+        - Indicates what you're currently working on
+        - Keeps profile up-to-date
+        - Shows continuous engagement
         """
-        content = "### 🚀 Trabalhando Recentemente Em\n\n"
+        content = "\n## 🚀 Recent Activity\n\n"
+        content += "*Projects I'm currently working on*\n\n"
         
-        recent = self.rankings['most_recent'][:5]
+        recent = self.rankings['most_recent'][:8]
         
         if not recent:
-            return content + "*Nenhuma atividade recente.*\n"
+            return content + "*No recent activity.*\n"
+        
+        content += "| Project | Language | Last Active |\n"
+        content += "|:--------|:---------|:-----------:|\n"
         
         for project in recent:
             icon = "🔒" if project['private'] else "📂"
             lang = project['language'] or 'N/A'
             days = project['days_ago']
             
-            # Formata tempo de forma amigável
+            # Format time in user-friendly way
             if days == 0:
-                time_str = "hoje"
+                time_str = "🟢 Today"
             elif days == 1:
-                time_str = "ontem"
+                time_str = "🟢 Yesterday"
             elif days < 7:
-                time_str = f"{days} dias atrás"
+                time_str = f"🟡 {days} days ago"
             elif days < 30:
                 weeks = days // 7
-                time_str = f"{weeks} semana{'s' if weeks > 1 else ''} atrás"
+                time_str = f"🟡 {weeks} week{'s' if weeks > 1 else ''} ago"
             else:
                 months = days // 30
-                time_str = f"{months} mês{'es' if months > 1 else ''} atrás"
+                time_str = f"🔴 {months} month{'s' if months > 1 else ''} ago"
             
-            content += f"- {icon} **{project['name']}** ({lang}) - {time_str}\n"
+            content += f"| {icon} **{project['name']}** | {lang} | {time_str} |\n"
         
         return content
     
     def update_readme(self, readme_path: str) -> bool:
         """
-        Atualiza o arquivo README.md.
+        Update the README.md file.
         
-        Por quê usar marcadores <!-- -->?
-        - São comentários HTML invisíveis no GitHub
-        - Delimitam seções automatizadas
-        - Permitem edição manual de outras partes
+        Why use <!-- --> markers?
+        - They are invisible HTML comments on GitHub
+        - Delimit automated sections
+        - Allow manual editing of other parts
         
         Args:
-            readme_path: Caminho para o README.md
+            readme_path: Path to README.md
             
         Returns:
-            True se atualizou com sucesso
+            True if updated successfully
         """
         try:
-            # Lê README atual
+            # Read current README
             with open(readme_path, 'r', encoding='utf-8') as f:
                 content = f.read()
             
-            # Gera novas seções
+            # Generate new sections
             metrics_section = self.generate_metrics_section()
             rankings_section = self.generate_rankings_section()
             recent_section = self.generate_recent_activity_section()
             
-            # Atualiza seção de métricas
+            # Update metrics section
             content = self._replace_section(
                 content,
                 'METRICS_START',
@@ -194,7 +337,7 @@ class ReadmeGenerator:
                 metrics_section
             )
             
-            # Atualiza seção de rankings
+            # Update rankings section
             content = self._replace_section(
                 content,
                 'RANKINGS_START',
@@ -202,45 +345,45 @@ class ReadmeGenerator:
                 rankings_section + "\n" + recent_section
             )
             
-            # Adiciona timestamp de última atualização
-            now = datetime.now(timezone.utc).strftime('%d/%m/%Y às %H:%M')
+            # Add last update timestamp
+            now = datetime.now(timezone.utc).strftime('%B %d, %Y at %H:%M')
             content = re.sub(
-                r'\*Última atualização:.*?\*',
-                f'*Última atualização: {now} UTC*',
+                r'\*Last updated:.*?\*',
+                f'*Last updated: {now} UTC*',
                 content
             )
             
-            # Salva README atualizado
+            # Save updated README
             with open(readme_path, 'w', encoding='utf-8') as f:
                 f.write(content)
             
             return True
             
         except Exception as e:
-            print(f"Erro ao atualizar README: {e}")
+            print(f"Error updating README: {e}")
             return False
     
     def _replace_section(self, content: str, start_marker: str, 
                         end_marker: str, new_content: str) -> str:
         """
-        Substitui conteúdo entre marcadores.
+        Replace content between markers.
         
-        Por quê método auxiliar?
-        - Reutilizável para várias seções
-        - Centraliza lógica de regex
-        - Facilita manutenção
+        Why helper method?
+        - Reusable for multiple sections
+        - Centralizes regex logic
+        - Easier maintenance
         
         Args:
-            content: Conteúdo completo do README
-            start_marker: Marcador inicial (ex: METRICS_START)
-            end_marker: Marcador final (ex: METRICS_END)
-            new_content: Novo conteúdo para inserir
+            content: Full README content
+            start_marker: Start marker (e.g., METRICS_START)
+            end_marker: End marker (e.g., METRICS_END)
+            new_content: New content to insert
             
         Returns:
-            Conteúdo atualizado
+            Updated content
         """
         pattern = f'<!-- {start_marker} -->.*?<!-- {end_marker} -->'
         replacement = f'<!-- {start_marker} -->\n{new_content}\n<!-- {end_marker} -->'
         
-        # re.DOTALL faz o . incluir quebras de linha
+        # re.DOTALL makes . include line breaks
         return re.sub(pattern, replacement, content, flags=re.DOTALL)

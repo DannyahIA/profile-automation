@@ -27,6 +27,7 @@ from collectors.github_collector import GitHubCollector
 from processors.metrics_processor import MetricsProcessor
 from processors.rankings_processor import RankingsProcessor
 from generators.readme_generator import ReadmeGenerator
+from generators.chart_generator import ChartGenerator
 
 
 def load_json(filepath: str, default=None):
@@ -63,131 +64,154 @@ def save_json(filepath: str, data: dict):
 
 def main():
     """
-    Função principal que executa o pipeline diário.
+    Main function that executes the daily pipeline.
     
     PIPELINE:
-    1. Setup e validação
-    2. Coleta de dados
-    3. Processamento
-    4. Geração de outputs
-    5. Atualização de arquivos
+    1. Setup and validation
+    2. Data collection
+    3. Processing
+    4. Output generation
+    5. File updates
     """
-    print("🚀 Iniciando coleta diária de métricas...")
+    print("🚀 Starting daily metrics collection...")
     print(f"⏰ Timestamp: {datetime.now(timezone.utc).isoformat()}")
     
     # 1. SETUP
-    # Pega token do ambiente (configurado no GitHub Actions)
-    token = os.environ.get('GITHUB_TOKEN')
+    # Get token from environment (configured in GitHub Actions)
+    token = os.environ.get('GH_TOKEN')
     if not token:
-        print("❌ ERRO: GITHUB_TOKEN não encontrado nas variáveis de ambiente")
-        print("💡 Dica: Configure o token nas secrets do repositório")
+        print("❌ ERROR: GH_TOKEN not found in environment variables")
+        print("💡 Tip: Configure the token in repository secrets")
         sys.exit(1)
     
-    # Define caminhos dos arquivos
+    # Get README path (profile repo or local)
+    readme_path_env = os.environ.get('PROFILE_README_PATH')
+    
+    # Define file paths
     project_root = Path(__file__).parent.parent.parent
     data_dir = project_root / 'data'
-    readme_path = project_root / 'README.md'
     
-    # 2. COLETA DE DADOS
-    print("\n📡 Coletando dados do GitHub...")
+    if readme_path_env:
+        readme_path = Path(readme_path_env)
+        print(f"📄 Using profile README: {readme_path}")
+    else:
+        readme_path = project_root / 'README.md'
+        print(f"📄 Using local README: {readme_path}")
+    
+    # 2. DATA COLLECTION
+    print("\n📡 Collecting data from GitHub...")
     
     try:
         collector = GitHubCollector(token)
         
-        # Verifica rate limit antes de começar (opcional, não falha se der erro)
+        # Check rate limit before starting (optional, doesn't fail on error)
         try:
             rate_limit = collector.get_rate_limit_info()
             remaining = rate_limit['core']['remaining']
             limit = rate_limit['core']['limit']
             print(f"   Rate limit: {remaining}/{limit}")
         except Exception as e:
-            print(f"   ⚠️  Rate limit info indisponível: {e}")
-            print(f"   ➡️  Continuando coleta mesmo assim...")
+            print(f"   ⚠️  Rate limit info unavailable: {e}")
+            print(f"   ➡️  Continuing collection anyway...")
         
-        # Coleta dados dos últimos 30 dias
+        # Collect data from last 30 days
         since = datetime.now(timezone.utc) - timedelta(days=30)
         
-        print("   - Coletando repositórios...")
+        print("   - Collecting repositories...")
         repos = collector.collect_all_repos()
-        print(f"   ✅ {len(repos)} repositórios encontrados")
+        print(f"   ✅ {len(repos)} repositories found")
         
-        print("   - Coletando commits...")
+        print("   - Collecting commits...")
         commits = collector.collect_commits(since=since)
-        print(f"   ✅ {len(commits)} commits coletados")
+        print(f"   ✅ {len(commits)} commits collected")
         
-        print("   - Coletando pull requests...")
+        print("   - Collecting pull requests...")
         prs = collector.collect_pull_requests(since=since)
-        print(f"   ✅ {len(prs)} PRs coletados")
+        print(f"   ✅ {len(prs)} PRs collected")
         
-        print("   - Coletando issues...")
+        print("   - Collecting issues...")
         issues = collector.collect_issues(since=since)
-        print(f"   ✅ {len(issues)} issues coletadas")
+        print(f"   ✅ {len(issues)} issues collected")
         
     except Exception as e:
-        print(f"❌ Erro na coleta de dados: {e}")
+        print(f"❌ Error collecting data: {e}")
         sys.exit(1)
     
-    # 3. PROCESSAMENTO
-    print("\n⚙️  Processando métricas...")
+    # 3. PROCESSING
+    print("\n⚙️  Processing metrics...")
     
     try:
-        # Processa métricas
+        # Process metrics
         metrics_processor = MetricsProcessor(repos, commits, prs, issues)
         metrics = metrics_processor.generate_metrics()
-        print("   ✅ Métricas calculadas")
+        print("   ✅ Metrics calculated")
         
-        # Processa rankings
+        # Process rankings
         rankings_processor = RankingsProcessor(repos, commits, prs, issues)
         rankings = rankings_processor.generate_rankings()
-        print("   ✅ Rankings gerados")
+        print("   ✅ Rankings generated")
         
     except Exception as e:
-        print(f"❌ Erro no processamento: {e}")
+        print(f"❌ Error processing data: {e}")
         sys.exit(1)
     
-    # 4. SALVAMENTO DE DADOS
-    print("\n💾 Salvando dados...")
+    # 4. DATA SAVING
+    print("\n💾 Saving data...")
     
     try:
         save_json(str(data_dir / 'metrics.json'), metrics)
-        print("   ✅ metrics.json salvo")
+        print("   ✅ metrics.json saved")
         
         save_json(str(data_dir / 'rankings.json'), rankings)
-        print("   ✅ rankings.json salvo")
+        print("   ✅ rankings.json saved")
         
     except Exception as e:
-        print(f"❌ Erro ao salvar dados: {e}")
+        print(f"❌ Error saving data: {e}")
         sys.exit(1)
     
-    # 5. ATUALIZAÇÃO DO README
-    print("\n📝 Atualizando README...")
+    # 4.5 GENERATE CHARTS
+    print("\n🎨 Generating visualizations...")
+    
+    try:
+        # Create assets directory for charts
+        assets_dir = readme_path.parent / 'assets' if readme_path_env else project_root / 'assets'
+        chart_generator = ChartGenerator(metrics, rankings, str(assets_dir))
+        charts = chart_generator.generate_all_charts()
+        print(f"   ✅ Generated {len(charts)} visualizations")
+        
+    except Exception as e:
+        print(f"⚠️  Warning: Could not generate charts: {e}")
+        charts = {}
+    
+    # 5. README UPDATE
+    print("\n📝 Updating README...")
     
     try:
         generator = ReadmeGenerator(metrics, rankings)
         success = generator.update_readme(str(readme_path))
         
         if success:
-            print("   ✅ README atualizado com sucesso!")
+            print(f"   ✅ README updated successfully: {readme_path}")
         else:
-            print("   ⚠️  README não foi atualizado")
+            print(f"   ⚠️  README was not updated")
             
     except Exception as e:
-        print(f"❌ Erro ao atualizar README: {e}")
+        print(f"❌ Error updating README: {e}")
         sys.exit(1)
     
-    # 6. RESUMO FINAL
+    # 6. FINAL SUMMARY
     print("\n" + "="*50)
-    print("✨ Execução concluída com sucesso!")
+    print("✨ Execution completed successfully!")
     print("="*50)
-    print(f"\n📊 Resumo:")
-    print(f"   - {len(repos)} repositórios")
+    print(f"\n📊 Summary:")
+    print(f"   - {len(repos)} repositories")
     print(f"   - {len(commits)} commits")
     print(f"   - {len(prs)} PRs")
     print(f"   - {len(issues)} issues")
-    print(f"   - Streak: {metrics['activity_streak']['current']} dias")
-    print(f"\n💾 Dados salvos em: {data_dir}")
-    print(f"📝 README atualizado: {readme_path}")
-    print("\n🎉 Tudo pronto!")
+    print(f"   - Streak: {metrics['activity_streak']['current']} days")
+    print(f"\n💾 Data saved in: {data_dir}")
+    print(f"📝 README updated: {readme_path}")
+    print("\n🎉 All done!")
 
 
 if __name__ == '__main__':

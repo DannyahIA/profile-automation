@@ -1,5 +1,5 @@
 """
-Processors package - Módulos para processamento e agregação de dados.
+Processors package - Modules for data processing and aggregation.
 """
 
 from .metrics_processor import MetricsProcessor
