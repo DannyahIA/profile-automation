@@ -14,15 +14,11 @@
 
 <div align="center">
 
-### 📊 Project Rankings
-
 ![Tier Ranking](./assets/tier_ranking.svg)
 
 </div>
 
 <div align="center">
-
-### 🗂️ Top Repositories
 
 ![Repository Grid](./assets/repo_grid.svg)
 
@@ -45,7 +41,7 @@
 
 **This Month**
 
-📝 `13` commits  
+📝 `15` commits  
 🔀 `0` pull requests  
 ✅ `0` issues  
 
@@ -62,6 +58,47 @@
 </table>
 
 </details>
+
+<details>
+<summary><b>📊 Comparative Analytics</b></summary>
+
+<br>
+
+<div align="center">
+
+### Daily Performance
+
+![Daily Comparison](./assets/daily_comparison.svg)
+
+### Trends & Patterns
+
+![Weekly Trend](./assets/weekly_trend.svg)
+
+### Language Breakdown
+
+<table>
+<tr>
+<td align="center">
+
+![Language Pie](./assets/language_pie.svg)
+
+</td>
+<td align="center">
+
+![Streak Progress](./assets/streak_progress.svg)
+
+</td>
+</tr>
+</table>
+
+### Project Distribution
+
+![Tier Evolution](./assets/tier_evolution.svg)
+
+</div>
+
+</details>
+
 
 <!-- METRICS_END -->
 
@@ -82,7 +119,7 @@
 
 <br>
 
-- 🔒 **[profile-automation](https://github.com/DannyahIA/profile-automation)** • C • Python • ⚡ 13
+- 🔒 **[profile-automation](https://github.com/DannyahIA/profile-automation)** • C • Python • ⚡ 15
 - 📂 **[orkut](https://github.com/DannyahIA/orkut)** • F • PHP • ⚡ 2
 - 📂 **[nexus](https://github.com/DannyahIA/nexus)** • F • TypeScript • ⚡ 1
 
@@ -93,13 +130,14 @@
 
 <br>
 
-- 🔒 **profile-automation** • Python • *today*
-- 📂 **DannyahIA** • Various • *today*
-- 📂 **nexus** • TypeScript • *4d ago*
-- 📂 **orkut** • PHP • *4w ago*
-- 🔒 **mc-msg-sync** • JavaScript • *1mo ago*
+- 🔒 **profile-automation** • Python • _today_
+- 📂 **DannyahIA** • Various • _today_
+- 📂 **nexus** • TypeScript • _4d ago_
+- 📂 **orkut** • PHP • _4w ago_
+- 🔒 **mc-msg-sync** • JavaScript • _1mo ago_
 
 </details>
+
 
 <!-- RANKINGS_END -->
 

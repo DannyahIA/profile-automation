@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="200" viewBox="0 0 600 200">
+<rect width="600" height="200" fill="#191724" rx="10"/>
+<text x="300" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">
+🔥 Activity Streak
+</text>
+<text x="50" y="75" font-family="Arial, sans-serif" font-size="14" fill="#6E6A86">
+Current:
+</text>
+<rect x="120" y="60" width="450" height="30" fill="#1F1D2E" rx="15"/>
+<rect x="120" y="60" width="450.0" height="30" fill="#EB6F92" rx="15">
+<animate attributeName="width" from="0" to="450.0" dur="1s" fill="freeze"/>
+</rect>
+<text x="545" y="80" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="end">1 days</text>
+<text x="50" y="135" font-family="Arial, sans-serif" font-size="14" fill="#6E6A86">
+Record:
+</text>
+<rect x="120" y="120" width="450" height="30" fill="#1F1D2E" rx="15"/>
+<rect x="120" y="120" width="450" height="30" fill="#9CCFD8" rx="15">
+<animate attributeName="width" from="0" to="450" dur="1s" fill="freeze"/>
+</rect>
+<text x="545" y="140" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="end">1 days</text>
+<text x="300" y="180" font-family="Arial, sans-serif" font-size="12" fill="#6E6A86" text-anchor="middle">100% of record</text>
+</svg>
