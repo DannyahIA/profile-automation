@@ -54,29 +54,87 @@ class ReadmeGenerator:
     
     def generate_metrics_section(self) -> str:
         """
-        Generate elegant, minimal metrics section with SVG charts.
+        Generate DASHBOARD-STYLE metrics section with SVG charts arranged in grid layout.
         
-        Why minimal design?
-        - Professional LinkedIn-style appearance
-        - Focus on visual elements (SVGs)
-        - Clean, scannable layout
+        Design Philosophy:
+        - Remove ALL text lists
+        - Pure visual dashboard using HTML tables for layout
+        - Everything clickable and interactive
+        - LinkedIn-style professional appearance
+        
+        Layout Structure:
+        Row 1: Stats Card (Full width)
+        Row 2: Tier Ranking (Left) | Language Chart (Right)
+        Row 3: Recent Activity Timeline (Left) | Achievements Grid (Right)
+        Row 4: Repo Grid (Full width)
         
         Returns:
-            Markdown formatted string
+            Markdown/HTML formatted dashboard string
         """
-        monthly = self.metrics.get('monthly_stats', {})
-        streak = self.metrics.get('activity_streak', {})
-        
-        content = f"""
+        content = """
+<!-- DASHBOARD: Visual Analytics -->
 <div align="center">
 
-![Stats](./assets/stats_card.svg)
+## 📊 GitHub Analytics Dashboard
+
+<!-- Row 1: Full-width Stats Card -->
+![Stats Card](./assets/stats_card.svg)
+
+<br>
+
+<!-- Row 2: Two-column layout - Tier Ranking + Languages -->
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### 🏆 Project Tiers
+
+![Tier Ranking](./assets/tier_ranking.svg)
+
+</td>
+<td width="50%" valign="top">
+
+### 💻 Language Stack
+
+![Language Chart](./assets/language_chart.svg)
+
+</td>
+</tr>
+</table>
+
+<br>
+
+<!-- Row 3: Two-column layout - Recent Activity + Achievements -->
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### 🚀 Latest Activity
+
+![Recent Activity](./assets/recent_activity.svg)
+
+</td>
+<td width="50%" valign="top">
+
+### 🎮 Achievements
+
+![Achievements](./assets/achievements.svg)
+
+</td>
+</tr>
+</table>
+
+<br>
+
+<!-- Row 4: Full-width Repository Grid -->
+### 🗂️ Featured Repositories
+
+![Repository Grid](./assets/repo_grid.svg)
 
 </div>
 
-<div align="center">
-
-![Languages](./assets/language_chart.svg)
+"""
+        return content
 
 </div>
 
@@ -172,23 +230,67 @@ class ReadmeGenerator:
     
     def generate_rankings_section(self) -> str:
         """
-        Generate minimal rankings section.
+        Generate OPTIONAL collapsible section for advanced analytics.
+        Most users will just see the main dashboard.
+        This section is for deep-dive analysis enthusiasts.
         
-        Why minimal?
-        - Visual SVG grids do the heavy lifting
-        - Only show elite projects in text
-        - Everything else in collapsed sections
+        Why collapsible?
+        - Keeps main page clean and visual
+        - Advanced metrics available on demand
+        - Demonstrates data processing capabilities
         
         Returns:
             Markdown formatted string
         """
-        content = "\n## 🏆 Featured Projects\n\n"
-        
-        top_projects = self.rankings.get('top_projects', [])[:15]  # Top 15
-        
-        if not top_projects:
-            content += "_No recent project activity._\n\n"
-            return content
+        content = """
+<details>
+<summary><b>📈 Advanced Analytics (Click to expand)</b></summary>
+
+<br>
+
+<div align="center">
+
+### 📊 Comparative Performance
+
+![Daily Comparison](./assets/daily_comparison.svg)
+
+<br>
+
+### 📉 Trends & Patterns
+
+![Weekly Trend](./assets/weekly_trend.svg)
+
+<br>
+
+### 🎯 Distribution Analysis
+
+<table>
+<tr>
+<td align="center" width="50%">
+
+![Language Pie](./assets/language_pie.svg)
+
+</td>
+<td align="center" width="50%">
+
+![Streak Progress](./assets/streak_progress.svg)
+
+</td>
+</tr>
+</table>
+
+<br>
+
+### 🏅 Project Tier Evolution
+
+![Tier Evolution](./assets/tier_evolution.svg)
+
+</div>
+
+</details>
+
+"""
+        return content
         
         # Group by tier
         tier_groups = {'S+': [], 'S': [], 'Other': []}
@@ -240,46 +342,13 @@ class ReadmeGenerator:
     
     def generate_recent_activity_section(self) -> str:
         """
-        Generate minimal recent activity section.
-        
-        Why minimal?
-        - Quick glance at current work
-        - Collapsed by default
-        - Focus on most recent only
+        DEPRECATED: Recent activity now handled by generate_recent_activity_svg() in chart_generator.
+        This method returns empty string as activity is shown visually in the main dashboard.
         
         Returns:
-            Markdown formatted string
+            Empty string (visual SVG replaces text lists)
         """
-        recent = self.rankings.get('most_recent', [])[:5]  # Top 5
-        
-        if not recent:
-            return ""
-        
-        content = "<details>\n"
-        content += "<summary><b>🚀 Recent Work</b></summary>\n\n"
-        content += "<br>\n\n"
-        
-        for project in recent:
-            icon = "🔒" if project['private'] else "📂"
-            lang = project['language'] or 'Various'
-            days = project['days_ago']
-            
-            # Format time
-            if days == 0:
-                time_str = "today"
-            elif days == 1:
-                time_str = "yesterday"
-            elif days < 7:
-                time_str = f"{days}d ago"
-            elif days < 30:
-                time_str = f"{days//7}w ago"
-            else:
-                time_str = f"{days//30}mo ago"
-            
-            content += f"- {icon} **{project['name']}** • {lang} • _{time_str}_\n"
-        
-        content += "\n</details>\n\n"
-        return content
+        return ""
     
     def update_readme(self, readme_path: str) -> bool:
         """

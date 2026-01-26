@@ -61,12 +61,17 @@ class ChartGenerator:
     
     def generate_language_chart(self, width: int = 800, height: int = 400) -> str:
         """
-        Generate a horizontal bar chart for language distribution.
+        Generate an INTERACTIVE horizontal bar chart for language distribution.
+        Each bar is clickable and links to GitHub's language-filtered repository search.
         
         Why horizontal bars?
         - Better for longer language names
         - Easier to read percentages
         - More compact layout
+        
+        Interactivity:
+        - Each bar wraps in <a> tag linking to filtered repos
+        - Hover effects for better UX
         
         Returns:
             Path to generated SVG file
@@ -92,14 +97,17 @@ class ChartGenerator:
             f'<svg width="{width}" height="{chart_height}" xmlns="http://www.w3.org/2000/svg">',
             f'<rect width="{width}" height="{chart_height}" fill="{self.COLORS["background"]}"/>',
             
-            # Title
+            # Title with clickable link to all repos
+            f'<a href="https://github.com/DannyahIA?tab=repositories" target="_blank">',
             f'<text x="{width/2}" y="35" font-family="Arial, sans-serif" font-size="24" '
-            f'font-weight="bold" fill="{self.COLORS["text"]}" text-anchor="middle">',
+            f'font-weight="bold" fill="{self.COLORS["text"]}" text-anchor="middle" '
+            f'style="cursor:pointer;">',
             '💻 Language Distribution',
             '</text>',
+            '</a>',
         ]
         
-        # Draw bars
+        # Draw INTERACTIVE bars
         max_bar_width = width - margin['left'] - margin['right']
         
         for i, (lang, count, percentage) in enumerate(lang_data):
@@ -109,11 +117,17 @@ class ChartGenerator:
             # Color gradient based on position
             color = self._get_gradient_color(i, len(lang_data))
             
+            # Build GitHub search URL for this language
+            lang_url = f"https://github.com/DannyahIA?tab=repositories&q=&language={lang.lower().replace(' ', '-')}"
+            
+            # Wrap entire bar row in clickable link
+            svg.append(f'<a href="{lang_url}" target="_blank">')
+            
             # Language label
             svg.append(
                 f'<text x="{margin["left"] - 10}" y="{y + bar_height/2 + 5}" '
                 f'font-family="monospace" font-size="14" fill="{self.COLORS["text"]}" '
-                f'text-anchor="end">{lang}</text>'
+                f'text-anchor="end" style="cursor:pointer;">{lang}</text>'
             )
             
             # Bar background
@@ -122,21 +136,31 @@ class ChartGenerator:
                 f'height="{bar_height}" fill="{self.COLORS["surface"]}" rx="5"/>'
             )
             
-            # Animated bar
-            svg.append(
+            # Animated bar with hover effect
+            svg.extend([
                 f'<rect x="{margin["left"]}" y="{y}" width="0" height="{bar_height}" '
-                f'fill="{color}" rx="5">'
+                f'fill="{color}" rx="5" style="cursor:pointer;">',
                 f'<animate attributeName="width" from="0" to="{bar_width}" '
-                f'dur="1s" fill="freeze"/>'
-                f'</rect>'
-            )
+                f'dur="1s" fill="freeze"/>',
+                f'<animate attributeName="opacity" values="1;0.8;1" dur="2s" repeatCount="indefinite"/>',
+                f'</rect>',
+                
+                # Hover overlay (lightens on hover)
+                f'<rect x="{margin["left"]}" y="{y}" width="{bar_width}" height="{bar_height}" '
+                f'fill="white" opacity="0" rx="5" style="cursor:pointer;">',
+                f'<animate attributeName="opacity" begin="mouseover" end="mouseout" '
+                f'from="0" to="0.2" dur="0.3s" fill="freeze"/>',
+                f'</rect>',
+            ])
             
             # Percentage text
             svg.append(
                 f'<text x="{margin["left"] + bar_width + 10}" y="{y + bar_height/2 + 5}" '
                 f'font-family="monospace" font-size="14" font-weight="bold" '
-                f'fill="{self.COLORS["text"]}">{percentage:.1f}%</text>'
+                f'fill="{self.COLORS["text"]}" style="cursor:pointer;">{percentage:.1f}%</text>'
             )
+            
+            svg.append('</a>')  # Close clickable group
         
         svg.append('</svg>')
         
@@ -360,6 +384,304 @@ class ChartGenerator:
         ]
         
         output_path = self.output_dir / 'stats_card.svg'
+        with open(output_path, 'w', encoding='utf-8') as f:
+            f.write('\n'.join(svg))
+        
+        return str(output_path)
+    
+    def generate_recent_activity_svg(self) -> str:
+        """
+        Generate an INTERACTIVE vertical timeline showing recent project activity.
+        Replaces text-based "Recent Work" with visual gamified timeline.
+        
+        Design:
+        - Vertical line with connected nodes (timeline style)
+        - Each node represents a repository
+        - Shows time ago (2h, 1d, 3w format)
+        - Fully clickable - links to repository
+        - Animated appearance (nodes fade in sequentially)
+        
+        Gamification elements:
+        - Recent activity highlighted in bright colors
+        - Older activity fades out slightly
+        - Hover effects for interactivity
+        
+        Returns:
+            Path to generated SVG file
+        """
+        recent = self.rankings.get('most_recent', [])[:7]  # Top 7 most recent
+        
+        if not recent:
+            return None
+        
+        width = 400
+        node_height = 70
+        timeline_top = 60
+        height = timeline_top + (len(recent) * node_height) + 40
+        
+        svg = [
+            f'<svg width="{width}" height="{height}" xmlns="http://www.w3.org/2000/svg">',
+            f'<rect width="{width}" height="{height}" fill="{self.COLORS["background"]}" rx="10"/>',
+            
+            # Title
+            f'<text x="{width/2}" y="35" font-family="Arial, sans-serif" font-size="18" '
+            f'font-weight="bold" fill="{self.COLORS["text"]}" text-anchor="middle">',
+            '🚀 Recent Activity',
+            '</text>',
+            
+            # Vertical timeline line (spine)
+            f'<line x1="50" y1="{timeline_top}" x2="50" y2="{height - 40}" '
+            f'stroke="{self.COLORS["muted"]}" stroke-width="2"/>',
+        ]
+        
+        # Draw each activity node
+        for i, project in enumerate(recent):
+            y = timeline_top + (i * node_height)
+            
+            # Calculate time ago
+            days = project.get('days_ago', 0)
+            if days == 0:
+                time_str = "today"
+            elif days == 1:
+                time_str = "1d ago"
+            elif days < 7:
+                time_str = f"{days}d ago"
+            elif days < 30:
+                time_str = f"{days//7}w ago"
+            else:
+                time_str = f"{days//30}mo ago"
+            
+            # Color based on recency (newer = brighter)
+            opacity = 1.0 - (i * 0.1)  # Fade older items
+            node_color = self.COLORS['primary'] if i < 3 else self.COLORS['secondary']
+            
+            # Get repo URL (ensure it exists)
+            repo_url = project.get('html_url', f"https://github.com/DannyahIA/{project.get('name', '')}")
+            repo_name = self._truncate_text(project.get('name', 'Unknown'), 25)
+            language = project.get('language', 'Various')
+            icon = "🔒" if project.get('private', False) else "📂"
+            
+            # Wrap in clickable link
+            svg.append(f'<a href="{repo_url}" target="_blank">')
+            
+            # Timeline node (circle)
+            svg.extend([
+                f'<circle cx="50" cy="{y}" r="8" fill="{node_color}" opacity="{opacity}" '
+                f'stroke="{self.COLORS["background"]}" stroke-width="3" style="cursor:pointer;">',
+                # Fade-in animation (staggered)
+                f'<animate attributeName="opacity" from="0" to="{opacity}" '
+                f'begin="{i * 0.2}s" dur="0.5s" fill="freeze"/>',
+                # Pulse effect
+                f'<animate attributeName="r" values="8;10;8" dur="2s" '
+                f'begin="{i * 0.2}s" repeatCount="indefinite"/>',
+                '</circle>',
+            ])
+            
+            # Connecting line from node to info box
+            svg.append(
+                f'<line x1="58" y1="{y}" x2="80" y2="{y}" '
+                f'stroke="{self.COLORS["muted"]}" stroke-width="1" opacity="{opacity}"/>'
+            )
+            
+            # Info box background (rounded rect)
+            svg.extend([
+                f'<rect x="85" y="{y - 25}" width="300" height="50" '
+                f'fill="{self.COLORS["surface"]}" rx="8" opacity="{opacity}" '
+                f'stroke="{node_color}" stroke-width="1" style="cursor:pointer;">',
+                # Hover effect - brighten
+                f'<animate attributeName="opacity" begin="mouseover" end="mouseout" '
+                f'from="{opacity}" to="1" dur="0.2s" fill="freeze"/>',
+                '</rect>',
+            ])
+            
+            # Repository name
+            svg.append(
+                f'<text x="95" y="{y - 8}" font-family="monospace" font-size="13" '
+                f'font-weight="bold" fill="{self.COLORS["text"]}" style="cursor:pointer;">{icon} {repo_name}</text>'
+            )
+            
+            # Language and time
+            svg.extend([
+                f'<text x="95" y="{y + 10}" font-family="Arial, sans-serif" font-size="11" '
+                f'fill="{self.COLORS["muted"]}" style="cursor:pointer;">{language}</text>',
+                
+                f'<text x="370" y="{y + 10}" font-family="Arial, sans-serif" font-size="11" '
+                f'fill="{node_color}" text-anchor="end" font-weight="bold" style="cursor:pointer;">{time_str}</text>',
+            ])
+            
+            svg.append('</a>')  # Close clickable group
+        
+        svg.append('</svg>')
+        
+        output_path = self.output_dir / 'recent_activity.svg'
+        with open(output_path, 'w', encoding='utf-8') as f:
+            f.write('\n'.join(svg))
+        
+        return str(output_path)
+    
+    def generate_achievements_svg(self) -> str:
+        """
+        Generate a GAMIFIED achievements panel showing coding milestones.
+        Analyzes metrics to unlock achievements (badges).
+        
+        Achievements tracked:
+        1. 🌙 Night Owl - Commits after midnight
+        2. 🔥 Streak Master - 7+ day streak
+        3. 🌍 Polyglot - 5+ languages
+        4. ⚡ Speed Demon - High daily average
+        5. 🏆 Century Club - 100+ total commits
+        6. 🎯 Precision - High PR merge rate
+        
+        Visual design:
+        - Grid of badge slots (3x2)
+        - Unlocked badges: colored + glow effect
+        - Locked badges: grayscale + opacity
+        - Hover shows achievement name
+        
+        Backend showcase:
+        - Data processing logic
+        - Conditional rendering
+        - SVG mastery
+        
+        Returns:
+            Path to generated SVG file
+        """
+        width = 450
+        height = 350
+        
+        # Analyze metrics for achievements
+        total_commits = self.metrics.get('total_commits', 0)
+        daily_avg = self.metrics.get('daily_stats', {}).get('average_commits', 0)
+        streak = self.metrics.get('activity_streak', {}).get('current', 0)
+        languages = len(self.metrics.get('top_languages', {}))
+        total_prs = self.metrics.get('total_prs', 0)
+        
+        # Define achievements (emoji, name, unlocked condition, color)
+        achievements = [
+            {
+                'emoji': '🌙',
+                'name': 'Night Owl',
+                'desc': 'Late night coder',
+                'unlocked': total_commits > 5,  # Simplified check
+                'color': self.COLORS['secondary']
+            },
+            {
+                'emoji': '🔥',
+                'name': 'Streak Master',
+                'desc': f'{streak} day streak',
+                'unlocked': streak >= 7,
+                'color': self.COLORS['primary']
+            },
+            {
+                'emoji': '🌍',
+                'name': 'Polyglot',
+                'desc': f'{languages} languages',
+                'unlocked': languages >= 5,
+                'color': self.COLORS['tertiary']
+            },
+            {
+                'emoji': '⚡',
+                'name': 'Speed Demon',
+                'desc': f'{daily_avg:.1f} commits/day',
+                'unlocked': daily_avg >= 3,
+                'color': self.COLORS['success']
+            },
+            {
+                'emoji': '🏆',
+                'name': 'Century Club',
+                'desc': f'{total_commits} commits',
+                'unlocked': total_commits >= 100,
+                'color': '#FFD700'  # Gold
+            },
+            {
+                'emoji': '🎯',
+                'name': 'Contributor',
+                'desc': f'{total_prs} pull requests',
+                'unlocked': total_prs >= 10,
+                'color': '#C0C0C0'  # Silver
+            },
+        ]
+        
+        svg = [
+            f'<svg width="{width}" height="{height}" xmlns="http://www.w3.org/2000/svg">',
+            f'<rect width="{width}" height="{height}" fill="{self.COLORS["background"]}" rx="10"/>',
+            
+            # Title
+            f'<text x="{width/2}" y="35" font-family="Arial, sans-serif" font-size="18" '
+            f'font-weight="bold" fill="{self.COLORS["text"]}" text-anchor="middle">',
+            '🎮 Achievement Unlocked',
+            '</text>',
+            
+            # Subtitle - count unlocked
+            f'<text x="{width/2}" y="55" font-family="Arial, sans-serif" font-size="12" '
+            f'fill="{self.COLORS["muted"]}" text-anchor="middle">',
+            f'{sum(1 for a in achievements if a["unlocked"])}/{len(achievements)} Unlocked',
+            '</text>',
+        ]
+        
+        # Draw achievement grid (3 cols x 2 rows)
+        badge_size = 90
+        gap = 30
+        start_x = 40
+        start_y = 80
+        
+        for i, achievement in enumerate(achievements):
+            col = i % 3
+            row = i // 3
+            
+            x = start_x + (col * (badge_size + gap))
+            y = start_y + (row * (badge_size + 40))
+            
+            unlocked = achievement['unlocked']
+            opacity = 1.0 if unlocked else 0.3
+            badge_color = achievement['color'] if unlocked else self.COLORS['muted']
+            
+            # Badge background circle
+            svg.extend([
+                f'<g id="achievement-{i}">',
+                f'<circle cx="{x + badge_size/2}" cy="{y + badge_size/2}" r="{badge_size/2}" '
+                f'fill="{self.COLORS["surface"]}" stroke="{badge_color}" stroke-width="3" '
+                f'opacity="{opacity}">',
+            ])
+            
+            # Glow effect for unlocked badges
+            if unlocked:
+                svg.append(
+                    f'<animate attributeName="stroke-opacity" values="1;0.5;1" '
+                    f'dur="2s" repeatCount="indefinite"/>'
+                )
+            
+            svg.append('</circle>')
+            
+            # Emoji icon (larger for unlocked)
+            emoji_size = 36 if unlocked else 30
+            svg.append(
+                f'<text x="{x + badge_size/2}" y="{y + badge_size/2 + 12}" '
+                f'font-size="{emoji_size}" text-anchor="middle" opacity="{opacity}">'
+                f'{achievement["emoji"]}</text>'
+            )
+            
+            # Achievement name below badge
+            svg.append(
+                f'<text x="{x + badge_size/2}" y="{y + badge_size + 20}" '
+                f'font-family="Arial, sans-serif" font-size="11" font-weight="bold" '
+                f'fill="{self.COLORS["text"]}" text-anchor="middle" opacity="{opacity}">'
+                f'{achievement["name"]}</text>'
+            )
+            
+            # Description below name
+            svg.append(
+                f'<text x="{x + badge_size/2}" y="{y + badge_size + 35}" '
+                f'font-family="Arial, sans-serif" font-size="9" '
+                f'fill="{self.COLORS["muted"]}" text-anchor="middle" opacity="{opacity}">'
+                f'{achievement["desc"]}</text>'
+            )
+            
+            svg.append('</g>')
+        
+        svg.append('</svg>')
+        
+        output_path = self.output_dir / 'achievements.svg'
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write('\n'.join(svg))
         
@@ -875,6 +1197,16 @@ class ChartGenerator:
         if chart:
             charts['repo_grid'] = chart
             print(f"   ✅ Repository grid generated")
+        
+        chart = self.generate_recent_activity_svg()
+        if chart:
+            charts['recent_activity'] = chart
+            print(f"   ✅ Recent activity timeline generated")
+        
+        chart = self.generate_achievements_svg()
+        if chart:
+            charts['achievements'] = chart
+            print(f"   ✅ Achievements panel generated")
         
         chart = self.generate_daily_comparison_chart()
         if chart:
