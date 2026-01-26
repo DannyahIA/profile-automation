@@ -14,7 +14,7 @@ Por quê separar processamento de coleta?
 - Facilita testes e debugging
 """
 
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Any
 from collections import Counter, defaultdict
 import json
@@ -122,7 +122,7 @@ class MetricsProcessor:
         - Facilita comparação mês a mês
         - Evita recalcular ao gerar relatório mensal
         """
-        now = datetime.now()
+        now = datetime.now(timezone.utc)
         month_start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
         
         # Filtra commits deste mês
@@ -201,7 +201,7 @@ class MetricsProcessor:
         longest_streak = 0
         temp_streak = 1
         
-        today = datetime.now().date()
+        today = datetime.now(timezone.utc).date()
         
         # Verifica se há atividade hoje ou ontem (streak atual)
         if unique_dates and (today - unique_dates[-1]).days <= 1:
@@ -250,7 +250,7 @@ class MetricsProcessor:
         streak = self.calculate_activity_streak()
         
         return {
-            'last_update': datetime.now().isoformat(),
+            'last_update': datetime.now(timezone.utc).isoformat(),
             'total_commits': len(self.commits),
             'total_prs': len(self.prs),
             'total_issues': len(self.issues),

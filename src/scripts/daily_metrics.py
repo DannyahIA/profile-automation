@@ -17,7 +17,7 @@ Por quê rodar diariamente?
 import os
 import sys
 import json
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 # Adiciona o diretório src ao path para imports
@@ -73,7 +73,7 @@ def main():
     5. Atualização de arquivos
     """
     print("🚀 Iniciando coleta diária de métricas...")
-    print(f"⏰ Timestamp: {datetime.now().isoformat()}")
+    print(f"⏰ Timestamp: {datetime.now(timezone.utc).isoformat()}")
     
     # 1. SETUP
     # Pega token do ambiente (configurado no GitHub Actions)
@@ -105,7 +105,7 @@ def main():
             print(f"   ➡️  Continuando coleta mesmo assim...")
         
         # Coleta dados dos últimos 30 dias
-        since = datetime.now() - timedelta(days=30)
+        since = datetime.now(timezone.utc) - timedelta(days=30)
         
         print("   - Coletando repositórios...")
         repos = collector.collect_all_repos()

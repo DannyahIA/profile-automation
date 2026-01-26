@@ -9,7 +9,7 @@ Por quê rankings são úteis?
 - Mostram evolução dos projetos
 """
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, List, Any
 from collections import defaultdict
 
@@ -125,12 +125,21 @@ class RankingsProcessor:
         for repo in self.repos:
             if repo['pushed_at']:
                 pushed = datetime.fromisoformat(repo['pushed_at'])
+                now = datetime.now(timezone.utc)
+                # Remove timezone info de ambos para comparação
+                if pushed.tzinfo is not None:
+                    pushed_naive = pushed.replace(tzinfo=None)
+                    now_naive = now.replace(tzinfo=None)
+                else:
+                    pushed_naive = pushed
+                    now_naive = now.replace(tzinfo=None)
+                    
                 recent.append({
                     'name': repo['name'],
                     'full_name': repo['full_name'],
                     'language': repo['language'],
                     'last_push': repo['pushed_at'],
-                    'days_ago': (datetime.now() - pushed).days,
+                    'days_ago': (now_naive - pushed_naive).days,
                     'private': repo['private']
                 })
         
@@ -223,7 +232,7 @@ class RankingsProcessor:
             Dicionário com todos os rankings
         """
         return {
-            'last_update': datetime.now().isoformat(),
+            'last_update': datetime.now(timezone.utc).isoformat(),
             'top_projects': self.rank_by_activity(limit=10),
             'most_active': self.rank_by_commits(limit=10),
             'most_stars': self.rank_by_stars(limit=10),

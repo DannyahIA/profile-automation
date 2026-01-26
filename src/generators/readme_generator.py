@@ -9,7 +9,7 @@ Por quê usar marcadores especiais?
 - Mantém formatação customizada
 """
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, Any
 import re
 
@@ -203,7 +203,7 @@ class ReadmeGenerator:
             )
             
             # Adiciona timestamp de última atualização
-            now = datetime.now().strftime('%d/%m/%Y às %H:%M')
+            now = datetime.now(timezone.utc).strftime('%d/%m/%Y às %H:%M')
             content = re.sub(
                 r'\*Última atualização:.*?\*',
                 f'*Última atualização: {now} UTC*',

@@ -9,7 +9,7 @@ Por quê separar em um módulo?
 """
 
 from github import Github
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Any
 import os
 
@@ -86,9 +86,16 @@ class GitHubCollector:
         - Otimiza o rate limit da API
         """
         if since is None:
-            since = datetime.now() - timedelta(days=30)
+            since = datetime.now(timezone.utc) - timedelta(days=30)
+        elif since.tzinfo is None:
+            # Adiciona timezone se não tiver
+            since = since.replace(tzinfo=timezone.utc)
+            
         if until is None:
-            until = datetime.now()
+            until = datetime.now(timezone.utc)
+        elif until.tzinfo is None:
+            # Adiciona timezone se não tiver
+            until = until.replace(tzinfo=timezone.utc)
         
         commits_data = []
         
@@ -126,7 +133,10 @@ class GitHubCollector:
         - Importantes para métricas de produtividade
         """
         if since is None:
-            since = datetime.now() - timedelta(days=30)
+            since = datetime.now(timezone.utc) - timedelta(days=30)
+        elif since.tzinfo is None:
+            # Adiciona timezone se não tiver
+            since = since.replace(tzinfo=timezone.utc)
         
         prs_data = []
         
@@ -171,7 +181,10 @@ class GitHubCollector:
         - Revelam manutenção ativa do projeto
         """
         if since is None:
-            since = datetime.now() - timedelta(days=30)
+            since = datetime.now(timezone.utc) - timedelta(days=30)
+        elif since.tzinfo is None:
+            # Adiciona timezone se não tiver
+            since = since.replace(tzinfo=timezone.utc)
         
         issues_data = []
         
