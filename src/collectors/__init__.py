@@ -1,5 +1,5 @@
 """
-Collectors package - Módulos para coleta de dados de APIs externas.
+Collectors package - Modules for collecting data from external APIs.
 """
 
 from .github_collector import GitHubCollector

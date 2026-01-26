@@ -155,7 +155,7 @@ class GitHubCollector:
         
         return prs_data
         
-        def collect_issues(self, since: datetime = None) -> List[Dict[str, Any]]:
+    def collect_issues(self, since: datetime = None) -> List[Dict[str, Any]]:
         """
         Collects Issues (problems/tasks) from repositories.
         
@@ -197,7 +197,7 @@ class GitHubCollector:
         
         return issues_data
         
-        def get_rate_limit_info(self) -> Dict[str, Any]:
+    def get_rate_limit_info(self) -> Dict[str, Any]:
         try:
             rate_limit = self.github.get_rate_limit()
             if hasattr(rate_limit, 'core'):
