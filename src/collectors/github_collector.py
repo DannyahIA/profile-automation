@@ -210,11 +210,41 @@ class GitHubCollector:
         - Evita erros por excesso de chamadas
         - Ajuda a planejar quando rodar os jobs
         """
-        rate_limit = self.github.get_rate_limit()
-        return {
-            'core': {
-                'remaining': rate_limit.core.remaining,
-                'limit': rate_limit.core.limit,
-                'reset': rate_limit.core.reset.isoformat()
+        try:
+            rate_limit = self.github.get_rate_limit()
+            # Tenta acessar via atributo
+            if hasattr(rate_limit, 'core'):
+                return {
+                    'core': {
+                        'remaining': rate_limit.core.remaining,
+                        'limit': rate_limit.core.limit,
+                        'reset': rate_limit.core.reset.isoformat()
+                    }
+                }
+            # Fallback: acessa via propriedade rate
+            elif hasattr(rate_limit, 'rate'):
+                return {
+                    'core': {
+                        'remaining': rate_limit.rate.remaining,
+                        'limit': rate_limit.rate.limit,
+                        'reset': rate_limit.rate.reset.isoformat() if rate_limit.rate.reset else 'N/A'
+                    }
+                }
+            else:
+                # Fallback simples
+                return {
+                    'core': {
+                        'remaining': 'N/A',
+                        'limit': 'N/A',
+                        'reset': 'N/A'
+                    }
+                }
+        except Exception as e:
+            print(f"⚠️  Não foi possível verificar rate limit: {e}")
+            return {
+                'core': {
+                    'remaining': 'N/A',
+                    'limit': 'N/A',
+                    'reset': 'N/A'
+                }
             }
-        }

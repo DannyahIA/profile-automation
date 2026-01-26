@@ -94,9 +94,15 @@ def main():
     try:
         collector = GitHubCollector(token)
         
-        # Verifica rate limit antes de começar
-        rate_limit = collector.get_rate_limit_info()
-        print(f"   Rate limit: {rate_limit['core']['remaining']}/{rate_limit['core']['limit']}")
+        # Verifica rate limit antes de começar (opcional, não falha se der erro)
+        try:
+            rate_limit = collector.get_rate_limit_info()
+            remaining = rate_limit['core']['remaining']
+            limit = rate_limit['core']['limit']
+            print(f"   Rate limit: {remaining}/{limit}")
+        except Exception as e:
+            print(f"   ⚠️  Rate limit info indisponível: {e}")
+            print(f"   ➡️  Continuando coleta mesmo assim...")
         
         # Coleta dados dos últimos 30 dias
         since = datetime.now() - timedelta(days=30)
