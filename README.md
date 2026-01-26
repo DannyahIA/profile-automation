@@ -2,8 +2,6 @@
 
 <div align="center">
 
-## 📊 GitHub Activity
-
 ![Stats](./assets/stats_card.svg)
 
 </div>
@@ -11,6 +9,22 @@
 <div align="center">
 
 ![Languages](./assets/language_chart.svg)
+
+</div>
+
+<div align="center">
+
+### 📊 Project Rankings
+
+![Tier Ranking](./assets/tier_ranking.svg)
+
+</div>
+
+<div align="center">
+
+### 🗂️ Top Repositories
+
+![Repository Grid](./assets/repo_grid.svg)
 
 </div>
 
@@ -31,7 +45,7 @@
 
 **This Month**
 
-📝 `11` commits  
+📝 `13` commits  
 🔀 `0` pull requests  
 ✅ `0` issues  
 
@@ -64,13 +78,13 @@
 ## 🏆 Featured Projects
 
 <details>
-<summary><b>📦 Other Projects</b></summary>
+<summary><b>� View All Projects</b></summary>
 
 <br>
 
-- 🔒 **profile-automation** • Python
-- 📂 **orkut** • PHP
-- 📂 **nexus** • TypeScript
+- 🔒 **[profile-automation](https://github.com/DannyahIA/profile-automation)** • C • Python • ⚡ 13
+- 📂 **[orkut](https://github.com/DannyahIA/orkut)** • F • PHP • ⚡ 2
+- 📂 **[nexus](https://github.com/DannyahIA/nexus)** • F • TypeScript • ⚡ 1
 
 </details>
 
