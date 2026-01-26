@@ -34,7 +34,7 @@ jobs:
       
       - name: 🚀 Run daily metrics script
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           python src/scripts/daily_metrics.py
       
