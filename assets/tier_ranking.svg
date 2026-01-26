@@ -14,7 +14,6 @@ Ranked by activity score (commits + PRs + issues)
 <rect x="20" y="140" width="760" height="50" fill="#1F1D2E" rx="8"/>
 <rect x="35" y="150" width="60" height="35" fill="#808080" rx="6"/>
 <text x="65" y="175" font-family="monospace" font-size="20" font-weight="bold" fill="white" text-anchor="middle">F</text>
-<text x="120" y="175" font-family="Arial, sans-serif" font-size="16" fill="#E0DEF4" font-weight="bold">2 projects</text>
-<text x="280" y="175" font-family="monospace" font-size="12" fill="#6E6A86">📂 orkut</text>
-<text x="410" y="175" font-family="monospace" font-size="12" fill="#6E6A86">📂 nexus</text>
+<text x="120" y="175" font-family="Arial, sans-serif" font-size="16" fill="#E0DEF4" font-weight="bold">1 project</text>
+<text x="280" y="175" font-family="monospace" font-size="12" fill="#6E6A86">📂 nexus</text>
 </svg>
