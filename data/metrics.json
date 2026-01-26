@@ -1,0 +1,25 @@
+{
+    "last_update": null,
+    "total_commits": 0,
+    "total_prs": 0,
+    "total_issues": 0,
+    "total_repos": 0,
+    "daily_stats": {
+        "commits_per_day": [],
+        "average_commits": 0
+    },
+    "weekly_stats": {
+        "prs_per_week": [],
+        "issues_closed_per_week": []
+    },
+    "monthly_stats": {
+        "commits_this_month": 0,
+        "prs_this_month": 0,
+        "issues_this_month": 0
+    },
+    "top_languages": {},
+    "activity_streak": {
+        "current": 0,
+        "longest": 0
+    }
+}

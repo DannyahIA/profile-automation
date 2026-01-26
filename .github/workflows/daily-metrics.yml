@@ -1,0 +1,132 @@
+# GitHub Actions Workflow - Daily Metrics
+# 
+# O que é GitHub Actions?
+# - Ferramenta de CI/CD do GitHub
+# - Executa código automaticamente em eventos ou horários
+# - Gratuito para repos públicos (2000 min/mês para privados)
+#
+# Por quê usar Actions?
+# - Automatiza sem precisar de servidor próprio
+# - Integrado ao GitHub
+# - Fácil de configurar
+
+name: Daily Metrics Update
+
+# TRIGGERS - Quando rodar este workflow?
+on:
+  # 1. Schedule - Roda automaticamente todo dia
+  schedule:
+    # Cron syntax: minuto hora dia mês dia-da-semana
+    # '0 0 * * *' = todo dia à meia-noite UTC
+    # Por quê meia-noite? Pega atividade do dia completo
+    - cron: '0 0 * * *'
+  
+  # 2. Manual - Permite rodar manualmente
+  # Por quê? Útil para testar ou forçar atualização
+  workflow_dispatch:
+  
+  # 3. Push - Roda quando faz push (opcional, para testes)
+  # Comente esta linha após testar
+  push:
+    branches: [ master, main ]
+
+# PERMISSÕES
+# Por quê precisa de permissões?
+# - contents: write = permite commitar arquivos atualizados
+# - actions: read = permite ler informações de workflows
+permissions:
+  contents: write
+  actions: read
+
+# JOBS - O que executar
+jobs:
+  update-metrics:
+    name: Atualizar Métricas Diárias
+    
+    # Onde rodar? Ubuntu é padrão e gratuito
+    runs-on: ubuntu-latest
+    
+    # STEPS - Passos da execução
+    steps:
+      # 1. CHECKOUT - Baixa o código do repositório
+      # Por quê? Actions roda em VM limpa, precisa do código
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # fetch-depth: 0 = pega todo histórico git
+          # Por quê? Para acessar commits antigos se necessário
+          fetch-depth: 0
+          # token especial que permite push
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      # 2. SETUP PYTHON - Instala Python
+      # Por quê? Scripts são em Python
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          # Cache acelera instalação de dependências
+          cache: 'pip'
+      
+      # 3. INSTALAR DEPENDÊNCIAS
+      # Por quê requirements.txt?
+      # - Lista todas as bibliotecas necessárias
+      # - Garante versões consistentes
+      - name: 📦 Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      # 4. EXECUTAR SCRIPT
+      # Este é o coração do workflow!
+      - name: 🚀 Run daily metrics script
+        env:
+          # GITHUB_TOKEN: token automático do Actions
+          # Por quê usar secrets.GITHUB_TOKEN?
+          # - Criado automaticamente pelo GitHub
+          # - Tem permissões do repositório
+          # - Não precisa criar token manualmente
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python src/scripts/daily_metrics.py
+      
+      # 5. COMMIT E PUSH
+      # Por quê commitar?
+      # - Salva dados atualizados no repositório
+      # - Mantém histórico de mudanças
+      # - Atualiza README no perfil
+      - name: 💾 Commit and push changes
+        run: |
+          # Configura git (necessário para commit)
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # Adiciona arquivos modificados
+          git add data/*.json README.md
+          
+          # Commit (|| true = não falha se não houver mudanças)
+          git diff --quiet && git diff --staged --quiet || git commit -m "🤖 Update daily metrics [skip ci]"
+          
+          # Push
+          # [skip ci] evita loop infinito (não triggera workflow novamente)
+          git push
+      
+      # 6. SUMMARY - Mostra resumo no Actions
+      # Por quê? Facilita ver resultados sem olhar logs
+      - name: 📊 Create job summary
+        if: always()
+        run: |
+          echo "## 📊 Daily Metrics Update" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Execução concluída!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📅 Data: $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Mostra últimas linhas do metrics.json
+          if [ -f data/metrics.json ]; then
+            echo "### Métricas Atualizadas" >> $GITHUB_STEP_SUMMARY
+            echo '```json' >> $GITHUB_STEP_SUMMARY
+            cat data/metrics.json | head -20 >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi

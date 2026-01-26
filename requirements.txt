@@ -1,0 +1,14 @@
+# API do GitHub
+PyGithub>=2.1.1
+requests>=2.31.0
+
+# Processamento de dados
+python-dateutil>=2.8.2
+
+# IA (para depois)
+# openai>=1.0.0
+# anthropic>=0.8.0
+
+# Utilitários
+python-dotenv>=1.0.0
+pyyaml>=6.0
