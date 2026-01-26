@@ -1,0 +1,38 @@
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="500" fill="#191724"/>
+<text x="400.0" y="35" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#E0DEF4" text-anchor="middle">
+💻 Language Distribution
+</text>
+<text x="190" y="82.5" font-family="monospace" font-size="14" fill="#E0DEF4" text-anchor="end">Python</text>
+<rect x="200" y="60" width="480" height="35" fill="#1F1D2E" rx="5"/>
+<rect x="200" y="60" width="0" height="35" fill="#EB6F92" rx="5"><animate attributeName="width" from="0" to="130.9090909090909" dur="1s" fill="freeze"/></rect>
+<text x="340.9090909090909" y="82.5" font-family="monospace" font-size="14" font-weight="bold" fill="#E0DEF4">27.3%</text>
+<text x="190" y="132.5" font-family="monospace" font-size="14" fill="#E0DEF4" text-anchor="end">TypeScript</text>
+<rect x="200" y="110" width="480" height="35" fill="#1F1D2E" rx="5"/>
+<rect x="200" y="110" width="0" height="35" fill="#9CCFD8" rx="5"><animate attributeName="width" from="0" to="130.9090909090909" dur="1s" fill="freeze"/></rect>
+<text x="340.9090909090909" y="132.5" font-family="monospace" font-size="14" font-weight="bold" fill="#E0DEF4">27.3%</text>
+<text x="190" y="182.5" font-family="monospace" font-size="14" fill="#E0DEF4" text-anchor="end">Go</text>
+<rect x="200" y="160" width="480" height="35" fill="#1F1D2E" rx="5"/>
+<rect x="200" y="160" width="0" height="35" fill="#F6C177" rx="5"><animate attributeName="width" from="0" to="43.63636363636364" dur="1s" fill="freeze"/></rect>
+<text x="253.63636363636363" y="182.5" font-family="monospace" font-size="14" font-weight="bold" fill="#E0DEF4">9.1%</text>
+<text x="190" y="232.5" font-family="monospace" font-size="14" fill="#E0DEF4" text-anchor="end">PHP</text>
+<rect x="200" y="210" width="480" height="35" fill="#1F1D2E" rx="5"/>
+<rect x="200" y="210" width="0" height="35" fill="#31748F" rx="5"><animate attributeName="width" from="0" to="43.63636363636364" dur="1s" fill="freeze"/></rect>
+<text x="253.63636363636363" y="232.5" font-family="monospace" font-size="14" font-weight="bold" fill="#E0DEF4">9.1%</text>
+<text x="190" y="282.5" font-family="monospace" font-size="14" fill="#E0DEF4" text-anchor="end">Pascal</text>
+<rect x="200" y="260" width="480" height="35" fill="#1F1D2E" rx="5"/>
+<rect x="200" y="260" width="0" height="35" fill="#EB6F92" rx="5"><animate attributeName="width" from="0" to="21.81818181818182" dur="1s" fill="freeze"/></rect>
+<text x="231.8181818181818" y="282.5" font-family="monospace" font-size="14" font-weight="bold" fill="#E0DEF4">4.5%</text>
+<text x="190" y="332.5" font-family="monospace" font-size="14" fill="#E0DEF4" text-anchor="end">JavaScript</text>
+<rect x="200" y="310" width="480" height="35" fill="#1F1D2E" rx="5"/>
+<rect x="200" y="310" width="0" height="35" fill="#9CCFD8" rx="5"><animate attributeName="width" from="0" to="21.81818181818182" dur="1s" fill="freeze"/></rect>
+<text x="231.8181818181818" y="332.5" font-family="monospace" font-size="14" font-weight="bold" fill="#E0DEF4">4.5%</text>
+<text x="190" y="382.5" font-family="monospace" font-size="14" fill="#E0DEF4" text-anchor="end">Shell</text>
+<rect x="200" y="360" width="480" height="35" fill="#1F1D2E" rx="5"/>
+<rect x="200" y="360" width="0" height="35" fill="#F6C177" rx="5"><animate attributeName="width" from="0" to="21.81818181818182" dur="1s" fill="freeze"/></rect>
+<text x="231.8181818181818" y="382.5" font-family="monospace" font-size="14" font-weight="bold" fill="#E0DEF4">4.5%</text>
+<text x="190" y="432.5" font-family="monospace" font-size="14" fill="#E0DEF4" text-anchor="end">Kotlin</text>
+<rect x="200" y="410" width="480" height="35" fill="#1F1D2E" rx="5"/>
+<rect x="200" y="410" width="0" height="35" fill="#31748F" rx="5"><animate attributeName="width" from="0" to="21.81818181818182" dur="1s" fill="freeze"/></rect>
+<text x="231.8181818181818" y="432.5" font-family="monospace" font-size="14" font-weight="bold" fill="#E0DEF4">4.5%</text>
+</svg>

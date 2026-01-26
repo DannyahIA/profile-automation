@@ -1,13 +1,14 @@
 {
-  "last_update": "2026-01-26T18:35:23.612409+00:00",
+  "last_update": "2026-01-26T18:45:11.774418+00:00",
   "top_projects": [
     {
       "name": "profile-automation",
       "full_name": "DannyahIA/profile-automation",
+      "html_url": "https://github.com/DannyahIA/profile-automation",
       "language": "Python",
-      "score": 10,
+      "score": 11,
       "breakdown": {
-        "commits": 10,
+        "commits": 11,
         "prs": 0,
         "issues": 0
       },
@@ -17,6 +18,7 @@
     {
       "name": "orkut",
       "full_name": "DannyahIA/orkut",
+      "html_url": "https://github.com/DannyahIA/orkut",
       "language": "PHP",
       "score": 2,
       "breakdown": {
@@ -30,6 +32,7 @@
     {
       "name": "nexus",
       "full_name": "DannyahIA/nexus",
+      "html_url": "https://github.com/DannyahIA/nexus",
       "language": "TypeScript",
       "score": 1,
       "breakdown": {
@@ -46,7 +49,7 @@
       "name": "profile-automation",
       "full_name": "DannyahIA/profile-automation",
       "language": "Python",
-      "commits": 10,
+      "commits": 11,
       "private": true
     },
     {
@@ -80,7 +83,7 @@
       "name": "profile-automation",
       "full_name": "DannyahIA/profile-automation",
       "language": "Python",
-      "last_push": "2026-01-26T18:34:20+00:00",
+      "last_push": "2026-01-26T18:44:04+00:00",
       "days_ago": 0,
       "private": true
     },
@@ -163,7 +166,7 @@
         "name": "profile-automation",
         "full_name": "DannyahIA/profile-automation",
         "stars": 0,
-        "activity": 10,
+        "activity": 11,
         "private": true
       },
       {
