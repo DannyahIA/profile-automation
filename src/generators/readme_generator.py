@@ -1,8 +1,8 @@
 """
-README Generator - LinkedIn Style
+README Generator - Dashboard Style
 
-This module generates an elegant, minimal README for GitHub profiles.
-Focuses on visual SVGs and clean presentation.
+This module generates an elegant, visual dashboard README for GitHub profiles.
+Focuses on interactive SVG charts with minimal text.
 """
 
 from datetime import datetime, timezone
@@ -12,7 +12,7 @@ import re
 
 class ReadmeGenerator:
     """
-    Generates elegant, LinkedIn-style README sections.
+    Generates interactive, dashboard-style README sections.
     """
     
     # Tier system configuration
@@ -132,7 +132,6 @@ class ReadmeGenerator:
 ![Repository Grid](./assets/repo_grid.svg)
 
 </div>
-
 """
         return content
     
@@ -152,25 +151,25 @@ class ReadmeGenerator:
         """
         content = """
 <details>
-<summary><b>Advanced Analytics (Click to expand)</b></summary>
+<summary><b>📈 Advanced Analytics (Click to expand)</b></summary>
 
 <br>
 
 <div align="center">
 
-### Comparative Performance
+### 📊 Comparative Performance
 
 ![Daily Comparison](./assets/daily_comparison.svg)
 
 <br>
 
-### Trends & Patterns
+### 📉 Trends & Patterns
 
 ![Weekly Trend](./assets/weekly_trend.svg)
 
 <br>
 
-### Distribution Analysis
+### 🎯 Distribution Analysis
 
 <table>
 <tr>
@@ -189,63 +188,25 @@ class ReadmeGenerator:
 
 <br>
 
-### Project Tier Evolution
+### 🏅 Project Tier Evolution
 
 ![Tier Evolution](./assets/tier_evolution.svg)
 
 </div>
 
 </details>
-            """
+"""
         return content
+    
+    def generate_recent_activity_section(self) -> str:
+        """
+        DEPRECATED: Recent activity now handled by generate_recent_activity_svg() in chart_generator.
+        This method returns empty string as activity is shown visually in the main dashboard.
         
-        # Group by tier
-        tier_groups = {'S+': [], 'S': [], 'Other': []}
-        
-        for project in top_projects:
-            tier, emoji, color = self._get_tier(project['score'])
-            project_data = {**project, 'tier': tier, 'emoji': emoji}
-            
-            if tier == 'S+':
-                tier_groups['S+'].append(project_data)
-            elif tier == 'S':
-                tier_groups['S'].append(project_data)
-            else:
-                tier_groups['Other'].append(project_data)
-        
-        # Show S+ projects (if any) - these are the real stars
-        if tier_groups['S+']:
-            content += "<div align=\"center\">\n\n"
-            content += "### 👑 Elite Projects (100+ activity)\n\n"
-            content += "</div>\n\n"
-            
-            for proj in tier_groups['S+']:
-                icon = "🔒" if proj['private'] else "📂"
-                lang = proj['language'] or 'Various'
-                content += f"<div align=\"center\">\n\n"
-                content += f"{icon} **[{proj['name']}]({proj.get('html_url', '#')})** • {lang} • "
-                content += f"⚡ {proj['score']} points"
-                if proj['stars'] > 0:
-                    content += f" • ⭐ {proj['stars']}"
-                content += "\n\n</div>\n\n"
-            content += "\n"
-        
-        # All other projects in collapsed details
-        other_projects = tier_groups['S'] + tier_groups['Other']
-        if other_projects:
-            content += "<details>\n"
-            content += "<summary><b>� View All Projects</b></summary>\n\n"
-            content += "<br>\n\n"
-            
-            for proj in other_projects:
-                icon = "🔒" if proj['private'] else "📂"
-                lang = proj['language'] or 'Various'
-                tier = proj['tier']
-                content += f"- {icon} **[{proj['name']}]({proj.get('html_url', '#')})** • {tier} • {lang} • ⚡ {proj['score']}\n"
-            
-            content += "\n</details>\n\n"
-        
-        return content
+        Returns:
+            Empty string (visual SVG replaces text lists)
+        """
+        return ""
     
     def update_readme(self, readme_path: str) -> bool:
         """
