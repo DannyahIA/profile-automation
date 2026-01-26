@@ -27,61 +27,56 @@ Este projeto automatiza completamente seu perfil do GitHub:
 ## 📈 Métricas em Tempo Real
 
 <!-- METRICS_START -->
-## 📊 GitHub Statistics
 
 <div align="center">
 
-| 📝 Commits | 🔀 Pull Requests | 🐛 Issues | 📦 Repositories |
-|:----------:|:----------------:|:---------:|:---------------:|
-| **12** | **1** | **0** | **25** |
+## 📊 GitHub Activity
+
+![Stats](./assets/stats_card.svg)
 
 </div>
 
-### 🔥 Contribution Streak
+<div align="center">
 
-```
-Current Streak: 1 days �
-Longest Streak: 1 days 🏆
-```
+![Languages](./assets/language_chart.svg)
 
-### 📅 This Month (2026-01)
+</div>
 
-<table>
+<details>
+<summary><b>📈 View Detailed Stats</b></summary>
+
+<br>
+
+<div align="center">
+
+![Activity Timeline](./assets/activity_timeline.svg)
+
+</div>
+
+<table align="center">
 <tr>
-<td>
+<td align="center" width="50%">
 
-**Activity Overview**
-- ✨ `10` commits
-- 🔀 `0` pull requests  
-- ✅ `0` issues
+**This Month**
+
+📝 `11` commits  
+🔀 `0` pull requests  
+✅ `0` issues  
 
 </td>
-<td>
+<td align="center" width="50%">
 
-**Daily Average**
-- 📊 `0.3` commits/day
-- 🎯 `0.3` actions/day
+**Contribution Streak**
+
+🔥 `1` days current  
+🏆 `1` days record  
 
 </td>
 </tr>
 </table>
 
-### 💻 Language Distribution
+</details>
 
-<div align="center">
-
-| Language | Usage |
-|:---------|:------|
-| **Python** | `█████░░░░░░░░░░░░░░░ 27.3%` |
-| **TypeScript** | `█████░░░░░░░░░░░░░░░ 27.3%` |
-| **Go** | `█░░░░░░░░░░░░░░░░░░░ 9.1%` |
-| **PHP** | `█░░░░░░░░░░░░░░░░░░░ 9.1%` |
-| **Pascal** | `░░░░░░░░░░░░░░░░░░░░ 4.5%` |
-| **JavaScript** | `░░░░░░░░░░░░░░░░░░░░ 4.5%` |
-| **Shell** | `░░░░░░░░░░░░░░░░░░░░ 4.5%` |
-| **Kotlin** | `░░░░░░░░░░░░░░░░░░░░ 4.5%` |
-
-</div>
 
 <!-- METRICS_END -->
 
@@ -94,56 +89,33 @@ Longest Streak: 1 days 🏆
 ## 🏆 Top Projetos
 
 <!-- RANKINGS_START -->
-## 🏆 Project Rankings
 
-*Projects ranked by activity (commits + PRs + issues)*
+## 🏆 Featured Projects
 
+<details>
+<summary><b>📦 Other Projects</b></summary>
 
-### 📊 Tier D+
-*Score Range: 10+ points*
+<br>
 
-| Project | Language | Score | Breakdown | Stars |
-|:--------|:---------|------:|:----------|------:|
-| 🔒 **profile-automation** | Python | **10** | `💻 10` `� 0` `� 0` | - |
+- 🔒 **profile-automation** • Python
+- 📂 **orkut** • PHP
+- 📂 **nexus** • TypeScript
 
-### 💤 Tier F
-*Score Range: 0+ points*
+</details>
 
-| Project | Language | Score | Breakdown | Stars |
-|:--------|:---------|------:|:----------|------:|
-| 📂 **orkut** | PHP | **2** | `💻 2` `� 0` `� 0` | - |
-| 📂 **nexus** | TypeScript | **1** | `💻 0` `� 1` `� 0` | ⭐ 1 |
+<details>
+<summary><b>🚀 Recent Work</b></summary>
 
----
+<br>
 
-## ⭐ Most Starred Projects
+- 🔒 **profile-automation** • Python • _today_
+- 📂 **DannyahIA** • Various • _today_
+- 📂 **nexus** • TypeScript • _4d ago_
+- 📂 **orkut** • PHP • _4w ago_
+- 🔒 **mc-msg-sync** • JavaScript • _1mo ago_
 
-### 1. ai-daily-resume
-**⭐ 2 stars** | 🍴 0 forks | 💻 Python
+</details>
 
-> Python agent that monitors screen activity, uses AI to understand context, and generates daily work summaries.
-
-### 2. nexus
-**⭐ 1 stars** | 🍴 0 forks | 💻 TypeScript
-
-> Create a platform that integrates Real-Time Communication (Chat, Voice, Video) with Agile and Structured Task Management (Kanban, Lists, Status).
-
-
-
-## 🚀 Recent Activity
-
-*Projects I'm currently working on*
-
-| Project | Language | Last Active |
-|:--------|:---------|:-----------:|
-| 🔒 **profile-automation** | Python | 🟢 Today |
-| 📂 **DannyahIA** | N/A | 🟢 Today |
-| 📂 **nexus** | TypeScript | 🟡 4 days ago |
-| 📂 **orkut** | PHP | 🟡 4 weeks ago |
-| 🔒 **mc-msg-sync** | JavaScript | 🔴 1 month ago |
-| 📂 **n8n-docker** | Shell | 🔴 1 month ago |
-| 📂 **sevtechages-server** | ZenScript | 🔴 1 month ago |
-| 📂 **nn-dl-tests** | Python | 🔴 1 month ago |
 
 <!-- RANKINGS_END -->
 

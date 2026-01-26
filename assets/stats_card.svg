@@ -1,0 +1,31 @@
+<svg width="500" height="200" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" style="stop-color:#EB6F92;stop-opacity:0.8" />
+<stop offset="100%" style="stop-color:#9CCFD8;stop-opacity:0.8" />
+</linearGradient>
+</defs>
+<rect width="500" height="200" fill="url(#grad1)" rx="15"/>
+<text x="250" y="35" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">
+📊 GitHub Activity Summary
+</text>
+<text x="70" y="90" font-family="monospace" font-size="32" font-weight="bold" fill="white" text-anchor="middle">
+13
+</text>
+<text x="70" y="115" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">Commits</text>
+<text x="180" y="90" font-family="monospace" font-size="32" font-weight="bold" fill="white" text-anchor="middle">
+1
+</text>
+<text x="180" y="115" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">Pull Requests</text>
+<text x="320" y="90" font-family="monospace" font-size="32" font-weight="bold" fill="white" text-anchor="middle">
+0
+</text>
+<text x="320" y="115" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">Issues</text>
+<text x="430" y="90" font-family="monospace" font-size="32" font-weight="bold" fill="white" text-anchor="middle">
+25
+</text>
+<text x="430" y="115" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">Repositories</text>
+<text x="250" y="165" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle" opacity="0.7">
+Last 30 days • Updated January 26, 2026
+</text>
+</svg>

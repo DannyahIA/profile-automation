@@ -1,0 +1,12 @@
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+<rect width="600" height="400" fill="#191724"/>
+<text x="300.0" y="30" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#E0DEF4" text-anchor="middle">
+🏆 Project Tier Distribution
+</text>
+<path d="M 300.0 200.0 L 300.0 66.66666666666666 A 133.33333333333334 133.33333333333334 0 0 1 415.47005383792515 266.66666666666663 Z" fill="#50C878" stroke="#191724" stroke-width="2"/>
+<text x="380.8290376865476" y="153.33333333333334" font-family="monospace" font-size="16" font-weight="bold" fill="white" text-anchor="middle">C</text>
+<text x="380.8290376865476" y="171.33333333333334" font-family="monospace" font-size="12" fill="white" text-anchor="middle">(1)</text>
+<path d="M 300.0 200.0 L 415.47005383792515 266.66666666666663 A 133.33333333333334 133.33333333333334 0 1 1 300.0 66.66666666666666 Z" fill="#808080" stroke="#191724" stroke-width="2"/>
+<text x="219.17096231345238" y="246.66666666666666" font-family="monospace" font-size="16" font-weight="bold" fill="white" text-anchor="middle">F</text>
+<text x="219.17096231345238" y="264.66666666666663" font-family="monospace" font-size="12" fill="white" text-anchor="middle">(2)</text>
+</svg>
