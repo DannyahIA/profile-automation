@@ -430,3 +430,4 @@ class ReadmeGenerator:
         
         # re.DOTALL makes . match newlines
         return re.sub(pattern, replacement, content, flags=re.DOTALL)
+        """
