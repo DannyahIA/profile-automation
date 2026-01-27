@@ -4,7 +4,7 @@
 🚀 Recent Activity
 </text>
 <line x1="50" y1="60" x2="50" y2="550" stroke="#6E6A86" stroke-width="2"/>
-<a href="https://github.com/DannyahIA/DannyahIA" target="_blank">
+<a href="https://github.com/DannyahIA/profile-automation" target="_blank">
 <circle cx="50" cy="60" r="8" fill="#EB6F92" opacity="1.0" stroke="#191724" stroke-width="3" style="cursor:pointer;">
 <animate attributeName="opacity" from="0" to="1.0" begin="0.0s" dur="0.5s" fill="freeze"/>
 <animate attributeName="r" values="8;10;8" dur="2s" begin="0.0s" repeatCount="indefinite"/>
@@ -13,11 +13,11 @@
 <rect x="85" y="35" width="300" height="50" fill="#1F1D2E" rx="8" opacity="1.0" stroke="#EB6F92" stroke-width="1" style="cursor:pointer;">
 <animate attributeName="opacity" begin="mouseover" end="mouseout" from="1.0" to="1" dur="0.2s" fill="freeze"/>
 </rect>
-<text x="95" y="52" font-family="monospace" font-size="13" font-weight="bold" fill="#E0DEF4" style="cursor:pointer;">📂 DannyahIA</text>
-<text x="95" y="70" font-family="Arial, sans-serif" font-size="11" fill="#6E6A86" style="cursor:pointer;">None</text>
+<text x="95" y="52" font-family="monospace" font-size="13" font-weight="bold" fill="#E0DEF4" style="cursor:pointer;">📂 profile-automation</text>
+<text x="95" y="70" font-family="Arial, sans-serif" font-size="11" fill="#6E6A86" style="cursor:pointer;">Python</text>
 <text x="370" y="70" font-family="Arial, sans-serif" font-size="11" fill="#EB6F92" text-anchor="end" font-weight="bold" style="cursor:pointer;">today</text>
 </a>
-<a href="https://github.com/DannyahIA/profile-automation" target="_blank">
+<a href="https://github.com/DannyahIA/DannyahIA" target="_blank">
 <circle cx="50" cy="130" r="8" fill="#EB6F92" opacity="0.9" stroke="#191724" stroke-width="3" style="cursor:pointer;">
 <animate attributeName="opacity" from="0" to="0.9" begin="0.2s" dur="0.5s" fill="freeze"/>
 <animate attributeName="r" values="8;10;8" dur="2s" begin="0.2s" repeatCount="indefinite"/>
@@ -26,8 +26,8 @@
 <rect x="85" y="105" width="300" height="50" fill="#1F1D2E" rx="8" opacity="0.9" stroke="#EB6F92" stroke-width="1" style="cursor:pointer;">
 <animate attributeName="opacity" begin="mouseover" end="mouseout" from="0.9" to="1" dur="0.2s" fill="freeze"/>
 </rect>
-<text x="95" y="122" font-family="monospace" font-size="13" font-weight="bold" fill="#E0DEF4" style="cursor:pointer;">📂 profile-automation</text>
-<text x="95" y="140" font-family="Arial, sans-serif" font-size="11" fill="#6E6A86" style="cursor:pointer;">Python</text>
+<text x="95" y="122" font-family="monospace" font-size="13" font-weight="bold" fill="#E0DEF4" style="cursor:pointer;">📂 DannyahIA</text>
+<text x="95" y="140" font-family="Arial, sans-serif" font-size="11" fill="#6E6A86" style="cursor:pointer;">None</text>
 <text x="370" y="140" font-family="Arial, sans-serif" font-size="11" fill="#EB6F92" text-anchor="end" font-weight="bold" style="cursor:pointer;">today</text>
 </a>
 <a href="https://github.com/DannyahIA/nexus" target="_blank">
