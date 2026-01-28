@@ -6,7 +6,7 @@
 <g transform="translate(150, 100)">
 <circle cx="0" cy="0" r="50" fill="#EB6F92" opacity="0.2"/>
 <circle cx="0" cy="0" r="45" fill="#EB6F92"/>
-<text x="0" y="10" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="white" text-anchor="middle">1</text>
+<text x="0" y="10" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="white" text-anchor="middle">0</text>
 <text x="0" y="60" font-family="Arial, sans-serif" font-size="12" fill="#E0DEF4" text-anchor="middle">Current Streak</text>
 </g>
 <g transform="translate(650, 100)">
