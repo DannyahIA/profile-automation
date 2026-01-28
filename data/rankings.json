@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-01-28T14:21:20.549400+00:00",
+  "last_update": "2026-01-28T15:21:18.880076+00:00",
   "top_projects": [
     {
       "name": "profile-automation",
@@ -59,6 +59,14 @@
   ],
   "most_recent": [
     {
+      "name": "profile-automation",
+      "full_name": "DannyahIA/profile-automation",
+      "language": "Python",
+      "last_push": "2026-01-28T14:21:21+00:00",
+      "days_ago": 0,
+      "private": false
+    },
+    {
       "name": "DannyahIA",
       "full_name": "DannyahIA/DannyahIA",
       "language": null,
@@ -67,19 +75,11 @@
       "private": false
     },
     {
-      "name": "profile-automation",
-      "full_name": "DannyahIA/profile-automation",
-      "language": "Python",
-      "last_push": "2026-01-28T13:40:41+00:00",
-      "days_ago": 0,
-      "private": false
-    },
-    {
       "name": "nexus",
       "full_name": "DannyahIA/nexus",
       "language": "TypeScript",
       "last_push": "2026-01-22T14:26:14+00:00",
-      "days_ago": 5,
+      "days_ago": 6,
       "private": false
     },
     {
