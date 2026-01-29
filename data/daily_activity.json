@@ -1,446 +1,68 @@
 {
-    "daily_stats": {
-        "2025-12": [
-            {
-                "date": "2025-12-01",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-02",
-                "commits": 1,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-03",
-                "commits": 2,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-04",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-05",
-                "commits": 3,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-06",
-                "commits": 1,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-07",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-08",
-                "commits": 2,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-09",
-                "commits": 1,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-10",
-                "commits": 0,
-                "prs": 1,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-11",
-                "commits": 3,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-12",
-                "commits": 2,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-13",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-14",
-                "commits": 1,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-15",
-                "commits": 2,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-16",
-                "commits": 1,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-17",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-18",
-                "commits": 2,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-19",
-                "commits": 1,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-20",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-21",
-                "commits": 1,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-22",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-23",
-                "commits": 1,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-24",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-25",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-26",
-                "commits": 1,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-27",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-28",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-29",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-30",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2025-12-31",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            }
-        ],
-        "2026-01": [
-            {
-                "date": "2026-01-01",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-02",
-                "commits": 1,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-03",
-                "commits": 2,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-04",
-                "commits": 1,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-05",
-                "commits": 3,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-06",
-                "commits": 2,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-07",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-08",
-                "commits": 1,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-09",
-                "commits": 2,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-10",
-                "commits": 1,
-                "prs": 1,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-11",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-12",
-                "commits": 2,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-13",
-                "commits": 1,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-14",
-                "commits": 3,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-15",
-                "commits": 2,
-                "prs": 0,
-                "issues": 1,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-16",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-17",
-                "commits": 1,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-18",
-                "commits": 2,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-19",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-20",
-                "commits": 1,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-21",
-                "commits": 2,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-22",
-                "commits": 1,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-23",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-24",
-                "commits": 1,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-25",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-26",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-27",
-                "commits": 1,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-28",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-29",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-30",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            },
-            {
-                "date": "2026-01-31",
-                "commits": 0,
-                "prs": 0,
-                "issues": 0,
-                "reviews": 0
-            }
-        ]
-    },
-    "metadata": {
-        "last_updated": "2026-01-29",
-        "description": "Daily activity data for performance comparison charts"
-    }
+  "daily_stats": {
+    "2025-12": [
+      {
+        "date": "2025-12-03",
+        "commits": 28,
+        "prs": 0,
+        "issues": 0,
+        "reviews": 0
+      },
+      {
+        "date": "2025-12-07",
+        "commits": 15,
+        "prs": 4,
+        "issues": 0,
+        "reviews": 0
+      },
+      {
+        "date": "2025-12-09",
+        "commits": 1,
+        "prs": 0,
+        "issues": 0,
+        "reviews": 0
+      },
+      {
+        "date": "2025-12-10",
+        "commits": 1,
+        "prs": 0,
+        "issues": 0,
+        "reviews": 0
+      },
+      {
+        "date": "2025-12-23",
+        "commits": 2,
+        "prs": 0,
+        "issues": 0,
+        "reviews": 0
+      },
+      {
+        "date": "2025-12-27",
+        "commits": 2,
+        "prs": 0,
+        "issues": 0,
+        "reviews": 0
+      }
+    ],
+    "2026-01": [
+      {
+        "date": "2026-01-26",
+        "commits": 30,
+        "prs": 0,
+        "issues": 0,
+        "reviews": 0
+      },
+      {
+        "date": "2026-01-29",
+        "commits": 12,
+        "prs": 0,
+        "issues": 0,
+        "reviews": 0
+      }
+    ]
+  },
+  "metadata": {
+    "last_updated": "2026-01-29T19:51:52.210142",
+    "days_collected": 8
+  }
 }

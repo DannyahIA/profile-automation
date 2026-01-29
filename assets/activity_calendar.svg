@@ -74,7 +74,7 @@
         <!-- Total Commits -->
         <text class="label" x="64" y="140">Total Commits</text>
         <text class="metric-value" x="64" y="180" 
-              fill="#58a6ff">30</text>
+              fill="#58a6ff">0</text>
         <text class="trend-neutral" x="64" y="200" 
               style="font-size: 13px; font-weight: 600">● New vs prev</text>
         
@@ -88,7 +88,7 @@
         </text>
         <text class="metric-label" x="64" y="260" 
               fill="#d29922">
-            Jan 26 • 30 commits
+            N/A • 0 commits
         </text>
         
         <!-- Performance Stats -->
@@ -96,10 +96,10 @@
             � Performance
         </text>
         <text class="label-small" x="64" y="310">
-            Active: 1/30 days (3%)
+            Active: 0/30 days (0%)
         </text>
         <text class="label-small" x="64" y="325">
-            Streak: � 0 days • Avg: 1.0/day
+            Streak: � 1 days • Avg: 0.0/day
         </text>
     </g>
 
@@ -425,10 +425,10 @@
 
         <g>
             <rect x="728" y="266" width="42" height="42" 
-                  rx="6" fill="#3fb950" opacity="1.0" 
-                  stroke="#d29922" stroke-width="2.5" class="slide-up highlight"
+                  rx="6" fill="#30363d" opacity="0.2" 
+                  stroke="#30363d" stroke-width="1" class="slide-up"
                   style="animation-delay: 0.46s">
-                <title>January 26, 2026: 30 commits</title>
+                <title>January 26, 2026: 0 commits</title>
             </rect>
             <text class="day-label" x="749.0" y="320" 
                   text-anchor="middle">26</text>
