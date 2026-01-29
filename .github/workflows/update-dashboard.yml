@@ -37,7 +37,6 @@ jobs:
       
       - name: 📊 Collect GitHub metrics
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GITHUB_USERNAME: DannyahIA
         run: |
           echo "🔍 Collecting data for user: $GITHUB_USERNAME"
