@@ -2,8 +2,8 @@ name: 🤖 Update Profile Dashboard
 
 on:
   schedule:
-    # Executa diariamente às 00:00 UTC
-    - cron: '0 0 * * *'
+    # Executa a cada 30 minutos
+    - cron: '*/30 * * * *'
   workflow_dispatch:  # Permite executar manualmente
   push:
     branches:
@@ -50,7 +50,7 @@ jobs:
       - name: 📝 Update README with new assets
         run: |
           # Atualizar data de última atualização
-          sed -i "s|<!-- AUTO-GENERATED:START (last_update) -->.*<!-- AUTO-GENERATED:END -->|<!-- AUTO-GENERATED:START (last_update) -->$(date +%Y-%m-%d)<!-- AUTO-GENERATED:END -->|g" PROFILE_README.md
+          sed -i "s|<!-- AUTO-GENERATED:START (last_update) -->.*<!-- AUTO-GENERATED:END -->|<!-- AUTO-GENERATED:START (last_update) -->$(date +%Y-%m-%d)<!-- AUTO-GENERATED:END -->|g" README.md
       
       - name: 💾 Commit and push changes
         run: |
@@ -60,7 +60,7 @@ jobs:
           git add assets/*.svg
           git add data/metrics.json
           git add data/history.json
-          git add PROFILE_README.md
+          git add README.md
           
           if git diff --staged --quiet; then
             echo "✅ No changes to commit"
