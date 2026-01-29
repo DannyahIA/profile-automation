@@ -2,16 +2,20 @@
     "professional_timeline": [
         {
             "title": "Software Engineer Intern",
-            "company": "Tech Company",
+            "company": "NAJATEC Tecnologia",
             "type": "work",
             "date_start": "2023-08",
-            "date_end": "present",
+            "date_end": "2024-11",
             "description": "Building scalable web applications with modern stack",
             "technologies": [
-                "React",
-                "Node.js",
-                "TypeScript",
-                "AWS"
+                "Go",
+                "Pascal Object",
+                "JSON",
+                "AWS",
+                "Prometheus",
+                "Docker",
+                "WSL2",
+                "JIRA"
             ],
             "highlights": [
                 "Led team of 5 developers",
