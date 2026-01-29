@@ -1,0 +1,510 @@
+<svg width="1200" height="550" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        
+        * { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica', 'Arial', sans-serif;
+        }
+        text { fill: #e6edf3; }
+        .title { 
+            font-size: 20px; 
+            font-weight: 600; 
+            fill: #58a6ff; 
+        }
+        .subtitle { 
+            font-size: 14px; 
+            font-weight: 500; 
+            fill: #8b949e; 
+        }
+        .value { font-size: 28px; font-weight: 700; }
+        .value-large { font-size: 36px; font-weight: 700; }
+        .label { font-size: 12px; opacity: 0.7; }
+        .label-small { font-size: 10px; opacity: 0.6; }
+        .badge {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .metric-change {
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .trend-up { fill: #3fb950; }
+        .trend-down { fill: #f85149; }
+        .trend-neutral { fill: #8b949e; }
+        
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(10px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 3px currentColor); }
+            50% { filter: drop-shadow(0 0 8px currentColor); }
+        }
+        .animated { animation: fadeIn 0.6s ease-out; }
+        .slide-up { animation: slideUp 0.5s ease-out; }
+        .scale-in { animation: scaleIn 0.4s ease-out; }
+        .pulse { animation: pulse 2s ease-in-out infinite; }
+        .glow { animation: glow 2s ease-in-out infinite; }
+        
+    </style>
+    <rect class="scale-in" width="1200" height="550" fill="#161b22" rx="12"/>
+    <text class="title animated" x="24" y="40"></text>
+    <text class="subtitle animated" x="24" y="65" style="animation-delay: 0.1s">Showcasing dedication and innovation • Updated January 29, 2026</text>
+    <g class="fade-in">
+    <text class="title" x="40" y="45">🚀 Featured Projects</text>
+    <text class="label" x="40" y="70">My most significant repositories and contributions</text>
+</g>
+    <line x1="40" y1="90" x2="1160" y2="90" stroke="#30363d" stroke-width="1" opacity="0.3"/>
+    <a href="https://github.com/DannyahIA/profile-automation" target="_blank" class="slide-up" style="animation-delay: 0.2s">
+    <g class="project-card" style="cursor: pointer;">
+        <!-- Card background com hover effect -->
+        <rect x="40" y="120" width="540" height="120" 
+              fill="#010409" rx="12" 
+              stroke="#3572A5" stroke-width="2" stroke-opacity="0.3" fill-opacity="0.5"
+              style="transition: all 0.3s ease;">
+            <animate attributeName="fill-opacity" 
+                     begin="mouseover" end="mouseout" 
+                     from="0.5" to="0.8" dur="0.3s" fill="freeze"/>
+            <animate attributeName="stroke-opacity" 
+                     begin="mouseover" end="mouseout" 
+                     from="0.3" to="0.6" dur="0.3s" fill="freeze"/>
+        </rect>
+        
+        <!-- Nome do projeto -->
+        <text x="60" y="150" style="font-size: 16px; font-weight: 700; fill: #e6edf3">
+            profile-automation
+        </text>
+        
+        <!-- Ícone de link externo -->
+        <text x="525" y="150" style="font-size: 12px; opacity: 0.6">🔗</text>
+        
+        <!-- Status badge -->
+        <text x="550" y="150" style="font-size: 14px">🟢</text>
+        
+        <!-- Descrição -->
+        <text x="60" y="172" class="label" style="font-size: 11px">
+            Automated GitHub profile dashboard with beautiful SVG visualizations
+        </text>
+        
+        <!-- Language badge -->
+        <rect x="60" y="185" width="80" height="20" fill="#3572A5" rx="10" opacity="0.2"/>
+        <circle cx="72" cy="195" r="4" fill="#3572A5"/>
+        <text x="80" y="199" style="font-size: 10px; font-weight: 600; fill: #3572A5">
+            Python
+        </text>
+        
+        <!-- Estatísticas -->
+        <text x="160" y="199" class="label" style="font-size: 10px">
+            ⭐ 0 • 🔀 0 • 📝 30 commits
+        </text>
+        
+        <!-- Topics -->
+        <g>
+    
+        <rect x="60" y="210" width="72" height="18" 
+              fill="#58a6ff" rx="9" opacity="0.15"/>
+        <text x="66" y="222" style="font-size: 9px; font-weight: 600; fill: #58a6ff">
+            #automation
+        </text>
+    
+        <rect x="138" y="210" width="96" height="18" 
+              fill="#58a6ff" rx="9" opacity="0.15"/>
+        <text x="144" y="222" style="font-size: 9px; font-weight: 600; fill: #58a6ff">
+            #github-profile
+        </text>
+    
+        <rect x="240" y="210" width="30" height="18" 
+              fill="#58a6ff" rx="9" opacity="0.15"/>
+        <text x="246" y="222" style="font-size: 9px; font-weight: 600; fill: #58a6ff">
+            #svg
+        </text>
+    
+    </g>
+    
+    <!-- Last updated -->
+    <text x="490" y="222" text-anchor="end" class="label" style="font-size: 9px">
+        Updated Today
+    </text>
+    </g>
+</a>
+    <a href="https://github.com/DannyahIA/ai-assistant-bot" target="_blank" class="slide-up" style="animation-delay: 0.30000000000000004s">
+    <g class="project-card" style="cursor: pointer;">
+        <!-- Card background com hover effect -->
+        <rect x="620" y="120" width="540" height="120" 
+              fill="#010409" rx="12" 
+              stroke="#3572A5" stroke-width="2" stroke-opacity="0.3" fill-opacity="0.5"
+              style="transition: all 0.3s ease;">
+            <animate attributeName="fill-opacity" 
+                     begin="mouseover" end="mouseout" 
+                     from="0.5" to="0.8" dur="0.3s" fill="freeze"/>
+            <animate attributeName="stroke-opacity" 
+                     begin="mouseover" end="mouseout" 
+                     from="0.3" to="0.6" dur="0.3s" fill="freeze"/>
+        </rect>
+        
+        <!-- Nome do projeto -->
+        <text x="640" y="150" style="font-size: 16px; font-weight: 700; fill: #e6edf3">
+            ai-assistant-bot
+        </text>
+        
+        <!-- Ícone de link externo -->
+        <text x="1105" y="150" style="font-size: 12px; opacity: 0.6">🔗</text>
+        
+        <!-- Status badge -->
+        <text x="1130" y="150" style="font-size: 14px">🟢</text>
+        
+        <!-- Descrição -->
+        <text x="640" y="172" class="label" style="font-size: 11px">
+            Intelligent chatbot with natural language processing capabilities
+        </text>
+        
+        <!-- Language badge -->
+        <rect x="640" y="185" width="80" height="20" fill="#3572A5" rx="10" opacity="0.2"/>
+        <circle cx="652" cy="195" r="4" fill="#3572A5"/>
+        <text x="660" y="199" style="font-size: 10px; font-weight: 600; fill: #3572A5">
+            Python
+        </text>
+        
+        <!-- Estatísticas -->
+        <text x="740" y="199" class="label" style="font-size: 10px">
+            ⭐ 12 • 🔀 3 • 📝 45 commits
+        </text>
+        
+        <!-- Topics -->
+        <g>
+    
+        <rect x="640" y="210" width="24" height="18" 
+              fill="#58a6ff" rx="9" opacity="0.15"/>
+        <text x="646" y="222" style="font-size: 9px; font-weight: 600; fill: #58a6ff">
+            #ai
+        </text>
+    
+        <rect x="670" y="210" width="54" height="18" 
+              fill="#58a6ff" rx="9" opacity="0.15"/>
+        <text x="676" y="222" style="font-size: 9px; font-weight: 600; fill: #58a6ff">
+            #chatbot
+        </text>
+    
+        <rect x="730" y="210" width="30" height="18" 
+              fill="#58a6ff" rx="9" opacity="0.15"/>
+        <text x="736" y="222" style="font-size: 9px; font-weight: 600; fill: #58a6ff">
+            #nlp
+        </text>
+    
+    </g>
+    
+    <!-- Last updated -->
+    <text x="1070" y="222" text-anchor="end" class="label" style="font-size: 9px">
+        Updated 19d ago
+    </text>
+    </g>
+</a>
+    <a href="https://github.com/DannyahIA/web-scraper-toolkit" target="_blank" class="slide-up" style="animation-delay: 0.4s">
+    <g class="project-card" style="cursor: pointer;">
+        <!-- Card background com hover effect -->
+        <rect x="40" y="255" width="540" height="120" 
+              fill="#010409" rx="12" 
+              stroke="#3572A5" stroke-width="2" stroke-opacity="0.3" fill-opacity="0.5"
+              style="transition: all 0.3s ease;">
+            <animate attributeName="fill-opacity" 
+                     begin="mouseover" end="mouseout" 
+                     from="0.5" to="0.8" dur="0.3s" fill="freeze"/>
+            <animate attributeName="stroke-opacity" 
+                     begin="mouseover" end="mouseout" 
+                     from="0.3" to="0.6" dur="0.3s" fill="freeze"/>
+        </rect>
+        
+        <!-- Nome do projeto -->
+        <text x="60" y="285" style="font-size: 16px; font-weight: 700; fill: #e6edf3">
+            web-scraper-toolkit
+        </text>
+        
+        <!-- Ícone de link externo -->
+        <text x="525" y="285" style="font-size: 12px; opacity: 0.6">🔗</text>
+        
+        <!-- Status badge -->
+        <text x="550" y="285" style="font-size: 14px">🟢</text>
+        
+        <!-- Descrição -->
+        <text x="60" y="307" class="label" style="font-size: 11px">
+            Powerful web scraping framework with async support
+        </text>
+        
+        <!-- Language badge -->
+        <rect x="60" y="320" width="80" height="20" fill="#3572A5" rx="10" opacity="0.2"/>
+        <circle cx="72" cy="330" r="4" fill="#3572A5"/>
+        <text x="80" y="334" style="font-size: 10px; font-weight: 600; fill: #3572A5">
+            Python
+        </text>
+        
+        <!-- Estatísticas -->
+        <text x="160" y="334" class="label" style="font-size: 10px">
+            ⭐ 8 • 🔀 2 • 📝 38 commits
+        </text>
+        
+        <!-- Topics -->
+        <g>
+    
+        <rect x="60" y="345" width="84" height="18" 
+              fill="#58a6ff" rx="9" opacity="0.15"/>
+        <text x="66" y="357" style="font-size: 9px; font-weight: 600; fill: #58a6ff">
+            #web-scraping
+        </text>
+    
+        <rect x="150" y="345" width="42" height="18" 
+              fill="#58a6ff" rx="9" opacity="0.15"/>
+        <text x="156" y="357" style="font-size: 9px; font-weight: 600; fill: #58a6ff">
+            #async
+        </text>
+    
+        <rect x="198" y="345" width="102" height="18" 
+              fill="#58a6ff" rx="9" opacity="0.15"/>
+        <text x="204" y="357" style="font-size: 9px; font-weight: 600; fill: #58a6ff">
+            #data-extraction
+        </text>
+    
+    </g>
+    
+    <!-- Last updated -->
+    <text x="490" y="357" text-anchor="end" class="label" style="font-size: 9px">
+        Updated 1mo ago
+    </text>
+    </g>
+</a>
+    <a href="https://github.com/DannyahIA/react-dashboard" target="_blank" class="slide-up" style="animation-delay: 0.5s">
+    <g class="project-card" style="cursor: pointer;">
+        <!-- Card background com hover effect -->
+        <rect x="620" y="255" width="540" height="120" 
+              fill="#010409" rx="12" 
+              stroke="#3178c6" stroke-width="2" stroke-opacity="0.3" fill-opacity="0.5"
+              style="transition: all 0.3s ease;">
+            <animate attributeName="fill-opacity" 
+                     begin="mouseover" end="mouseout" 
+                     from="0.5" to="0.8" dur="0.3s" fill="freeze"/>
+            <animate attributeName="stroke-opacity" 
+                     begin="mouseover" end="mouseout" 
+                     from="0.3" to="0.6" dur="0.3s" fill="freeze"/>
+        </rect>
+        
+        <!-- Nome do projeto -->
+        <text x="640" y="285" style="font-size: 16px; font-weight: 700; fill: #e6edf3">
+            react-dashboard
+        </text>
+        
+        <!-- Ícone de link externo -->
+        <text x="1105" y="285" style="font-size: 12px; opacity: 0.6">🔗</text>
+        
+        <!-- Status badge -->
+        <text x="1130" y="285" style="font-size: 14px">🟢</text>
+        
+        <!-- Descrição -->
+        <text x="640" y="307" class="label" style="font-size: 11px">
+            Modern dashboard template with React and TypeScript
+        </text>
+        
+        <!-- Language badge -->
+        <rect x="640" y="320" width="80" height="20" fill="#3178c6" rx="10" opacity="0.2"/>
+        <circle cx="652" cy="330" r="4" fill="#3178c6"/>
+        <text x="660" y="334" style="font-size: 10px; font-weight: 600; fill: #3178c6">
+            TypeScript
+        </text>
+        
+        <!-- Estatísticas -->
+        <text x="740" y="334" class="label" style="font-size: 10px">
+            ⭐ 15 • 🔀 5 • 📝 52 commits
+        </text>
+        
+        <!-- Topics -->
+        <g>
+    
+        <rect x="640" y="345" width="42" height="18" 
+              fill="#58a6ff" rx="9" opacity="0.15"/>
+        <text x="646" y="357" style="font-size: 9px; font-weight: 600; fill: #58a6ff">
+            #react
+        </text>
+    
+        <rect x="688" y="345" width="72" height="18" 
+              fill="#58a6ff" rx="9" opacity="0.15"/>
+        <text x="694" y="357" style="font-size: 9px; font-weight: 600; fill: #58a6ff">
+            #typescript
+        </text>
+    
+        <rect x="766" y="345" width="66" height="18" 
+              fill="#58a6ff" rx="9" opacity="0.15"/>
+        <text x="772" y="357" style="font-size: 9px; font-weight: 600; fill: #58a6ff">
+            #dashboard
+        </text>
+    
+    </g>
+    
+    <!-- Last updated -->
+    <text x="1070" y="357" text-anchor="end" class="label" style="font-size: 9px">
+        Updated 24d ago
+    </text>
+    </g>
+</a>
+    <a href="https://github.com/DannyahIA/api-gateway" target="_blank" class="slide-up" style="animation-delay: 0.6s">
+    <g class="project-card" style="cursor: pointer;">
+        <!-- Card background com hover effect -->
+        <rect x="40" y="390" width="540" height="120" 
+              fill="#010409" rx="12" 
+              stroke="#00ADD8" stroke-width="2" stroke-opacity="0.3" fill-opacity="0.5"
+              style="transition: all 0.3s ease;">
+            <animate attributeName="fill-opacity" 
+                     begin="mouseover" end="mouseout" 
+                     from="0.5" to="0.8" dur="0.3s" fill="freeze"/>
+            <animate attributeName="stroke-opacity" 
+                     begin="mouseover" end="mouseout" 
+                     from="0.3" to="0.6" dur="0.3s" fill="freeze"/>
+        </rect>
+        
+        <!-- Nome do projeto -->
+        <text x="60" y="420" style="font-size: 16px; font-weight: 700; fill: #e6edf3">
+            api-gateway
+        </text>
+        
+        <!-- Ícone de link externo -->
+        <text x="525" y="420" style="font-size: 12px; opacity: 0.6">🔗</text>
+        
+        <!-- Status badge -->
+        <text x="550" y="420" style="font-size: 14px">🟡</text>
+        
+        <!-- Descrição -->
+        <text x="60" y="442" class="label" style="font-size: 11px">
+            Microservices API gateway with authentication and rate limiting
+        </text>
+        
+        <!-- Language badge -->
+        <rect x="60" y="455" width="80" height="20" fill="#00ADD8" rx="10" opacity="0.2"/>
+        <circle cx="72" cy="465" r="4" fill="#00ADD8"/>
+        <text x="80" y="469" style="font-size: 10px; font-weight: 600; fill: #00ADD8">
+            Go
+        </text>
+        
+        <!-- Estatísticas -->
+        <text x="160" y="469" class="label" style="font-size: 10px">
+            ⭐ 20 • 🔀 7 • 📝 67 commits
+        </text>
+        
+        <!-- Topics -->
+        <g>
+    
+        <rect x="60" y="480" width="30" height="18" 
+              fill="#58a6ff" rx="9" opacity="0.15"/>
+        <text x="66" y="492" style="font-size: 9px; font-weight: 600; fill: #58a6ff">
+            #api
+        </text>
+    
+        <rect x="96" y="480" width="54" height="18" 
+              fill="#58a6ff" rx="9" opacity="0.15"/>
+        <text x="102" y="492" style="font-size: 9px; font-weight: 600; fill: #58a6ff">
+            #gateway
+        </text>
+    
+        <rect x="156" y="480" width="90" height="18" 
+              fill="#58a6ff" rx="9" opacity="0.15"/>
+        <text x="162" y="492" style="font-size: 9px; font-weight: 600; fill: #58a6ff">
+            #microservices
+        </text>
+    
+    </g>
+    
+    <!-- Last updated -->
+    <text x="490" y="492" text-anchor="end" class="label" style="font-size: 9px">
+        Updated 1mo ago
+    </text>
+    </g>
+</a>
+    <a href="https://github.com/DannyahIA/devops-scripts" target="_blank" class="slide-up" style="animation-delay: 0.7s">
+    <g class="project-card" style="cursor: pointer;">
+        <!-- Card background com hover effect -->
+        <rect x="620" y="390" width="540" height="120" 
+              fill="#010409" rx="12" 
+              stroke="#89e051" stroke-width="2" stroke-opacity="0.3" fill-opacity="0.5"
+              style="transition: all 0.3s ease;">
+            <animate attributeName="fill-opacity" 
+                     begin="mouseover" end="mouseout" 
+                     from="0.5" to="0.8" dur="0.3s" fill="freeze"/>
+            <animate attributeName="stroke-opacity" 
+                     begin="mouseover" end="mouseout" 
+                     from="0.3" to="0.6" dur="0.3s" fill="freeze"/>
+        </rect>
+        
+        <!-- Nome do projeto -->
+        <text x="640" y="420" style="font-size: 16px; font-weight: 700; fill: #e6edf3">
+            devops-scripts
+        </text>
+        
+        <!-- Ícone de link externo -->
+        <text x="1105" y="420" style="font-size: 12px; opacity: 0.6">🔗</text>
+        
+        <!-- Status badge -->
+        <text x="1130" y="420" style="font-size: 14px">🟡</text>
+        
+        <!-- Descrição -->
+        <text x="640" y="442" class="label" style="font-size: 11px">
+            Collection of useful DevOps automation scripts
+        </text>
+        
+        <!-- Language badge -->
+        <rect x="640" y="455" width="80" height="20" fill="#89e051" rx="10" opacity="0.2"/>
+        <circle cx="652" cy="465" r="4" fill="#89e051"/>
+        <text x="660" y="469" style="font-size: 10px; font-weight: 600; fill: #89e051">
+            Shell
+        </text>
+        
+        <!-- Estatísticas -->
+        <text x="740" y="469" class="label" style="font-size: 10px">
+            ⭐ 6 • 🔀 1 • 📝 28 commits
+        </text>
+        
+        <!-- Topics -->
+        <g>
+    
+        <rect x="640" y="480" width="48" height="18" 
+              fill="#58a6ff" rx="9" opacity="0.15"/>
+        <text x="646" y="492" style="font-size: 9px; font-weight: 600; fill: #58a6ff">
+            #devops
+        </text>
+    
+        <rect x="694" y="480" width="72" height="18" 
+              fill="#58a6ff" rx="9" opacity="0.15"/>
+        <text x="700" y="492" style="font-size: 9px; font-weight: 600; fill: #58a6ff">
+            #automation
+        </text>
+    
+        <rect x="772" y="480" width="54" height="18" 
+              fill="#58a6ff" rx="9" opacity="0.15"/>
+        <text x="778" y="492" style="font-size: 9px; font-weight: 600; fill: #58a6ff">
+            #scripts
+        </text>
+    
+    </g>
+    
+    <!-- Last updated -->
+    <text x="1070" y="492" text-anchor="end" class="label" style="font-size: 9px">
+        Updated 2mo ago
+    </text>
+    </g>
+</a>
+    <g class="fade-in" style="animation-delay: 1s">
+    <line x1="40" y1="510" x2="1160" y2="510" stroke="#30363d" stroke-width="1" opacity="0.3"/>
+    <text x="60" y="535" style="font-size: 12px; font-weight: 600; fill: #8b949e">
+        📊 Collective Impact: ⭐ 61 stars • 📝 260 commits • 👥 12 contributors
+    </text>
+</g>
+</svg>

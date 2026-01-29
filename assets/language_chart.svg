@@ -1,104 +1,383 @@
-<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
-<rect width="800" height="500" fill="#191724"/>
-<a href="https://github.com/DannyahIA?tab=repositories" target="_blank">
-<text x="400.0" y="35" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#E0DEF4" text-anchor="middle" style="cursor:pointer;">
-💻 Language Distribution
-</text>
-</a>
-<a href="https://github.com/DannyahIA?tab=repositories&q=&language=python" target="_blank">
-<text x="190" y="82.5" font-family="monospace" font-size="14" fill="#E0DEF4" text-anchor="end" style="cursor:pointer;">Python</text>
-<rect x="200" y="60" width="480" height="35" fill="#1F1D2E" rx="5"/>
-<rect x="200" y="60" width="0" height="35" fill="#EB6F92" rx="5" style="cursor:pointer;">
-<animate attributeName="width" from="0" to="130.9090909090909" dur="1s" fill="freeze"/>
-<animate attributeName="opacity" values="1;0.8;1" dur="2s" repeatCount="indefinite"/>
-</rect>
-<rect x="200" y="60" width="130.9090909090909" height="35" fill="white" opacity="0" rx="5" style="cursor:pointer;">
-<animate attributeName="opacity" begin="mouseover" end="mouseout" from="0" to="0.2" dur="0.3s" fill="freeze"/>
-</rect>
-<text x="340.9090909090909" y="82.5" font-family="monospace" font-size="14" font-weight="bold" fill="#E0DEF4" style="cursor:pointer;">27.3%</text>
-</a>
-<a href="https://github.com/DannyahIA?tab=repositories&q=&language=typescript" target="_blank">
-<text x="190" y="132.5" font-family="monospace" font-size="14" fill="#E0DEF4" text-anchor="end" style="cursor:pointer;">TypeScript</text>
-<rect x="200" y="110" width="480" height="35" fill="#1F1D2E" rx="5"/>
-<rect x="200" y="110" width="0" height="35" fill="#9CCFD8" rx="5" style="cursor:pointer;">
-<animate attributeName="width" from="0" to="130.9090909090909" dur="1s" fill="freeze"/>
-<animate attributeName="opacity" values="1;0.8;1" dur="2s" repeatCount="indefinite"/>
-</rect>
-<rect x="200" y="110" width="130.9090909090909" height="35" fill="white" opacity="0" rx="5" style="cursor:pointer;">
-<animate attributeName="opacity" begin="mouseover" end="mouseout" from="0" to="0.2" dur="0.3s" fill="freeze"/>
-</rect>
-<text x="340.9090909090909" y="132.5" font-family="monospace" font-size="14" font-weight="bold" fill="#E0DEF4" style="cursor:pointer;">27.3%</text>
-</a>
-<a href="https://github.com/DannyahIA?tab=repositories&q=&language=go" target="_blank">
-<text x="190" y="182.5" font-family="monospace" font-size="14" fill="#E0DEF4" text-anchor="end" style="cursor:pointer;">Go</text>
-<rect x="200" y="160" width="480" height="35" fill="#1F1D2E" rx="5"/>
-<rect x="200" y="160" width="0" height="35" fill="#F6C177" rx="5" style="cursor:pointer;">
-<animate attributeName="width" from="0" to="43.63636363636364" dur="1s" fill="freeze"/>
-<animate attributeName="opacity" values="1;0.8;1" dur="2s" repeatCount="indefinite"/>
-</rect>
-<rect x="200" y="160" width="43.63636363636364" height="35" fill="white" opacity="0" rx="5" style="cursor:pointer;">
-<animate attributeName="opacity" begin="mouseover" end="mouseout" from="0" to="0.2" dur="0.3s" fill="freeze"/>
-</rect>
-<text x="253.63636363636363" y="182.5" font-family="monospace" font-size="14" font-weight="bold" fill="#E0DEF4" style="cursor:pointer;">9.1%</text>
-</a>
-<a href="https://github.com/DannyahIA?tab=repositories&q=&language=php" target="_blank">
-<text x="190" y="232.5" font-family="monospace" font-size="14" fill="#E0DEF4" text-anchor="end" style="cursor:pointer;">PHP</text>
-<rect x="200" y="210" width="480" height="35" fill="#1F1D2E" rx="5"/>
-<rect x="200" y="210" width="0" height="35" fill="#31748F" rx="5" style="cursor:pointer;">
-<animate attributeName="width" from="0" to="43.63636363636364" dur="1s" fill="freeze"/>
-<animate attributeName="opacity" values="1;0.8;1" dur="2s" repeatCount="indefinite"/>
-</rect>
-<rect x="200" y="210" width="43.63636363636364" height="35" fill="white" opacity="0" rx="5" style="cursor:pointer;">
-<animate attributeName="opacity" begin="mouseover" end="mouseout" from="0" to="0.2" dur="0.3s" fill="freeze"/>
-</rect>
-<text x="253.63636363636363" y="232.5" font-family="monospace" font-size="14" font-weight="bold" fill="#E0DEF4" style="cursor:pointer;">9.1%</text>
-</a>
-<a href="https://github.com/DannyahIA?tab=repositories&q=&language=pascal" target="_blank">
-<text x="190" y="282.5" font-family="monospace" font-size="14" fill="#E0DEF4" text-anchor="end" style="cursor:pointer;">Pascal</text>
-<rect x="200" y="260" width="480" height="35" fill="#1F1D2E" rx="5"/>
-<rect x="200" y="260" width="0" height="35" fill="#EB6F92" rx="5" style="cursor:pointer;">
-<animate attributeName="width" from="0" to="21.81818181818182" dur="1s" fill="freeze"/>
-<animate attributeName="opacity" values="1;0.8;1" dur="2s" repeatCount="indefinite"/>
-</rect>
-<rect x="200" y="260" width="21.81818181818182" height="35" fill="white" opacity="0" rx="5" style="cursor:pointer;">
-<animate attributeName="opacity" begin="mouseover" end="mouseout" from="0" to="0.2" dur="0.3s" fill="freeze"/>
-</rect>
-<text x="231.8181818181818" y="282.5" font-family="monospace" font-size="14" font-weight="bold" fill="#E0DEF4" style="cursor:pointer;">4.5%</text>
-</a>
-<a href="https://github.com/DannyahIA?tab=repositories&q=&language=javascript" target="_blank">
-<text x="190" y="332.5" font-family="monospace" font-size="14" fill="#E0DEF4" text-anchor="end" style="cursor:pointer;">JavaScript</text>
-<rect x="200" y="310" width="480" height="35" fill="#1F1D2E" rx="5"/>
-<rect x="200" y="310" width="0" height="35" fill="#9CCFD8" rx="5" style="cursor:pointer;">
-<animate attributeName="width" from="0" to="21.81818181818182" dur="1s" fill="freeze"/>
-<animate attributeName="opacity" values="1;0.8;1" dur="2s" repeatCount="indefinite"/>
-</rect>
-<rect x="200" y="310" width="21.81818181818182" height="35" fill="white" opacity="0" rx="5" style="cursor:pointer;">
-<animate attributeName="opacity" begin="mouseover" end="mouseout" from="0" to="0.2" dur="0.3s" fill="freeze"/>
-</rect>
-<text x="231.8181818181818" y="332.5" font-family="monospace" font-size="14" font-weight="bold" fill="#E0DEF4" style="cursor:pointer;">4.5%</text>
-</a>
-<a href="https://github.com/DannyahIA?tab=repositories&q=&language=shell" target="_blank">
-<text x="190" y="382.5" font-family="monospace" font-size="14" fill="#E0DEF4" text-anchor="end" style="cursor:pointer;">Shell</text>
-<rect x="200" y="360" width="480" height="35" fill="#1F1D2E" rx="5"/>
-<rect x="200" y="360" width="0" height="35" fill="#F6C177" rx="5" style="cursor:pointer;">
-<animate attributeName="width" from="0" to="21.81818181818182" dur="1s" fill="freeze"/>
-<animate attributeName="opacity" values="1;0.8;1" dur="2s" repeatCount="indefinite"/>
-</rect>
-<rect x="200" y="360" width="21.81818181818182" height="35" fill="white" opacity="0" rx="5" style="cursor:pointer;">
-<animate attributeName="opacity" begin="mouseover" end="mouseout" from="0" to="0.2" dur="0.3s" fill="freeze"/>
-</rect>
-<text x="231.8181818181818" y="382.5" font-family="monospace" font-size="14" font-weight="bold" fill="#E0DEF4" style="cursor:pointer;">4.5%</text>
-</a>
-<a href="https://github.com/DannyahIA?tab=repositories&q=&language=kotlin" target="_blank">
-<text x="190" y="432.5" font-family="monospace" font-size="14" fill="#E0DEF4" text-anchor="end" style="cursor:pointer;">Kotlin</text>
-<rect x="200" y="410" width="480" height="35" fill="#1F1D2E" rx="5"/>
-<rect x="200" y="410" width="0" height="35" fill="#31748F" rx="5" style="cursor:pointer;">
-<animate attributeName="width" from="0" to="21.81818181818182" dur="1s" fill="freeze"/>
-<animate attributeName="opacity" values="1;0.8;1" dur="2s" repeatCount="indefinite"/>
-</rect>
-<rect x="200" y="410" width="21.81818181818182" height="35" fill="white" opacity="0" rx="5" style="cursor:pointer;">
-<animate attributeName="opacity" begin="mouseover" end="mouseout" from="0" to="0.2" dur="0.3s" fill="freeze"/>
-</rect>
-<text x="231.8181818181818" y="432.5" font-family="monospace" font-size="14" font-weight="bold" fill="#E0DEF4" style="cursor:pointer;">4.5%</text>
-</a>
+<svg width="1200" height="500" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        
+        * { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica', 'Arial', sans-serif;
+        }
+        text { fill: #e6edf3; }
+        .title { 
+            font-size: 20px; 
+            font-weight: 600; 
+            fill: #58a6ff; 
+        }
+        .subtitle { 
+            font-size: 14px; 
+            font-weight: 500; 
+            fill: #8b949e; 
+        }
+        .value { font-size: 28px; font-weight: 700; }
+        .value-large { font-size: 36px; font-weight: 700; }
+        .label { font-size: 12px; opacity: 0.7; }
+        .label-small { font-size: 10px; opacity: 0.6; }
+        .badge {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .metric-change {
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .trend-up { fill: #3fb950; }
+        .trend-down { fill: #f85149; }
+        .trend-neutral { fill: #8b949e; }
+        
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(10px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 3px currentColor); }
+            50% { filter: drop-shadow(0 0 8px currentColor); }
+        }
+        .animated { animation: fadeIn 0.6s ease-out; }
+        .slide-up { animation: slideUp 0.5s ease-out; }
+        .scale-in { animation: scaleIn 0.4s ease-out; }
+        .pulse { animation: pulse 2s ease-in-out infinite; }
+        .glow { animation: glow 2s ease-in-out infinite; }
+        
+    </style>
+    <rect class="scale-in" width="1200" height="500" fill="#161b22" rx="12"/>
+    <text class="title animated" x="24" y="40">💻 Language Distribution</text>
+    <text class="subtitle animated" x="24" y="65" style="animation-delay: 0.1s">Last updated: January 29, 2026</text>
+    <g class="fade-in">
+    <text x="30" y="95" style="font-size: 16px; font-weight: 700; fill: #e6edf3">
+        📊 Primary Languages
+    </text>
+    <line x1="30" y1="105" x2="400" y2="105" stroke="#58a6ff" stroke-width="2" opacity="0.3"/>
+</g>
+    <g class="slide-up" style="animation-delay: 0.2s">
+    <!-- Background bar -->
+    <rect x="30" y="130" width="320" height="40" fill="#30363d" rx="8" opacity="0.15"/>
+    
+    <!-- Animated progress bar -->
+    <rect x="30" y="130" width="0" height="40" fill="url(#lang-gradient-0)" rx="8" opacity="0.9">
+        <animate attributeName="width" from="0" to="87.27272727272727" dur="1.2s" begin="0.2s" fill="freeze"/>
+    </rect>
+    
+    <!-- Language info -->
+    <text x="42" y="150" style="font-size: 14px; font-weight: 600; fill: #e6edf3">
+        🐍 Python
+    </text>
+    <text x="42" y="164" style="font-size: 10px; fill: #8b949e">
+        6 files
+    </text>
+    
+    <!-- Percentage badge -->
+    <rect x="360" y="138" width="60" height="24" fill="#3572A5" rx="12" opacity="0.2"/>
+    <text x="390" y="154" text-anchor="middle" style="font-size: 12px; font-weight: 700; fill: #3572A5">
+        27.3%
+    </text>
+</g>
+<defs>
+    <linearGradient id="lang-gradient-0" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color:#3572A5;stop-opacity:0.6" />
+        <stop offset="100%" style="stop-color:#3572A5;stop-opacity:0.9" />
+    </linearGradient>
+</defs>
+    <g class="slide-up" style="animation-delay: 0.30000000000000004s">
+    <!-- Background bar -->
+    <rect x="30" y="182" width="320" height="40" fill="#30363d" rx="8" opacity="0.15"/>
+    
+    <!-- Animated progress bar -->
+    <rect x="30" y="182" width="0" height="40" fill="url(#lang-gradient-1)" rx="8" opacity="0.9">
+        <animate attributeName="width" from="0" to="87.27272727272727" dur="1.2s" begin="0.30000000000000004s" fill="freeze"/>
+    </rect>
+    
+    <!-- Language info -->
+    <text x="42" y="202" style="font-size: 14px; font-weight: 600; fill: #e6edf3">
+        📘 TypeScript
+    </text>
+    <text x="42" y="216" style="font-size: 10px; fill: #8b949e">
+        6 files
+    </text>
+    
+    <!-- Percentage badge -->
+    <rect x="360" y="190" width="60" height="24" fill="#3178c6" rx="12" opacity="0.2"/>
+    <text x="390" y="206" text-anchor="middle" style="font-size: 12px; font-weight: 700; fill: #3178c6">
+        27.3%
+    </text>
+</g>
+<defs>
+    <linearGradient id="lang-gradient-1" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color:#3178c6;stop-opacity:0.6" />
+        <stop offset="100%" style="stop-color:#3178c6;stop-opacity:0.9" />
+    </linearGradient>
+</defs>
+    <g class="slide-up" style="animation-delay: 0.4s">
+    <!-- Background bar -->
+    <rect x="30" y="234" width="320" height="40" fill="#30363d" rx="8" opacity="0.15"/>
+    
+    <!-- Animated progress bar -->
+    <rect x="30" y="234" width="0" height="40" fill="url(#lang-gradient-2)" rx="8" opacity="0.9">
+        <animate attributeName="width" from="0" to="29.090909090909093" dur="1.2s" begin="0.4s" fill="freeze"/>
+    </rect>
+    
+    <!-- Language info -->
+    <text x="42" y="254" style="font-size: 14px; font-weight: 600; fill: #e6edf3">
+        🔷 Go
+    </text>
+    <text x="42" y="268" style="font-size: 10px; fill: #8b949e">
+        2 files
+    </text>
+    
+    <!-- Percentage badge -->
+    <rect x="360" y="242" width="60" height="24" fill="#00ADD8" rx="12" opacity="0.2"/>
+    <text x="390" y="258" text-anchor="middle" style="font-size: 12px; font-weight: 700; fill: #00ADD8">
+        9.1%
+    </text>
+</g>
+<defs>
+    <linearGradient id="lang-gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color:#00ADD8;stop-opacity:0.6" />
+        <stop offset="100%" style="stop-color:#00ADD8;stop-opacity:0.9" />
+    </linearGradient>
+</defs>
+    <g class="slide-up" style="animation-delay: 0.5s">
+    <!-- Background bar -->
+    <rect x="30" y="286" width="320" height="40" fill="#30363d" rx="8" opacity="0.15"/>
+    
+    <!-- Animated progress bar -->
+    <rect x="30" y="286" width="0" height="40" fill="url(#lang-gradient-3)" rx="8" opacity="0.9">
+        <animate attributeName="width" from="0" to="29.090909090909093" dur="1.2s" begin="0.5s" fill="freeze"/>
+    </rect>
+    
+    <!-- Language info -->
+    <text x="42" y="306" style="font-size: 14px; font-weight: 600; fill: #e6edf3">
+        🐘 PHP
+    </text>
+    <text x="42" y="320" style="font-size: 10px; fill: #8b949e">
+        2 files
+    </text>
+    
+    <!-- Percentage badge -->
+    <rect x="360" y="294" width="60" height="24" fill="#4F5D95" rx="12" opacity="0.2"/>
+    <text x="390" y="310" text-anchor="middle" style="font-size: 12px; font-weight: 700; fill: #4F5D95">
+        9.1%
+    </text>
+</g>
+<defs>
+    <linearGradient id="lang-gradient-3" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color:#4F5D95;stop-opacity:0.6" />
+        <stop offset="100%" style="stop-color:#4F5D95;stop-opacity:0.9" />
+    </linearGradient>
+</defs>
+    <g class="slide-up" style="animation-delay: 0.6s">
+    <!-- Background bar -->
+    <rect x="30" y="338" width="320" height="40" fill="#30363d" rx="8" opacity="0.15"/>
+    
+    <!-- Animated progress bar -->
+    <rect x="30" y="338" width="0" height="40" fill="url(#lang-gradient-4)" rx="8" opacity="0.9">
+        <animate attributeName="width" from="0" to="14.545454545454547" dur="1.2s" begin="0.6s" fill="freeze"/>
+    </rect>
+    
+    <!-- Language info -->
+    <text x="42" y="358" style="font-size: 14px; font-weight: 600; fill: #e6edf3">
+        📝 Pascal
+    </text>
+    <text x="42" y="372" style="font-size: 10px; fill: #8b949e">
+        1 files
+    </text>
+    
+    <!-- Percentage badge -->
+    <rect x="360" y="346" width="60" height="24" fill="#58a6ff" rx="12" opacity="0.2"/>
+    <text x="390" y="362" text-anchor="middle" style="font-size: 12px; font-weight: 700; fill: #58a6ff">
+        4.5%
+    </text>
+</g>
+<defs>
+    <linearGradient id="lang-gradient-4" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color:#58a6ff;stop-opacity:0.6" />
+        <stop offset="100%" style="stop-color:#58a6ff;stop-opacity:0.9" />
+    </linearGradient>
+</defs>
+    <g class="slide-up" style="animation-delay: 0.7s">
+    <!-- Background bar -->
+    <rect x="30" y="390" width="320" height="40" fill="#30363d" rx="8" opacity="0.15"/>
+    
+    <!-- Animated progress bar -->
+    <rect x="30" y="390" width="0" height="40" fill="url(#lang-gradient-5)" rx="8" opacity="0.9">
+        <animate attributeName="width" from="0" to="14.545454545454547" dur="1.2s" begin="0.7s" fill="freeze"/>
+    </rect>
+    
+    <!-- Language info -->
+    <text x="42" y="410" style="font-size: 14px; font-weight: 600; fill: #e6edf3">
+        📙 JavaScript
+    </text>
+    <text x="42" y="424" style="font-size: 10px; fill: #8b949e">
+        1 files
+    </text>
+    
+    <!-- Percentage badge -->
+    <rect x="360" y="398" width="60" height="24" fill="#f1e05a" rx="12" opacity="0.2"/>
+    <text x="390" y="414" text-anchor="middle" style="font-size: 12px; font-weight: 700; fill: #f1e05a">
+        4.5%
+    </text>
+</g>
+<defs>
+    <linearGradient id="lang-gradient-5" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color:#f1e05a;stop-opacity:0.6" />
+        <stop offset="100%" style="stop-color:#f1e05a;stop-opacity:0.9" />
+    </linearGradient>
+</defs>
+    <g class="fade-in" style="animation-delay: 0.4s">
+    <text x="470" y="95" style="font-size: 16px; font-weight: 700; fill: #e6edf3">
+        🔧 Secondary Languages
+    </text>
+    <line x1="470" y1="105" x2="840" y2="105" stroke="#58a6ff" stroke-width="2" opacity="0.3"/>
+</g>
+    <g class="scale-in" style="animation-delay: 0.6s">
+    <!-- Card background -->
+    <rect x="470" y="130" width="180" height="90" fill="#161b22" rx="12" 
+          stroke="#89e051" stroke-width="2" opacity="0.8"/>
+    
+    <!-- Language icon and name -->
+    <text x="485" y="160" style="font-size: 24px">🐚</text>
+    <text x="520" y="162" style="font-size: 14px; font-weight: 600; fill: #e6edf3">
+        Shell
+    </text>
+    
+    <!-- Stats -->
+    <text x="485" y="185" style="font-size: 11px; fill: #8b949e">
+        Files: 1
+    </text>
+    
+    <!-- Circular progress indicator -->
+    <circle cx="625" cy="195" r="18" fill="none" 
+            stroke="#30363d" stroke-width="3" opacity="0.3"/>
+    <circle cx="625" cy="195" r="18" fill="none" 
+            stroke="#89e051" stroke-width="3" opacity="0.9"
+            stroke-dasharray="5.136363636363637 113" 
+            transform="rotate(-90 625 195)">
+        <animate attributeName="stroke-dasharray" from="0 113" to="5.136363636363637 113" 
+                 dur="1s" begin="0.6s" fill="freeze"/>
+    </circle>
+    <text x="625" y="200" text-anchor="middle" 
+          style="font-size: 9px; font-weight: 700; fill: #89e051">
+        5%
+    </text>
+</g>
+    <g class="scale-in" style="animation-delay: 0.6799999999999999s">
+    <!-- Card background -->
+    <rect x="660" y="130" width="180" height="90" fill="#161b22" rx="12" 
+          stroke="#A97BFF" stroke-width="2" opacity="0.8"/>
+    
+    <!-- Language icon and name -->
+    <text x="675" y="160" style="font-size: 24px">🅺</text>
+    <text x="710" y="162" style="font-size: 14px; font-weight: 600; fill: #e6edf3">
+        Kotlin
+    </text>
+    
+    <!-- Stats -->
+    <text x="675" y="185" style="font-size: 11px; fill: #8b949e">
+        Files: 1
+    </text>
+    
+    <!-- Circular progress indicator -->
+    <circle cx="815" cy="195" r="18" fill="none" 
+            stroke="#30363d" stroke-width="3" opacity="0.3"/>
+    <circle cx="815" cy="195" r="18" fill="none" 
+            stroke="#A97BFF" stroke-width="3" opacity="0.9"
+            stroke-dasharray="5.136363636363637 113" 
+            transform="rotate(-90 815 195)">
+        <animate attributeName="stroke-dasharray" from="0 113" to="5.136363636363637 113" 
+                 dur="1s" begin="0.6799999999999999s" fill="freeze"/>
+    </circle>
+    <text x="815" y="200" text-anchor="middle" 
+          style="font-size: 9px; font-weight: 700; fill: #A97BFF">
+        5%
+    </text>
+</g>
+    <g class="scale-in" style="animation-delay: 0.7599999999999999s">
+    <!-- Card background -->
+    <rect x="470" y="235" width="180" height="90" fill="#161b22" rx="12" 
+          stroke="#58a6ff" stroke-width="2" opacity="0.8"/>
+    
+    <!-- Language icon and name -->
+    <text x="485" y="265" style="font-size: 24px">📝</text>
+    <text x="520" y="267" style="font-size: 14px; font-weight: 600; fill: #e6edf3">
+        ZenScript
+    </text>
+    
+    <!-- Stats -->
+    <text x="485" y="290" style="font-size: 11px; fill: #8b949e">
+        Files: 1
+    </text>
+    
+    <!-- Circular progress indicator -->
+    <circle cx="625" cy="300" r="18" fill="none" 
+            stroke="#30363d" stroke-width="3" opacity="0.3"/>
+    <circle cx="625" cy="300" r="18" fill="none" 
+            stroke="#58a6ff" stroke-width="3" opacity="0.9"
+            stroke-dasharray="5.136363636363637 113" 
+            transform="rotate(-90 625 300)">
+        <animate attributeName="stroke-dasharray" from="0 113" to="5.136363636363637 113" 
+                 dur="1s" begin="0.7599999999999999s" fill="freeze"/>
+    </circle>
+    <text x="625" y="305" text-anchor="middle" 
+          style="font-size: 9px; font-weight: 700; fill: #58a6ff">
+        5%
+    </text>
+</g>
+    <g class="scale-in" style="animation-delay: 0.8399999999999999s">
+    <!-- Card background -->
+    <rect x="660" y="235" width="180" height="90" fill="#161b22" rx="12" 
+          stroke="#e34c26" stroke-width="2" opacity="0.8"/>
+    
+    <!-- Language icon and name -->
+    <text x="675" y="265" style="font-size: 24px">🌐</text>
+    <text x="710" y="267" style="font-size: 14px; font-weight: 600; fill: #e6edf3">
+        HTML
+    </text>
+    
+    <!-- Stats -->
+    <text x="675" y="290" style="font-size: 11px; fill: #8b949e">
+        Files: 1
+    </text>
+    
+    <!-- Circular progress indicator -->
+    <circle cx="815" cy="300" r="18" fill="none" 
+            stroke="#30363d" stroke-width="3" opacity="0.3"/>
+    <circle cx="815" cy="300" r="18" fill="none" 
+            stroke="#e34c26" stroke-width="3" opacity="0.9"
+            stroke-dasharray="5.136363636363637 113" 
+            transform="rotate(-90 815 300)">
+        <animate attributeName="stroke-dasharray" from="0 113" to="5.136363636363637 113" 
+                 dur="1s" begin="0.8399999999999999s" fill="freeze"/>
+    </circle>
+    <text x="815" y="305" text-anchor="middle" 
+          style="font-size: 9px; font-weight: 700; fill: #e34c26">
+        5%
+    </text>
+</g>
+    <g class="fade-in" style="animation-delay: 1s">
+    <rect x="30" y="430" width="840" height="32" fill="#58a6ff" rx="8" opacity="0.1"/>
+    <text x="45" y="451" style="font-size: 12px; font-weight: 600; fill: #8b949e">
+        📈 Total: 10 languages • 🏆 Most used: Python (27.3%) • 📁 Total files: 22
+    </text>
+</g>
 </svg>

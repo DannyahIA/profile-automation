@@ -43,16 +43,15 @@ except ImportError:
 
 def get_github_token() -> str:
     """Obtém o token do GitHub das variáveis de ambiente."""
-    token = os.getenv('GITHUB_TOKEN') or os.getenv('GH_TOKEN')
+    token = os.getenv('GH_TOKEN')
     
     if not token:
-        print("❌ Erro: GITHUB_TOKEN não encontrado!")
+        print("❌ Erro: GH_TOKEN não encontrado!")
         print("\n💡 Como configurar:")
         print("   1. Crie um token em: https://github.com/settings/tokens")
-        print("   2. Defina a variável de ambiente:")
-        print("      export GITHUB_TOKEN='seu_token_aqui'")
-        print("   3. Ou crie um arquivo .env com:")
-        print("      GITHUB_TOKEN=seu_token_aqui")
+        print("   2. Configure no repositório: Settings → Secrets → GH_TOKEN")
+        print("   3. Para teste local:")
+        print("      export GH_TOKEN='seu_token_aqui'")
         sys.exit(1)
     
     return token
@@ -329,10 +328,39 @@ def main():
     # Obter token
     token = get_github_token()
     
+    # Detectar username (múltiplas estratégias)
+    username = None
+    
+    # Estratégia 1: Variável de ambiente explícita
+    if os.getenv('GITHUB_USERNAME'):
+        username = os.getenv('GITHUB_USERNAME')
+        print(f"👤 Username detectado (GITHUB_USERNAME): {username}")
+    
+    # Estratégia 2: GitHub Actions - GITHUB_REPOSITORY_OWNER
+    elif os.getenv('GITHUB_REPOSITORY_OWNER'):
+        username = os.getenv('GITHUB_REPOSITORY_OWNER')
+        print(f"👤 Username detectado (GITHUB_REPOSITORY_OWNER): {username}")
+    
+    # Estratégia 3: GitHub Actions - GITHUB_ACTOR
+    elif os.getenv('GITHUB_ACTOR'):
+        username = os.getenv('GITHUB_ACTOR')
+        print(f"👤 Username detectado (GITHUB_ACTOR): {username}")
+    
+    # Estratégia 4: Extrair do GITHUB_REPOSITORY (formato: owner/repo)
+    elif os.getenv('GITHUB_REPOSITORY'):
+        repo_full = os.getenv('GITHUB_REPOSITORY')
+        username = repo_full.split('/')[0]
+        print(f"👤 Username detectado (GITHUB_REPOSITORY): {username}")
+    
+    # Fallback: Tentar usuário autenticado (pode falhar com GH_TOKEN limitado)
+    else:
+        print("⚠️  Username não detectado, tentando usar usuário autenticado...")
+        print("💡 Dica: Defina GITHUB_USERNAME='DannyahIA' nas variáveis de ambiente")
+    
     # Inicializar coletor
     print("🔑 Autenticando no GitHub...")
     try:
-        collector = GitHubCollector(token)
+        collector = GitHubCollector(token, username)
         print(f"   ✓ Autenticado como: {collector.user.login}")
         
         # Verificar rate limit

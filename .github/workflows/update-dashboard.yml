@@ -34,9 +34,11 @@ jobs:
       
       - name: 📊 Collect GitHub metrics
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_USERNAME: DannyahIA
         run: |
-          echo "🔍 Collecting data for user: $GITHUB_ACTOR"
+          echo "🔍 Collecting data for user: $GITHUB_USERNAME"
+          echo "📦 Repository: $GITHUB_REPOSITORY"
           python3 src/scripts/daily_metrics.py
       
       - name: 🎨 Generate SVG charts

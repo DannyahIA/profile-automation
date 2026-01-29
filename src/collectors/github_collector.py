@@ -24,7 +24,7 @@ class GitHubCollector:
     - Supports private repos when authenticated
     """
     
-    def __init__(self, token: str):
+    def __init__(self, token: str, username: str = None):
         """
         Initializes the collector with an access token.
         
@@ -33,9 +33,13 @@ class GitHubCollector:
                    Why is a token needed?
                    - Access to private repos
                    - Higher rate limit (5000 req/hour vs 60/hour)
+            username: GitHub username (optional, will try to get authenticated user if not provided)
         """
         self.github = Github(token)
-        self.user = self.github.get_user()
+        if username:
+            self.user = self.github.get_user(username)
+        else:
+            self.user = self.github.get_user()
     
     def collect_all_repos(self) -> List[Dict[str, Any]]:
         """
