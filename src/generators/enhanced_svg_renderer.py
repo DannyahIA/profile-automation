@@ -1143,7 +1143,7 @@ class EnhancedSVGRenderer:
         
         <!-- Descrição -->
         <text x="{x_pos + 20}" y="{y_pos + 52}" class="label" style="font-size: 11px">
-            {project.get('description', 'No description')[:70]}{'...' if len(project.get('description', '')) > 70 else ''}
+            {(project.get('description') or 'No description')[:70]}{'...' if len(project.get('description') or '') > 70 else ''}
         </text>
         
         <!-- Language badge -->
