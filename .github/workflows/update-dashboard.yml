@@ -16,6 +16,9 @@ jobs:
   update-dashboard:
     runs-on: ubuntu-latest
     
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+    
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v4
