@@ -20,7 +20,7 @@ jobs:
       - name: 📥 Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
       
       - name: 🐍 Setup Python
         uses: actions/setup-python@v5
@@ -34,8 +34,9 @@ jobs:
       
       - name: 📊 Collect GitHub metrics
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
+          echo "🔍 Collecting data for user: $GITHUB_ACTOR"
           python3 src/scripts/daily_metrics.py
       
       - name: 🎨 Generate SVG charts
