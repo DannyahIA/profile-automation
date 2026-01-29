@@ -1,48 +1,38 @@
 {
-  "last_update": "2026-01-29T18:29:49.133766+00:00",
-  "total_commits": 30,
+  "username": "DannyahIA",
+  "name": "Daniel Tavares",
+  "total_commits": 42,
+  "total_repos": 15,
   "total_prs": 1,
   "total_issues": 0,
-  "total_repos": 25,
-  "daily_stats": {
-    "commits_per_day": [
-      {
-        "date": "2026-01-26",
-        "count": 30
-      }
-    ],
-    "average_commits": 30.0,
-    "total_days_active": 1
+  "total_stars": 3,
+  "total_forks": 1,
+  "contributors": 7,
+  "activity_streak": {
+    "current": 1,
+    "longest": 1
   },
-  "weekly_stats": {
-    "prs_per_week": [
-      {
-        "week": "2025-W49",
-        "count": 1
-      }
-    ],
-    "issues_closed_per_week": []
-  },
-  "monthly_stats": {
-    "commits_this_month": 30,
-    "prs_this_month": 0,
-    "issues_this_month": 0,
-    "month": "2026-01"
-  },
-  "top_languages": {
-    "Python": 6,
-    "TypeScript": 6,
+  "languages": {
+    "Python": 5,
     "Go": 2,
-    "PHP": 2,
     "Pascal": 1,
-    "JavaScript": 1,
     "Shell": 1,
+    "TypeScript": 1,
+    "PHP": 1,
     "Kotlin": 1,
     "ZenScript": 1,
-    "HTML": 1
+    "GDScript": 1
   },
-  "activity_streak": {
-    "current": 0,
-    "longest": 1
-  }
+  "language_bytes": {
+    "Python": 32814080,
+    "Pascal": 99328,
+    "Go": 54012928,
+    "Shell": 100352,
+    "TypeScript": 711680,
+    "PHP": 919552,
+    "Kotlin": 219136,
+    "ZenScript": 353701888,
+    "GDScript": 26894336
+  },
+  "last_updated": "2026-01-29T19:50:40.863877"
 }

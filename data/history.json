@@ -1,37 +1,29 @@
 {
-    "monthly_snapshots": [
-        {
-            "date": "2025-12-31",
-            "total_commits": 25,
-            "total_prs": 1,
-            "total_repos": 23,
-            "top_language": "Python",
-            "activity_streak": 0
-        },
-        {
-            "date": "2026-01-31",
-            "total_commits": 30,
-            "total_prs": 1,
-            "total_repos": 25,
-            "top_language": "Python",
-            "activity_streak": 0
-        }
-    ],
-    "weekly_reports": [],
-    "monthly_summaries": [],
-    "events": [],
-    "milestones": [
-        {
-            "title": "Reached 25 repositories",
-            "date": "2026-01-15",
-            "type": "repos",
-            "icon": "📦"
-        },
-        {
-            "title": "First GitHub Actions workflow",
-            "date": "2026-01-20",
-            "type": "achievement",
-            "icon": "🚀"
-        }
-    ]
+  "monthly_snapshots": [
+    {
+      "month": "2026-01",
+      "total_commits": 42,
+      "total_repos": 15,
+      "total_prs": 1,
+      "total_stars": 3,
+      "recorded_at": "2026-01-29T19:51:52.813860"
+    }
+  ],
+  "weekly_reports": [],
+  "monthly_summaries": [],
+  "events": [],
+  "milestones": [
+    {
+      "title": "Reached 25 repositories",
+      "date": "2026-01-15",
+      "type": "repos",
+      "icon": "📦"
+    },
+    {
+      "title": "First GitHub Actions workflow",
+      "date": "2026-01-20",
+      "type": "achievement",
+      "icon": "🚀"
+    }
+  ]
 }

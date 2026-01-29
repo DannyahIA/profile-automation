@@ -83,12 +83,12 @@
     <text class="label" x="60" y="160">Total Commits</text>
     
     <!-- Value -->
-    <text x="60" y="188" style="font-size: 32px; font-weight: 700; fill: #58a6ff">30</text>
+    <text x="60" y="188" style="font-size: 32px; font-weight: 700; fill: #58a6ff">42</text>
     
     <!-- Trend badge -->
-    <rect x="310" y="165" width="70" height="24" fill="#3fb950" rx="12" opacity="0.2"/>
+    <rect x="310" y="165" width="70" height="24" fill="#8b949e" rx="12" opacity="0.2"/>
     <text x="345" y="182" text-anchor="middle" 
-          style="font-size: 12px; font-weight: 700; fill: #3fb950">↑ +20%</text>
+          style="font-size: 12px; font-weight: 700; fill: #8b949e">● ±0%</text>
 </g>
     <g class="slide-up" style="animation-delay: 0.30000000000000004s">
     <!-- Card background -->
@@ -121,12 +121,12 @@
     <text class="label" x="820" y="160">Repositories</text>
     
     <!-- Value -->
-    <text x="820" y="188" style="font-size: 32px; font-weight: 700; fill: #58a6ff">25</text>
+    <text x="820" y="188" style="font-size: 32px; font-weight: 700; fill: #58a6ff">15</text>
     
     <!-- Trend badge -->
-    <rect x="1070" y="165" width="70" height="24" fill="#3fb950" rx="12" opacity="0.2"/>
+    <rect x="1070" y="165" width="70" height="24" fill="#8b949e" rx="12" opacity="0.2"/>
     <text x="1105" y="182" text-anchor="middle" 
-          style="font-size: 12px; font-weight: 700; fill: #3fb950">↑ +9%</text>
+          style="font-size: 12px; font-weight: 700; fill: #8b949e">● ±0%</text>
 </g>
     <g class="slide-up" style="animation-delay: 0.5s">
     <!-- Card background -->
@@ -140,12 +140,12 @@
     <text class="label" x="60" y="260">Current Streak</text>
     
     <!-- Value -->
-    <text x="60" y="288" style="font-size: 32px; font-weight: 700; fill: #58a6ff">0</text>
+    <text x="60" y="288" style="font-size: 32px; font-weight: 700; fill: #58a6ff">1</text>
     
     <!-- Trend badge -->
     <rect x="310" y="265" width="70" height="24" fill="#8b949e" rx="12" opacity="0.2"/>
     <text x="345" y="282" text-anchor="middle" 
-          style="font-size: 12px; font-weight: 700; fill: #8b949e">● New</text>
+          style="font-size: 12px; font-weight: 700; fill: #8b949e">● ±0%</text>
 </g>
     <g class="slide-up" style="animation-delay: 0.6s">
     <!-- Card background -->
@@ -159,12 +159,12 @@
     <text class="label" x="440" y="260">Contributors</text>
     
     <!-- Value -->
-    <text x="440" y="288" style="font-size: 32px; font-weight: 700; fill: #58a6ff">0</text>
+    <text x="440" y="288" style="font-size: 32px; font-weight: 700; fill: #58a6ff">7</text>
     
     <!-- Trend badge -->
     <rect x="690" y="265" width="70" height="24" fill="#8b949e" rx="12" opacity="0.2"/>
     <text x="725" y="282" text-anchor="middle" 
-          style="font-size: 12px; font-weight: 700; fill: #8b949e">● New</text>
+          style="font-size: 12px; font-weight: 700; fill: #8b949e">● ±0%</text>
 </g>
     <g class="slide-up" style="animation-delay: 0.7s">
     <!-- Card background -->
@@ -178,11 +178,11 @@
     <text class="label" x="820" y="260">Stars Earned</text>
     
     <!-- Value -->
-    <text x="820" y="288" style="font-size: 32px; font-weight: 700; fill: #58a6ff">0</text>
+    <text x="820" y="288" style="font-size: 32px; font-weight: 700; fill: #58a6ff">3</text>
     
     <!-- Trend badge -->
     <rect x="1070" y="265" width="70" height="24" fill="#8b949e" rx="12" opacity="0.2"/>
     <text x="1105" y="282" text-anchor="middle" 
-          style="font-size: 12px; font-weight: 700; fill: #8b949e">● New</text>
+          style="font-size: 12px; font-weight: 700; fill: #8b949e">● ±0%</text>
 </g>
 </svg>
