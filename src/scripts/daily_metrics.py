@@ -272,6 +272,10 @@ def update_history(metrics: Dict[str, Any]) -> Dict[str, Any]:
     else:
         history = {'monthly_snapshots': []}
     
+    # Garantir que existe a estrutura correta
+    if 'monthly_snapshots' not in history:
+        history['monthly_snapshots'] = []
+    
     # Criar snapshot do mês atual
     current_month = datetime.now().strftime('%Y-%m')
     
@@ -289,7 +293,8 @@ def update_history(metrics: Dict[str, Any]) -> Dict[str, Any]:
     updated = False
     
     for i, snap in enumerate(snapshots):
-        if snap['month'] == current_month:
+        # Verificar se o snap tem a chave 'month'
+        if isinstance(snap, dict) and 'month' in snap and snap['month'] == current_month:
             snapshots[i] = snapshot
             updated = True
             break
@@ -297,9 +302,12 @@ def update_history(metrics: Dict[str, Any]) -> Dict[str, Any]:
     if not updated:
         snapshots.append(snapshot)
     
+    # Filtrar apenas snapshots válidos (que têm 'month')
+    valid_snapshots = [s for s in snapshots if isinstance(s, dict) and 'month' in s]
+    
     # Manter apenas últimos 12 meses
     history['monthly_snapshots'] = sorted(
-        snapshots,
+        valid_snapshots,
         key=lambda s: s['month'],
         reverse=True
     )[:12]
