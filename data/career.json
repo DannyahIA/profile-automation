@@ -1,10 +1,10 @@
 {
     "professional_timeline": [
         {
-            "title": "Senior Full-Stack Developer",
+            "title": "Software Engineer Intern",
             "company": "Tech Company",
             "type": "work",
-            "date_start": "2024-06",
+            "date_start": "2023-08",
             "date_end": "present",
             "description": "Building scalable web applications with modern stack",
             "technologies": [
@@ -21,29 +21,30 @@
             "show_duration": false
         },
         {
-            "title": "Full-Stack Developer",
-            "company": "Startup Inc",
-            "type": "work",
-            "date_start": "2023-01",
-            "date_end": "2024-05",
-            "description": "Developed MVP and core features",
+            "title": "Junior Software Engineer",
+            "company": "Pivot Point Family Group Growth Centre",
+            "type": "remote work",
+            "date_start": "2024-11",
+            "date_end": "2025-07",
+            "description": "Legacy PHP system modernization and AI feature development",
             "technologies": [
+                "PHP",
                 "Python",
-                "Vue.js",
-                "Docker"
+                "MySQL"
             ],
             "highlights": [
-                "Built product from scratch",
-                "Reduced costs by 30%"
+                "Created AI-driven features",
+                "Worked remotely across time zones",
+                "Enhanced legacy system"
             ],
             "show_duration": false
         },
         {
-            "title": "Advanced Web Development Bootcamp",
-            "company": "Online Academy",
-            "type": "education",
-            "date_start": "2022-06",
-            "date_end": "2022-12",
+            "title": "Junior Backend Engineer",
+            "company": "MM Tecnologia",
+            "type": "work",
+            "date_start": "2025-08",
+            "date_end": "2026-01",
             "description": "Intensive full-stack development program",
             "technologies": [
                 "JavaScript",
@@ -58,12 +59,12 @@
             "show_duration": true
         },
         {
-            "title": "Computer Science Degree",
-            "company": "University",
-            "type": "education",
-            "date_start": "2019-09",
-            "date_end": "2023-06",
-            "description": "Bachelor's degree in Computer Science",
+            "title": "Backeend Engineer Trainee",
+            "company": "PROCOB Credit Solutions",
+            "type": "work",
+            "date_start": "2026-01",
+            "date_end": "2026-04",
+            "description": "Training program focused on backend development",
             "technologies": [
                 "Python",
                 "Java",
@@ -97,7 +98,7 @@
         "privacy_mode": "selective",
         "show_company_names": true,
         "show_dates": "year_only",
-        "show_duration": false,
+        "show_duration": true,
         "highlight_current": true
     }
 }
