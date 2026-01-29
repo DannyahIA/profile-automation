@@ -54,10 +54,9 @@ class GitHubCollector:
         """
         repos_data = []
         
-        # affiliation='owner,collaborator,organization_member' gets repos you own, 
-        # collaborate on, or are part of through an organization
-        # Why? To capture ALL your contributions, not just repos you created
-        for repo in self.user.get_repos(affiliation='owner,collaborator,organization_member'):
+        # NamedUser.get_repos() não aceita 'affiliation', apenas pega repos públicos do usuário
+        # Para usuário específico, só conseguimos repos públicos
+        for repo in self.user.get_repos():
             repos_data.append({
                 'name': repo.name,
                 'full_name': repo.full_name,
@@ -103,9 +102,9 @@ class GitHubCollector:
         
         commits_data = []
         
-        for repo in self.user.get_repos(affiliation='owner'):
+        for repo in self.user.get_repos():
             try:
-                commits = repo.get_commits(author=self.user, since=since, until=until)
+                commits = repo.get_commits(author=self.user.login, since=since, until=until)
                 
                 for commit in commits:
                     commits_data.append({
@@ -118,7 +117,7 @@ class GitHubCollector:
                         'total_changes': commit.stats.total if commit.stats else 0
                     })
             except Exception as e:
-                print(f"Error collecting commits from {repo.name}: {e}")
+                print(f"   ⚠️  Erro em {repo.name}: {e}")
                 continue
         
         return commits_data
@@ -131,7 +130,7 @@ class GitHubCollector:
         
         prs_data = []
         
-        for repo in self.user.get_repos(affiliation='owner'):
+        for repo in self.user.get_repos():
             try:
                 prs = repo.get_pulls(state='all', sort='updated', direction='desc')
                 
@@ -155,7 +154,7 @@ class GitHubCollector:
                         'comments': pr.comments
                     })
             except Exception as e:
-                print(f"Error collecting PRs from {repo.name}: {e}")
+                print(f"   ⚠️  Erro em {repo.name}: {e}")
                 continue
         
         return prs_data
@@ -176,7 +175,7 @@ class GitHubCollector:
         
         issues_data = []
         
-        for repo in self.user.get_repos(affiliation='owner'):
+        for repo in self.user.get_repos():
             try:
                 issues = repo.get_issues(state='all', since=since)
             
@@ -197,7 +196,7 @@ class GitHubCollector:
                         'labels': [label.name for label in issue.labels]
                     })
             except Exception as e:
-                print(f"Error collecting issues from {repo.name}: {e}")
+                print(f"   ⚠️  Erro em {repo.name}: {e}")
                 continue
         
         return issues_data
@@ -277,7 +276,7 @@ class GitHubCollector:
         }
         
         try:
-            for repo in self.user.get_repos(affiliation='owner'):
+            for repo in self.user.get_repos():
                 stats['total_repos'] += 1
                 stats['total_stars_received'] += repo.stargazers_count
                 stats['total_forks_received'] += repo.forks_count
