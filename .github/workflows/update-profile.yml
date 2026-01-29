@@ -39,7 +39,7 @@ jobs:
       
       - name: 📊 Collect GitHub Data
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GITHUB_ACTOR: ${{ github.repository_owner }}
         run: |
           echo "🔍 Collecting data for user: $GITHUB_ACTOR"
