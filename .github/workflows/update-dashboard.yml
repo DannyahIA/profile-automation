@@ -2,8 +2,8 @@ name: 🤖 Update Profile Dashboard
 
 on:
   schedule:
-    # Executa a cada 30 minutos
-    - cron: '*/30 * * * *'
+    # Executa a cada hora
+    - cron: '0 * * * *'
   workflow_dispatch:  # Permite executar manualmente
   push:
     branches:

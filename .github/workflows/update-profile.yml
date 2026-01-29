@@ -45,27 +45,15 @@ jobs:
           echo "🔍 Collecting data for user: $GITHUB_ACTOR"
           python src/scripts/daily_metrics.py
       
-      - name: 📈 Process Metrics
+      - name: 🎨 Generate SVG Charts
         run: |
-          echo "📊 Processing collected metrics..."
-          python -c "
-          from src.processors.metrics_processor import MetricsProcessor
-          processor = MetricsProcessor()
-          processor.process_all()
-          print('✅ Metrics processed successfully')
-          "
-      
-      - name: 🎨 Generate Modern Charts
-        env:
-          GITHUB_ACTOR: ${{ github.repository_owner }}
-        run: |
-          echo "🎨 Generating modern SVG charts..."
-          python src/scripts/generate_modern_charts.py --username $GITHUB_ACTOR
+          echo "🎨 Generating SVG charts..."
+          python src/scripts/generate_complete_dashboard.py
       
       - name: 📝 Update README
         run: |
-          echo "📝 Updating README with latest stats..."
-          python src/generators/readme_generator.py || echo "⚠️ README generator not yet implemented"
+          echo "📝 Updating README timestamp..."
+          sed -i "s|<!-- AUTO-GENERATED:START (last_update) -->.*<!-- AUTO-GENERATED:END -->|<!-- AUTO-GENERATED:START (last_update) -->$(date +%Y-%m-%d)<!-- AUTO-GENERATED:END -->|g" README.md
       
       - name: 🔍 Check for Changes
         id: git-check

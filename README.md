@@ -1,5 +1,5 @@
 <div align="center">
-*🤖 Automated GitHub portfolio • Updated daily via GitHub Actions*
+*🤖 Automated GitHub portfolio • Updated every hour via GitHub Actions*
 
 <br><br><br><br>
 
