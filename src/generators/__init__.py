@@ -1,7 +1,15 @@
 """
-Generators package - Modules for content and report generation.
+Generators package - SVG generators for GitHub profile dashboard.
 """
 
-from .readme_generator import ReadmeGenerator
+from .enhanced_svg_renderer import EnhancedSVGRenderer
+from .roadmap_generator import RoadmapGenerator
+from .career_timeline_generator import CareerTimelineGenerator
+from .activity_calendar_generator import ActivityCalendarGenerator
 
-__all__ = ['ReadmeGenerator']
+__all__ = [
+    'EnhancedSVGRenderer',
+    'RoadmapGenerator',
+    'CareerTimelineGenerator',
+    'ActivityCalendarGenerator',
+]

@@ -197,7 +197,105 @@ class GitHubCollector:
                 continue
         
         return issues_data
+    
+    def collect_profile_info(self) -> Dict[str, Any]:
+        """
+        Collects profile information from GitHub.
         
+        Returns:
+            Dictionary with profile data
+        """
+        return {
+            'login': self.user.login,
+            'name': self.user.name,
+            'bio': self.user.bio,
+            'company': self.user.company,
+            'location': self.user.location,
+            'email': self.user.email,
+            'blog': self.user.blog,
+            'twitter': self.user.twitter_username,
+            'followers': self.user.followers,
+            'following': self.user.following,
+            'public_repos': self.user.public_repos,
+            'public_gists': self.user.public_gists,
+            'avatar_url': self.user.avatar_url,
+            'html_url': self.user.html_url,
+            'created_at': self.user.created_at.isoformat(),
+            'updated_at': self.user.updated_at.isoformat()
+        }
+    
+    def collect_starred_repos(self, limit: int = 10) -> List[Dict[str, Any]]:
+        """
+        Collects starred repositories.
+        
+        Args:
+            limit: Maximum number of starred repos to collect
+            
+        Returns:
+            List of starred repositories
+        """
+        starred_data = []
+        
+        try:
+            for i, repo in enumerate(self.user.get_starred()):
+                if i >= limit:
+                    break
+                    
+                starred_data.append({
+                    'name': repo.name,
+                    'full_name': repo.full_name,
+                    'description': repo.description,
+                    'language': repo.language,
+                    'stars': repo.stargazers_count,
+                    'html_url': repo.html_url
+                })
+        except Exception as e:
+            print(f"Error collecting starred repos: {e}")
+        
+        return starred_data
+    
+    def collect_contribution_stats(self) -> Dict[str, Any]:
+        """
+        Collects comprehensive contribution statistics.
+        
+        Returns:
+            Dictionary with contribution stats
+        """
+        stats = {
+            'total_repos': 0,
+            'total_commits': 0,
+            'total_prs': 0,
+            'total_issues': 0,
+            'total_stars_received': 0,
+            'total_forks_received': 0,
+            'languages': {},
+            'repos_by_year': {}
+        }
+        
+        try:
+            for repo in self.user.get_repos(affiliation='owner'):
+                stats['total_repos'] += 1
+                stats['total_stars_received'] += repo.stargazers_count
+                stats['total_forks_received'] += repo.forks_count
+                
+                # Count language usage
+                if repo.language:
+                    stats['languages'][repo.language] = stats['languages'].get(repo.language, 0) + 1
+                
+                # Group by year
+                year = repo.created_at.year
+                stats['repos_by_year'][year] = stats['repos_by_year'].get(year, 0) + 1
+                
+                # Count commits (limited to avoid rate limit)
+                try:
+                    commits = list(repo.get_commits(author=self.user))
+                    stats['total_commits'] += len(commits)
+                except:
+                    pass
+        except Exception as e:
+            print(f"Error collecting contribution stats: {e}")
+        
+        return stats
     def get_rate_limit_info(self) -> Dict[str, Any]:
         try:
             rate_limit = self.github.get_rate_limit()

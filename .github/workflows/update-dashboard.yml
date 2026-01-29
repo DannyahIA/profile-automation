@@ -1,0 +1,78 @@
+name: 🤖 Update Profile Dashboard
+
+on:
+  schedule:
+    # Executa diariamente às 00:00 UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch:  # Permite executar manualmente
+  push:
+    branches:
+      - master
+    paths:
+      - 'data/**'
+      - 'src/**'
+
+jobs:
+  update-dashboard:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+      
+      - name: 📦 Install dependencies
+        run: |
+          pip install -r requirements.txt
+      
+      - name: 📊 Collect GitHub metrics
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 src/scripts/daily_metrics.py
+      
+      - name: 🎨 Generate SVG charts
+        run: |
+          python3 src/scripts/generate_complete_dashboard.py
+      
+      - name: 📝 Update README with new assets
+        run: |
+          # Atualizar data de última atualização
+          sed -i "s|<!-- AUTO-GENERATED:START (last_update) -->.*<!-- AUTO-GENERATED:END -->|<!-- AUTO-GENERATED:START (last_update) -->$(date +%Y-%m-%d)<!-- AUTO-GENERATED:END -->|g" PROFILE_README.md
+      
+      - name: 💾 Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          git add assets/*.svg
+          git add data/metrics.json
+          git add data/history.json
+          git add PROFILE_README.md
+          
+          if git diff --staged --quiet; then
+            echo "✅ No changes to commit"
+          else
+            git commit -m "🤖 Auto-update: Dashboard metrics and charts [$(date +'%Y-%m-%d %H:%M:%S')]"
+            git push
+            echo "✅ Changes pushed successfully"
+          fi
+      
+      - name: 📊 Summary
+        if: always()
+        run: |
+          echo "### 📊 Dashboard Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Date**: $(date +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status**: ✅ Complete" >> $GITHUB_STEP_SUMMARY
+          echo "- **Charts Generated**: 8" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "#### Generated Files:" >> $GITHUB_STEP_SUMMARY
+          ls -lh assets/*.svg 2>/dev/null | awk '{print "- " $9 " (" $5 ")"}' >> $GITHUB_STEP_SUMMARY || echo "- No SVG files found" >> $GITHUB_STEP_SUMMARY

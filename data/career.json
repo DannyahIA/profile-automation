@@ -1,0 +1,103 @@
+{
+    "professional_timeline": [
+        {
+            "title": "Senior Full-Stack Developer",
+            "company": "Tech Company",
+            "type": "work",
+            "date_start": "2024-06",
+            "date_end": "present",
+            "description": "Building scalable web applications with modern stack",
+            "technologies": [
+                "React",
+                "Node.js",
+                "TypeScript",
+                "AWS"
+            ],
+            "highlights": [
+                "Led team of 5 developers",
+                "Improved performance by 40%",
+                "Implemented CI/CD pipeline"
+            ],
+            "show_duration": false
+        },
+        {
+            "title": "Full-Stack Developer",
+            "company": "Startup Inc",
+            "type": "work",
+            "date_start": "2023-01",
+            "date_end": "2024-05",
+            "description": "Developed MVP and core features",
+            "technologies": [
+                "Python",
+                "Vue.js",
+                "Docker"
+            ],
+            "highlights": [
+                "Built product from scratch",
+                "Reduced costs by 30%"
+            ],
+            "show_duration": false
+        },
+        {
+            "title": "Advanced Web Development Bootcamp",
+            "company": "Online Academy",
+            "type": "education",
+            "date_start": "2022-06",
+            "date_end": "2022-12",
+            "description": "Intensive full-stack development program",
+            "technologies": [
+                "JavaScript",
+                "React",
+                "Node.js",
+                "MongoDB"
+            ],
+            "highlights": [
+                "Top 5% of class",
+                "Built 10+ projects"
+            ],
+            "show_duration": true
+        },
+        {
+            "title": "Computer Science Degree",
+            "company": "University",
+            "type": "education",
+            "date_start": "2019-09",
+            "date_end": "2023-06",
+            "description": "Bachelor's degree in Computer Science",
+            "technologies": [
+                "Python",
+                "Java",
+                "C++",
+                "Algorithms"
+            ],
+            "highlights": [
+                "GPA: 3.8/4.0",
+                "Dean's List"
+            ],
+            "show_duration": false
+        }
+    ],
+    "certifications": [
+        {
+            "name": "AWS Certified Solutions Architect",
+            "issuer": "Amazon Web Services",
+            "date": "2024-03",
+            "credential_id": "ABC123XYZ",
+            "show": true
+        },
+        {
+            "name": "Google Cloud Professional",
+            "issuer": "Google Cloud",
+            "date": "2023-11",
+            "credential_id": "GCP456DEF",
+            "show": true
+        }
+    ],
+    "meta": {
+        "privacy_mode": "selective",
+        "show_company_names": true,
+        "show_dates": "year_only",
+        "show_duration": false,
+        "highlight_current": true
+    }
+}
