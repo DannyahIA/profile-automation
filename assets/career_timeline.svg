@@ -86,210 +86,210 @@
           x2="1120" y2="280" stroke-linecap="round"/>
 
 
-    <line class="slide-in" x1="352.093023255814" y1="280" x2="352.093023255814" y2="220" 
+    <line class="slide-in" x1="415.11111111111114" y1="280" x2="415.11111111111114" y2="220" 
           stroke="#30363d" stroke-width="2" stroke-dasharray="4,4" 
           opacity="0.5" style="animation-delay: 0.0s"/>
 
 
-    <circle class="timeline-dot-education" cx="352.093023255814" cy="280" r="6" 
+    <circle class="timeline-dot-current pulse" cx="415.11111111111114" cy="280" r="8" 
             style="animation-delay: 0.0s"/>
 
 
     <g class="slide-in" style="animation-delay: 0.0s">
-        <rect x="222.093023255814" y="80" width="260" height="140" 
+        <rect x="285.11111111111114" y="80" width="260" height="140" 
               rx="8" fill="#0d1117" 
-              stroke="#a371f7" stroke-width="2" opacity="0.95"/>
+              stroke="#3fb950" stroke-width="2" opacity="0.95"/>
 
 
-        <text class="entry-title" x="234.093023255814" y="102">🎓 Computer Science Degree</text>
+        <text class="entry-title" x="297.11111111111114" y="102">💼 Software Engineer Intern</text>
 
 
-        <text class="entry-company" x="234.093023255814" y="120" fill="#a371f7">University</text>
+        <text class="entry-company" x="297.11111111111114" y="120" fill="#3fb950">Tech Company</text>
 
 
-        <text class="entry-date" x="234.093023255814" y="138">2019 - 2023</text>
+        <text class="entry-date" x="297.11111111111114" y="138">2023 - Present (2y 5m)</text>
 
 
-        <text class="entry-desc" x="234.093023255814" y="154">Bachelor's degree in Computer Science</text>
+        <text class="entry-desc" x="297.11111111111114" y="154">Building scalable web applications ...</text>
 
 
-        <rect x="234.093023255814" y="172" width="48" height="16" 
-              rx="8" fill="#a371f7" opacity="0.15"/>
-        <text class="tech-badge" x="240.093023255814" y="183" fill="#a371f7">Python</text>
+        <rect x="297.11111111111114" y="172" width="42" height="16" 
+              rx="8" fill="#3fb950" opacity="0.15"/>
+        <text class="tech-badge" x="303.11111111111114" y="183" fill="#3fb950">React</text>
 
 
-        <rect x="288.093023255814" y="172" width="36" height="16" 
-              rx="8" fill="#a371f7" opacity="0.15"/>
-        <text class="tech-badge" x="294.093023255814" y="183" fill="#a371f7">Java</text>
+        <rect x="345.11111111111114" y="172" width="54" height="16" 
+              rx="8" fill="#3fb950" opacity="0.15"/>
+        <text class="tech-badge" x="351.11111111111114" y="183" fill="#3fb950">Node.js</text>
 
 
-        <rect x="330.093023255814" y="172" width="30" height="16" 
-              rx="8" fill="#a371f7" opacity="0.15"/>
-        <text class="tech-badge" x="336.093023255814" y="183" fill="#a371f7">C++</text>
+        <rect x="405.11111111111114" y="172" width="72" height="16" 
+              rx="8" fill="#3fb950" opacity="0.15"/>
+        <text class="tech-badge" x="411.11111111111114" y="183" fill="#3fb950">TypeScript</text>
 
 
-        <rect x="234.093023255814" y="197" width="236" height="4" 
+        <rect x="297.11111111111114" y="197" width="236" height="4" 
               rx="2" fill="#30363d" opacity="0.2"/>
-        <rect x="234.093023255814" y="197" width="123.48837209302326" height="4" 
-              rx="2" fill="#a371f7" opacity="0.6"/>
-        <text class="label-small" x="234.093023255814" y="213" fill="#a371f7">
-            45 months • 52.3% of career
+        <rect x="297.11111111111114" y="197" width="152.0888888888889" height="4" 
+              rx="2" fill="#3fb950" opacity="0.6"/>
+        <text class="label-small" x="297.11111111111114" y="213" fill="#3fb950">
+            29 months • 64.4% of career
         </text>
 
     </g>
 
-    <line class="slide-in" x1="660.4651162790698" y1="280" x2="660.4651162790698" y2="350" 
+    <line class="slide-in" x1="842.6666666666666" y1="280" x2="842.6666666666666" y2="350" 
           stroke="#30363d" stroke-width="2" stroke-dasharray="4,4" 
           opacity="0.5" style="animation-delay: 0.15s"/>
 
 
-    <circle class="timeline-dot-education" cx="660.4651162790698" cy="280" r="6" 
+    <circle class="timeline-dot-education" cx="842.6666666666666" cy="280" r="6" 
             style="animation-delay: 0.15s"/>
 
 
     <g class="slide-in" style="animation-delay: 0.15s">
-        <rect x="530.4651162790698" y="360" width="260" height="140" 
+        <rect x="712.6666666666666" y="360" width="260" height="140" 
               rx="8" fill="#0d1117" 
               stroke="#a371f7" stroke-width="2" opacity="0.95"/>
 
 
-        <text class="entry-title" x="542.4651162790698" y="382">🎓 Advanced Web Development ...</text>
+        <text class="entry-title" x="724.6666666666666" y="382">🎓 Junior Software Engineer</text>
 
 
-        <text class="entry-company" x="542.4651162790698" y="400" fill="#a371f7">Online Academy</text>
+        <text class="entry-company" x="724.6666666666666" y="400" fill="#a371f7">Pivot Point Family Group Gr...</text>
 
 
-        <text class="entry-date" x="542.4651162790698" y="418">2022 - 2022 (6m)</text>
+        <text class="entry-date" x="724.6666666666666" y="418">2024 - 2025 (8m)</text>
 
 
-        <text class="entry-desc" x="542.4651162790698" y="434">Intensive full-stack development pr...</text>
+        <text class="entry-desc" x="724.6666666666666" y="434">Legacy PHP system modernization and...</text>
 
 
-        <rect x="542.4651162790698" y="452" width="72" height="16" 
+        <rect x="724.6666666666666" y="452" width="30" height="16" 
               rx="8" fill="#a371f7" opacity="0.15"/>
-        <text class="tech-badge" x="548.4651162790698" y="463" fill="#a371f7">JavaScript</text>
+        <text class="tech-badge" x="730.6666666666666" y="463" fill="#a371f7">PHP</text>
 
 
-        <rect x="620.4651162790698" y="452" width="42" height="16" 
+        <rect x="760.6666666666666" y="452" width="48" height="16" 
               rx="8" fill="#a371f7" opacity="0.15"/>
-        <text class="tech-badge" x="626.4651162790698" y="463" fill="#a371f7">React</text>
+        <text class="tech-badge" x="766.6666666666666" y="463" fill="#a371f7">Python</text>
 
 
-        <rect x="668.4651162790698" y="452" width="54" height="16" 
+        <rect x="814.6666666666666" y="452" width="42" height="16" 
               rx="8" fill="#a371f7" opacity="0.15"/>
-        <text class="tech-badge" x="674.4651162790698" y="463" fill="#a371f7">Node.js</text>
+        <text class="tech-badge" x="820.6666666666666" y="463" fill="#a371f7">MySQL</text>
 
 
-        <rect x="542.4651162790698" y="477" width="236" height="4" 
+        <rect x="724.6666666666666" y="477" width="236" height="4" 
               rx="2" fill="#30363d" opacity="0.2"/>
-        <rect x="542.4651162790698" y="477" width="16.46511627906977" height="4" 
+        <rect x="724.6666666666666" y="477" width="41.955555555555556" height="4" 
               rx="2" fill="#a371f7" opacity="0.6"/>
-        <text class="label-small" x="542.4651162790698" y="493" fill="#a371f7">
-            6 months • 7.0% of career
+        <text class="label-small" x="724.6666666666666" y="493" fill="#a371f7">
+            8 months • 17.8% of career
         </text>
 
     </g>
 
-    <line class="slide-in" x1="793.4883720930233" y1="280" x2="793.4883720930233" y2="220" 
+    <line class="slide-in" x1="992.8888888888889" y1="280" x2="992.8888888888889" y2="220" 
           stroke="#30363d" stroke-width="2" stroke-dasharray="4,4" 
           opacity="0.5" style="animation-delay: 0.3s"/>
 
 
-    <circle class="timeline-dot-work" cx="793.4883720930233" cy="280" r="6" 
+    <circle class="timeline-dot-work" cx="992.8888888888889" cy="280" r="6" 
             style="animation-delay: 0.3s"/>
 
 
     <g class="slide-in" style="animation-delay: 0.3s">
-        <rect x="663.4883720930233" y="80" width="260" height="140" 
+        <rect x="862.8888888888889" y="80" width="260" height="140" 
               rx="8" fill="#0d1117" 
               stroke="#3fb950" stroke-width="2" opacity="0.95"/>
 
 
-        <text class="entry-title" x="675.4883720930233" y="102">💼 Full-Stack Developer</text>
+        <text class="entry-title" x="874.8888888888889" y="102">💼 Junior Backend Engineer</text>
 
 
-        <text class="entry-company" x="675.4883720930233" y="120" fill="#3fb950">Startup Inc</text>
+        <text class="entry-company" x="874.8888888888889" y="120" fill="#3fb950">MM Tecnologia</text>
 
 
-        <text class="entry-date" x="675.4883720930233" y="138">2023 - 2024</text>
+        <text class="entry-date" x="874.8888888888889" y="138">2025 - 2026 (5m)</text>
 
 
-        <text class="entry-desc" x="675.4883720930233" y="154">Developed MVP and core features</text>
+        <text class="entry-desc" x="874.8888888888889" y="154">Intensive full-stack development pr...</text>
 
 
-        <rect x="675.4883720930233" y="172" width="48" height="16" 
+        <rect x="874.8888888888889" y="172" width="72" height="16" 
               rx="8" fill="#3fb950" opacity="0.15"/>
-        <text class="tech-badge" x="681.4883720930233" y="183" fill="#3fb950">Python</text>
+        <text class="tech-badge" x="880.8888888888889" y="183" fill="#3fb950">JavaScript</text>
 
 
-        <rect x="729.4883720930233" y="172" width="48" height="16" 
+        <rect x="952.8888888888889" y="172" width="42" height="16" 
               rx="8" fill="#3fb950" opacity="0.15"/>
-        <text class="tech-badge" x="735.4883720930233" y="183" fill="#3fb950">Vue.js</text>
+        <text class="tech-badge" x="958.8888888888889" y="183" fill="#3fb950">React</text>
 
 
-        <rect x="783.4883720930233" y="172" width="48" height="16" 
+        <rect x="1000.8888888888889" y="172" width="54" height="16" 
               rx="8" fill="#3fb950" opacity="0.15"/>
-        <text class="tech-badge" x="789.4883720930233" y="183" fill="#3fb950">Docker</text>
+        <text class="tech-badge" x="1006.8888888888889" y="183" fill="#3fb950">Node.js</text>
 
 
-        <rect x="675.4883720930233" y="197" width="236" height="4" 
+        <rect x="874.8888888888889" y="197" width="236" height="4" 
               rx="2" fill="#30363d" opacity="0.2"/>
-        <rect x="675.4883720930233" y="197" width="43.906976744186046" height="4" 
+        <rect x="874.8888888888889" y="197" width="26.22222222222222" height="4" 
               rx="2" fill="#3fb950" opacity="0.6"/>
-        <text class="label-small" x="675.4883720930233" y="213" fill="#3fb950">
-            16 months • 18.6% of career
+        <text class="label-small" x="874.8888888888889" y="213" fill="#3fb950">
+            5 months • 11.1% of career
         </text>
 
     </g>
 
-    <line class="slide-in" x1="1005.1162790697674" y1="280" x2="1005.1162790697674" y2="350" 
+    <line class="slide-in" x1="1085.3333333333335" y1="280" x2="1085.3333333333335" y2="350" 
           stroke="#30363d" stroke-width="2" stroke-dasharray="4,4" 
           opacity="0.5" style="animation-delay: 0.44999999999999996s"/>
 
 
-    <circle class="timeline-dot-current pulse" cx="1005.1162790697674" cy="280" r="8" 
+    <circle class="timeline-dot-work" cx="1085.3333333333335" cy="280" r="6" 
             style="animation-delay: 0.44999999999999996s"/>
 
 
     <g class="slide-in" style="animation-delay: 0.44999999999999996s">
-        <rect x="875.1162790697674" y="360" width="260" height="140" 
+        <rect x="955.3333333333335" y="360" width="260" height="140" 
               rx="8" fill="#0d1117" 
               stroke="#3fb950" stroke-width="2" opacity="0.95"/>
 
 
-        <text class="entry-title" x="887.1162790697674" y="382">💼 Senior Full-Stack Developer</text>
+        <text class="entry-title" x="967.3333333333335" y="382">💼 Backeend Engineer Trainee</text>
 
 
-        <text class="entry-company" x="887.1162790697674" y="400" fill="#3fb950">Tech Company</text>
+        <text class="entry-company" x="967.3333333333335" y="400" fill="#3fb950">PROCOB Credit Solutions</text>
 
 
-        <text class="entry-date" x="887.1162790697674" y="418">2024 - Present</text>
+        <text class="entry-date" x="967.3333333333335" y="418">2026 - 2026 (3m)</text>
 
 
-        <text class="entry-desc" x="887.1162790697674" y="434">Building scalable web applications ...</text>
+        <text class="entry-desc" x="967.3333333333335" y="434">Training program focused on backend...</text>
 
 
-        <rect x="887.1162790697674" y="452" width="42" height="16" 
+        <rect x="967.3333333333335" y="452" width="48" height="16" 
               rx="8" fill="#3fb950" opacity="0.15"/>
-        <text class="tech-badge" x="893.1162790697674" y="463" fill="#3fb950">React</text>
+        <text class="tech-badge" x="973.3333333333335" y="463" fill="#3fb950">Python</text>
 
 
-        <rect x="935.1162790697674" y="452" width="54" height="16" 
+        <rect x="1021.3333333333335" y="452" width="36" height="16" 
               rx="8" fill="#3fb950" opacity="0.15"/>
-        <text class="tech-badge" x="941.1162790697674" y="463" fill="#3fb950">Node.js</text>
+        <text class="tech-badge" x="1027.3333333333335" y="463" fill="#3fb950">Java</text>
 
 
-        <rect x="995.1162790697674" y="452" width="72" height="16" 
+        <rect x="1063.3333333333335" y="452" width="30" height="16" 
               rx="8" fill="#3fb950" opacity="0.15"/>
-        <text class="tech-badge" x="1001.1162790697674" y="463" fill="#3fb950">TypeScript</text>
+        <text class="tech-badge" x="1069.3333333333335" y="463" fill="#3fb950">C++</text>
 
 
-        <rect x="887.1162790697674" y="477" width="236" height="4" 
+        <rect x="967.3333333333335" y="477" width="236" height="4" 
               rx="2" fill="#30363d" opacity="0.2"/>
-        <rect x="887.1162790697674" y="477" width="52.139534883720934" height="4" 
+        <rect x="967.3333333333335" y="477" width="15.733333333333333" height="4" 
               rx="2" fill="#3fb950" opacity="0.6"/>
-        <text class="label-small" x="887.1162790697674" y="493" fill="#3fb950">
-            19 months • 22.1% of career
+        <text class="label-small" x="967.3333333333335" y="493" fill="#3fb950">
+            3 months • 6.7% of career
         </text>
 
     </g>
@@ -318,7 +318,7 @@
               fill="#0d1117" opacity="0.8"/>
         <text class="subtitle" x="990" y="115">Total Experience</text>
         <text style="font-size: 20px; font-weight: 700" x="990" y="138" 
-              fill="#3fb950">7.2 years</text>
+              fill="#3fb950">3.8 years</text>
     </g>
 
 </svg>
