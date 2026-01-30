@@ -1,33 +1,26 @@
 {
     "professional_timeline": [
         {
-            "title": "Software Engineer Intern",
+            "title": "Software Engineer (Internship)",
             "company": "NAJATEC Tecnologia",
             "type": "work",
             "date_start": "2023-08",
             "date_end": "2024-11",
-            "description": "Building scalable web applications with modern stack",
+            "description": "Led and end-to-end development of an internal CRM system from scratch.",
             "technologies": [
                 "Go",
                 "Pascal Object",
-                "JSON",
                 "AWS",
-                "Prometheus",
                 "Docker",
-                "WSL2",
-                "JIRA"
+                "PostgreSQL"
             ],
-            "highlights": [
-                "Led team of 5 developers",
-                "Improved performance by 40%",
-                "Implemented CI/CD pipeline"
-            ],
+            "highlights": [],
             "show_duration": false
         },
         {
-            "title": "Junior Software Engineer",
-            "company": "Pivot Point Family Group Growth Centre",
-            "type": "remote work",
+            "title": "Junior Developer (full-stack)",
+            "company": "Pivot Point Family Growth Centre Inc.",
+            "type": "work",
             "date_start": "2024-11",
             "date_end": "2025-07",
             "description": "Legacy PHP system modernization and AI feature development",
@@ -36,15 +29,11 @@
                 "Python",
                 "MySQL"
             ],
-            "highlights": [
-                "Created AI-driven features",
-                "Worked remotely across time zones",
-                "Enhanced legacy system"
-            ],
+            "highlights": [],
             "show_duration": false
         },
         {
-            "title": "Junior Backend Engineer",
+            "title": "Software Engineer Junior",
             "company": "MM Tecnologia",
             "type": "work",
             "date_start": "2025-08",
@@ -56,45 +45,63 @@
                 "Node.js",
                 "MongoDB"
             ],
-            "highlights": [
-                "Top 5% of class",
-                "Built 10+ projects"
-            ],
-            "show_duration": true
+            "highlights": [],
+            "show_duration": false
         },
         {
-            "title": "Backeend Engineer Trainee",
-            "company": "PROCOB Credit Solutions",
+            "title": "Backend Developer (Trainee)",
+            "company": "PROCOB",
             "type": "work",
             "date_start": "2026-01",
-            "date_end": "2026-04",
-            "description": "Training program focused on backend development",
+            "date_end": "present",
+            "description": "Contributing to the development and maintenance of backend systems, service integrations, and internal applications.",
+            "technologies": [
+                "PHP 5.6",
+                "Symfony 2.8",
+                "Doctrine"
+            ],
+            "highlights": [],
+            "show_duration": false
+        },
+        {
+            "title": "Founder & Lead Software Engineer",
+            "company": "EclipsIA Software",
+            "type": "work",
+            "date_start": "2024-11",
+            "date_end": "present",
+            "description": "Founded a software consultancy focused on delivering custom AI and high-performance distributed systems.",
             "technologies": [
                 "Python",
-                "Java",
-                "C++",
-                "Algorithms"
+                "Go",
+                "Cassandra",
+                "NextJs",
+                "VueJs",
+                "AI"
             ],
-            "highlights": [
-                "GPA: 3.8/4.0",
-                "Dean's List"
-            ],
+            "highlights": [],
             "show_duration": false
         }
     ],
     "certifications": [
         {
-            "name": "AWS Certified Solutions Architect",
-            "issuer": "Amazon Web Services",
-            "date": "2024-03",
-            "credential_id": "ABC123XYZ",
+            "name": "Go Developer",
+            "issuer": "Hyperskill",
+            "date": "2024-11",
+            "credential_id": "b6ab566f-cba2-4740-827b-c11fdba6f87e",
             "show": true
         },
         {
-            "name": "Google Cloud Professional",
-            "issuer": "Google Cloud",
-            "date": "2023-11",
-            "credential_id": "GCP456DEF",
+            "name": "DevOps Engineer with AI",
+            "issuer": "Hyperskill",
+            "date": "2026-02",
+            "credential_id": "",
+            "show": true
+        },
+        {
+            "name": "Technologist Degree in Systems Analysis and Development",
+            "issuer": " Universidade PositivoUniversidade Positivo ",
+            "date": "2024-12",
+            "credential_id": "1042.1042.0cd62f3bd133",
             "show": true
         }
     ],

@@ -14,6 +14,7 @@ from pathlib import Path
 from typing import Dict, Any, List
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+import html
 
 
 class CareerTimelineGenerator:
@@ -61,6 +62,65 @@ class CareerTimelineGenerator:
         
         return date.strftime("%b %Y")
     
+    def _escape_xml(self, text: str) -> str:
+        """Escapa caracteres especiais XML/HTML."""
+        return html.escape(str(text))
+    
+    def _calculate_total_experience(self, entries: List[Dict]) -> str:
+        """
+        Calcula experiência total considerando períodos paralelos.
+        
+        Por exemplo, se você trabalhou em duas empresas simultaneamente,
+        conta apenas uma vez esse período.
+        """
+        if not entries:
+            return "0y"
+        
+        # Coletar todos os períodos
+        periods = []
+        for entry in entries:
+            if entry.get('type') == 'work':
+                start = self._parse_date(entry.get('date_start', ''))
+                end = self._parse_date(entry.get('date_end', 'present'))
+                periods.append((start, end))
+        
+        if not periods:
+            return "0y"
+        
+        # Ordenar por data de início
+        periods.sort(key=lambda x: x[0])
+        
+        # Mesclar períodos sobrepostos
+        merged = [periods[0]]
+        for current_start, current_end in periods[1:]:
+            last_start, last_end = merged[-1]
+            
+            # Se o período atual começa antes do último terminar (sobreposição)
+            if current_start <= last_end:
+                # Estender o período mesclado até o fim mais tardio
+                merged[-1] = (last_start, max(last_end, current_end))
+            else:
+                # Períodos não se sobrepõem, adicionar novo
+                merged.append((current_start, current_end))
+        
+        # Calcular total de meses dos períodos mesclados
+        total_months = 0
+        for start, end in merged:
+            delta = relativedelta(end, start)
+            total_months += delta.years * 12 + delta.months
+        
+        # Converter para anos e meses
+        years = total_months // 12
+        months = total_months % 12
+        
+        parts = []
+        if years > 0:
+            parts.append(f"{years}y")
+        if months > 0:
+            parts.append(f"{months}m")
+        
+        return " ".join(parts) if parts else "&lt; 1m"
+    
     def _calculate_duration(self, start: str, end: str) -> str:
         """Calcula duração entre datas."""
         start_date = self._parse_date(start)
@@ -77,7 +137,7 @@ class CareerTimelineGenerator:
         if months > 0:
             parts.append(f"{months}m")
         
-        return " ".join(parts) if parts else "< 1m"
+        return " ".join(parts) if parts else "&lt; 1m"
     
     def _create_styles(self) -> str:
         """Estilos CSS para timeline."""
@@ -160,11 +220,35 @@ class CareerTimelineGenerator:
     
     def generate_timeline(self, output_name: str = "career_timeline.svg") -> str:
         """Gera timeline profissional completa."""
-        width, height = 1200, 650  # Aumentado para acomodar cards
-        
         timeline_entries = self.career_data.get('professional_timeline', [])
         certifications = self.career_data.get('certifications', [])
         meta = self.career_data.get('meta', {})
+        
+        # Constantes de layout
+        cards_per_row = 4
+        card_height = 140
+        card_spacing_above = 200  # Espaço para cards acima da timeline
+        card_spacing_below = 220  # Espaço para cards abaixo da timeline
+        row_spacing = card_spacing_below + 60  # Espaçamento menor para layout intercalado
+        header_height = 120  # Espaço para o título
+        footer_height = 120  # Espaço para certificações
+        
+        # Calcular número de linhas
+        num_entries = len(timeline_entries)
+        num_rows = (num_entries + cards_per_row - 1) // cards_per_row
+        
+        # Calcular altura total dinamicamente
+        # Primeira linha precisa de espaço acima e abaixo
+        # Linhas seguintes precisam apenas de espaço adicional
+        if num_rows == 0:
+            height = 400
+        elif num_rows == 1:
+            height = header_height + card_spacing_above + card_spacing_below + footer_height
+        else:
+            # Header + espaço da primeira linha + espaços das linhas adicionais + footer
+            height = header_height + (card_spacing_above + card_spacing_below) + (row_spacing * (num_rows - 1)) + footer_height
+        
+        width = 1200
         
         # Configurações de privacidade
         date_mode = meta.get('show_dates', 'year_only')
@@ -179,18 +263,6 @@ class CareerTimelineGenerator:
     <text class="subtitle animated" x="40" y="70">Career milestones and achievements</text>
 ''']
         
-        # Timeline horizontal
-        timeline_y = 280  # Centralizado verticalmente
-        timeline_start_x = 80
-        timeline_end_x = width - 80
-        
-        # Linha da timeline
-        svg_parts.append(f'''
-    <line class="timeline-line animated" x1="{timeline_start_x}" y1="{timeline_y}" 
-          x2="{timeline_end_x}" y2="{timeline_y}" stroke-linecap="round"/>
-''')
-        
-        # Calcular durações e posições proporcionais
         if not timeline_entries:
             svg_parts.append('</svg>')
             output_path = self.output_dir / output_name
@@ -198,161 +270,187 @@ class CareerTimelineGenerator:
                 f.write('\n'.join(svg_parts))
             return str(output_path)
         
-        # Calcular duração total e individual de cada entry
-        entry_durations = []
-        total_months = 0
+        # Ordenar entries por data de início
+        sorted_entries = sorted(
+            timeline_entries,
+            key=lambda e: self._parse_date(e.get('date_start', ''))
+        )
         
-        for entry in timeline_entries:
-            start = self._parse_date(entry.get('date_start', ''))
-            end = self._parse_date(entry.get('date_end', 'present'))
-            delta = relativedelta(end, start)
-            months = delta.years * 12 + delta.months
-            entry_durations.append({
-                'entry': entry,
-                'months': months,
-                'start_date': start
-            })
-            total_months += months
+        # Dividir entries em linhas
+        rows = []
+        for i in range(0, len(sorted_entries), cards_per_row):
+            rows.append(sorted_entries[i:i + cards_per_row])
         
-        # Ordenar por data de início (mais antigo primeiro)
-        entry_durations.sort(key=lambda x: x['start_date'])
+        # Desenhar cada linha da timeline
+        timeline_start_x = 80
+        timeline_end_x = width - 80
+        base_timeline_y = header_height + card_spacing_above
         
-        # Calcular posições X baseadas em proporção temporal
-        available_width = timeline_end_x - timeline_start_x
-        cumulative_months = 0
-        
-        for i, entry_data in enumerate(entry_durations):
-            entry = entry_data['entry']
-            months = entry_data['months']
+        for row_idx, row_entries in enumerate(rows):
+            timeline_y = base_timeline_y + (row_idx * row_spacing)
             
-            # Posição X proporcional ao tempo acumulado
-            # Colocamos o ponto no meio do período
-            x_pos = timeline_start_x + (cumulative_months + months / 2) / total_months * available_width
-            cumulative_months += months
-            
-            # Alternar posição (em cima/embaixo da linha)
-            is_top = i % 2 == 0
-            y_offset = -20 if is_top else 20
-            content_y = timeline_y + y_offset + (-180 if is_top else 60)  # Ajustado para mais espaço
-            
-            # Determinar cor do dot
-            entry_type = entry.get('type', 'work')
-            is_current = entry.get('date_end', '').lower() == 'present'
-            
-            if is_current:
-                dot_class = 'timeline-dot-current pulse'
-                dot_radius = 8
-            elif entry_type == 'work':
-                dot_class = 'timeline-dot-work'
-                dot_radius = 6
+            # Desenhar linha horizontal
+            if row_idx == 0:
+                # Primeira linha: linha reta
+                svg_parts.append(f'''
+    <line class="timeline-line animated" x1="{timeline_start_x}" y1="{timeline_y}" 
+          x2="{timeline_end_x}" y2="{timeline_y}" stroke-linecap="round"/>
+''')
             else:
-                dot_class = 'timeline-dot-education'
-                dot_radius = 6
+                # Linhas seguintes: conectar com curva da linha anterior
+                prev_timeline_y = base_timeline_y + ((row_idx - 1) * row_spacing)
+                curve_start_x = timeline_end_x
+                curve_end_x = timeline_start_x
+                
+                # Curva conectando as linhas (S-curve)
+                svg_parts.append(f'''
+    <!-- Curva de conexão -->
+    <path class="timeline-line animated" 
+          d="M {curve_start_x} {prev_timeline_y} 
+             C {curve_start_x + 40} {prev_timeline_y}, {curve_start_x + 40} {timeline_y}, {curve_start_x} {timeline_y}
+             L {curve_end_x} {timeline_y}"
+          fill="none" stroke-linecap="round"/>
+    
+    <!-- Seta indicando direção da timeline -->
+    <polygon points="{curve_end_x},{timeline_y} {curve_end_x + 30},{timeline_y - 16} {curve_end_x + 30},{timeline_y + 16}"
+             fill="{self.theme['colors']['border']}" class="animated" opacity="0.7"/>
+''')
             
-            # Linha conectora
-            connector_end_y = content_y + 140 if is_top else content_y - 10  # Ajustado
-            svg_parts.append(f'''
+            # Calcular espaçamento entre cards
+            card_spacing = (timeline_end_x - timeline_start_x) / max(len(row_entries), 1)
+            
+            # Desenhar cada card na linha
+            for i, entry in enumerate(row_entries):
+                x_pos = timeline_start_x + (i * card_spacing) + (card_spacing / 2)
+                
+                # Alternar posição (em cima/embaixo da linha)
+                # Primeira linha: alterna normalmente (0=cima, 1=baixo, 2=cima, 3=baixo)
+                # Segunda linha: todos embaixo (intercalando com os de baixo da primeira)
+                if row_idx == 0:
+                    # Primeira linha: alterna normalmente
+                    is_top = i % 2 == 0
+                else:
+                    # Linhas seguintes: sempre embaixo (intercalando)
+                    is_top = False
+                
+                y_offset = -20 if is_top else 20
+                content_y = timeline_y + y_offset + (-180 if is_top else 60)
+                
+                # Determinar cor do dot e da linha conectora
+                entry_type = entry.get('type', 'work')
+                is_current = entry.get('date_end', '').lower() == 'present'
+                
+                if is_current:
+                    dot_class = 'timeline-dot-current pulse'
+                    dot_radius = 8
+                    connector_color = self.theme['colors']['warning']
+                elif entry_type == 'work':
+                    dot_class = 'timeline-dot-work'
+                    dot_radius = 6
+                    connector_color = self.theme['colors']['success']
+                else:
+                    dot_class = 'timeline-dot-education'
+                    dot_radius = 6
+                    connector_color = self.theme['colors']['purple']
+                
+                # Linha conectora com cor baseada no tipo
+                global_index = row_idx * cards_per_row + i
+                connector_end_y = content_y + 140 if is_top else content_y - 10
+                svg_parts.append(f'''
     <line class="slide-in" x1="{x_pos}" y1="{timeline_y}" x2="{x_pos}" y2="{connector_end_y}" 
-          stroke="{self.theme['colors']['border']}" stroke-width="2" stroke-dasharray="4,4" 
-          opacity="0.5" style="animation-delay: {i * 0.15}s"/>
+          stroke="{connector_color}" stroke-width="2" stroke-dasharray="4,4" 
+          opacity="0.3" style="animation-delay: {global_index * 0.15}s"/>
 ''')
-            
-            # Dot na timeline
-            svg_parts.append(f'''
+                
+                # Dot na timeline
+                svg_parts.append(f'''
     <circle class="{dot_class}" cx="{x_pos}" cy="{timeline_y}" r="{dot_radius}" 
-            style="animation-delay: {i * 0.15}s"/>
+            style="animation-delay: {global_index * 0.15}s"/>
 ''')
-            
-            # Card do entry
-            card_width = 260  # Aumentado
-            card_height = 140  # Aumentado
-            card_x = x_pos - card_width / 2
-            card_y = content_y
-            
-            # Cor do card baseada no tipo
-            if entry_type == 'work':
-                border_color = self.theme['colors']['success']
-                type_icon = "💼"
-            else:
-                border_color = self.theme['colors']['purple']
-                type_icon = "🎓"
-            
-            svg_parts.append(f'''
-    <g class="slide-in" style="animation-delay: {i * 0.15}s">
+                
+                # Card do entry
+                card_width = 260
+                card_height = 140
+                card_x = x_pos - card_width / 2
+                card_y = content_y
+                
+                # Cor do card baseada no tipo
+                if entry_type == 'work':
+                    border_color = self.theme['colors']['success']
+                    type_icon = "💼"
+                else:
+                    border_color = self.theme['colors']['purple']
+                    type_icon = "🎓"
+                
+                svg_parts.append(f'''
+    <g class="slide-in" style="animation-delay: {global_index * 0.15}s">
         <rect x="{card_x}" y="{card_y}" width="{card_width}" height="{card_height}" 
               rx="8" fill="{self.theme['colors']['background']}" 
               stroke="{border_color}" stroke-width="2" opacity="0.95"/>
 ''')
             
             # Conteúdo do card
-            text_x = card_x + 12
-            text_y = card_y + 22
-            
-            # Título
-            title = entry.get('title', 'Position')
-            if len(title) > 28:
-                title = title[:25] + "..."
-            svg_parts.append(f'''
+                text_x = card_x + 12
+                text_y = card_y + 22
+                
+                # Título
+                title = entry.get('title', 'Position')
+                if len(title) > 28:
+                    title = title[:25] + "..."
+                title = self._escape_xml(title)
+                svg_parts.append(f'''
         <text class="entry-title" x="{text_x}" y="{text_y}">{type_icon} {title}</text>
 ''')
-            
-            # Empresa
-            company = entry.get('company', 'Company')
-            if len(company) > 30:
-                company = company[:27] + "..."
-            svg_parts.append(f'''
+                
+                # Empresa
+                company = entry.get('company', 'Company')
+                if len(company) > 30:
+                    company = company[:27] + "..."
+                company = self._escape_xml(company)
+                svg_parts.append(f'''
         <text class="entry-company" x="{text_x}" y="{text_y + 18}" fill="{border_color}">{company}</text>
 ''')
-            
-            # Datas
-            start_date = self._format_date(entry.get('date_start', ''), date_mode)
-            end_date = self._format_date(entry.get('date_end', 'present'), date_mode)
-            date_text = f"{start_date} - {end_date}"
-            
-            if show_duration or entry.get('show_duration', False):
-                duration = self._calculate_duration(entry.get('date_start', ''), entry.get('date_end', 'present'))
-                date_text += f" ({duration})"
-            
-            svg_parts.append(f'''
+                
+                # Datas
+                start_date = self._format_date(entry.get('date_start', ''), date_mode)
+                end_date = self._format_date(entry.get('date_end', 'present'), date_mode)
+                date_text = f"{start_date} - {end_date}"
+                
+                if show_duration or entry.get('show_duration', False):
+                    duration = self._calculate_duration(entry.get('date_start', ''), entry.get('date_end', 'present'))
+                    date_text += f" ({duration})"
+                
+                date_text = self._escape_xml(date_text)
+                svg_parts.append(f'''
         <text class="entry-date" x="{text_x}" y="{text_y + 36}">{date_text}</text>
 ''')
-            
-            # Descrição (truncada)
-            desc = entry.get('description', '')
-            if len(desc) > 38:
-                desc = desc[:35] + "..."
-            svg_parts.append(f'''
+                
+                # Descrição (truncada)
+                desc = entry.get('description', '')
+                if len(desc) > 38:
+                    desc = desc[:35] + "..."
+                desc = self._escape_xml(desc)
+                svg_parts.append(f'''
         <text class="entry-desc" x="{text_x}" y="{text_y + 52}">{desc}</text>
 ''')
-            
-            # Tecnologias (badges)
-            techs = entry.get('technologies', [])[:3]  # Máximo 3
-            badge_y = text_y + 70
-            badge_x = text_x
-            
-            for tech in techs:
-                tech_width = len(tech) * 6 + 12
-                svg_parts.append(f'''
+                
+                # Tecnologias (badges)
+                techs = entry.get('technologies', [])[:3]  # Máximo 3
+                badge_y = text_y + 70
+                badge_x = text_x
+                
+                for tech in techs:
+                    tech_escaped = self._escape_xml(tech)
+                    tech_width = len(tech) * 6 + 12
+                    svg_parts.append(f'''
         <rect x="{badge_x}" y="{badge_y}" width="{tech_width}" height="16" 
-              rx="8" fill="{border_color}" opacity="0.15"/>
-        <text class="tech-badge" x="{badge_x + 6}" y="{badge_y + 11}" fill="{border_color}">{tech}</text>
+                  rx="8" fill="{border_color}" opacity="0.15"/>
+        <text class="tech-badge" x="{badge_x + 6}" y="{badge_y + 11}" fill="{border_color}">{tech_escaped}</text>
 ''')
-                badge_x += tech_width + 6
-            
-            # Indicador de duração (barra proporcional)
-            duration_bar_y = text_y + 95
-            duration_bar_width = (months / total_months) * (card_width - 24)
-            svg_parts.append(f'''
-        <rect x="{text_x}" y="{duration_bar_y}" width="{card_width - 24}" height="4" 
-              rx="2" fill="{self.theme['colors']['border']}" opacity="0.2"/>
-        <rect x="{text_x}" y="{duration_bar_y}" width="{duration_bar_width}" height="4" 
-              rx="2" fill="{border_color}" opacity="0.6"/>
-        <text class="label-small" x="{text_x}" y="{duration_bar_y + 16}" fill="{border_color}">
-            {months} months • {(months/total_months*100):.1f}% of career
-        </text>
-''')
-            
-            svg_parts.append('    </g>')
+                    badge_x += tech_width + 6
+                
+                # Fechar o grupo do card (DEPOIS do loop for tech, MAS DENTRO do loop for entry)
+                svg_parts.append('    </g>')
         
         # Certificações (footer)
         if certifications:
@@ -370,8 +468,8 @@ class CareerTimelineGenerator:
                 if not cert.get('show', True):
                     continue
                 
-                cert_name = cert.get('name', 'Certification')
-                cert_date = self._format_date(cert.get('date', ''), 'year_only')
+                cert_name = self._escape_xml(cert.get('name', 'Certification'))
+                cert_date = self._escape_xml(self._format_date(cert.get('date', ''), 'year_only'))
                 
                 svg_parts.append(f'''
     <g class="animated">
@@ -382,15 +480,15 @@ class CareerTimelineGenerator:
 ''')
                 cert_x += 230  # Reduzido para caber 5
         
-        # Adicionar legenda de tempo total no canto
-        total_years = total_months / 12
+        # Adicionar legenda de tempo total no canto (usando nova função que considera períodos paralelos)
+        total_experience = self._calculate_total_experience(timeline_entries)
         svg_parts.append(f'''
     <g class="animated">
         <rect x="{width - 220}" y="95" width="180" height="50" rx="8" 
               fill="{self.theme['colors']['background']}" opacity="0.8"/>
         <text class="subtitle" x="{width - 210}" y="115">Total Experience</text>
         <text style="font-size: 20px; font-weight: 700" x="{width - 210}" y="138" 
-              fill="{self.theme['colors']['success']}">{total_years:.1f} years</text>
+              fill="{self.theme['colors']['success']}">{total_experience}</text>
     </g>
 ''')
         
@@ -409,16 +507,11 @@ class CareerTimelineGenerator:
         timeline_entries = self.career_data.get('professional_timeline', [])
         work_entries = [e for e in timeline_entries if e.get('type') == 'work']
         
-        # Calcular total de experiência
-        total_months = 0
-        for entry in work_entries:
-            start = self._parse_date(entry.get('date_start', ''))
-            end = self._parse_date(entry.get('date_end', 'present'))
-            delta = relativedelta(end, start)
-            total_months += delta.years * 12 + delta.months
+        # Calcular total de experiência (considerando períodos paralelos)
+        total_experience = self._calculate_total_experience(work_entries)
         
-        years = total_months // 12
-        months = total_months % 12
+        # Extrair apenas o número de anos para display
+        years_display = total_experience.split('y')[0] if 'y' in total_experience else '0'
         
         svg_content = f'''<svg width="{width}" height="{height}" xmlns="http://www.w3.org/2000/svg">
     <style>{self._create_styles()}</style>
@@ -431,7 +524,7 @@ class CareerTimelineGenerator:
     <g class="animated" style="animation-delay: 0.2s">
         <circle cx="80" cy="130" r="50" fill="{self.theme['colors']['success']}" opacity="0.15"/>
         <text style="font-size: 32px; font-weight: 700" x="80" y="135" text-anchor="middle" 
-              fill="{self.theme['colors']['success']}">{years}</text>
+              fill="{self.theme['colors']['success']}">{years_display}</text>
         <text class="entry-date" x="80" y="155" text-anchor="middle">years</text>
     </g>
     
