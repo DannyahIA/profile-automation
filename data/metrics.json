@@ -24,7 +24,7 @@
     "GDScript": 1
   },
   "language_bytes": {
-    "Python": 32959488,
+    "Python": 32953344,
     "Pascal": 99328,
     "Go": 54012928,
     "Shell": 100352,
@@ -34,5 +34,5 @@
     "ZenScript": 353701888,
     "GDScript": 26894336
   },
-  "last_updated": "2026-01-30T12:22:36.329979"
+  "last_updated": "2026-01-30T12:24:30.345824"
 }
