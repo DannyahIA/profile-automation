@@ -51,7 +51,8 @@ jobs:
       - name: 📝 Atualizar README
         run: |
           echo "📝 Atualizando timestamp do README..."
-          sed -i "s|<!-- AUTO-GENERATED:START (last_update) -->.*<!-- AUTO-GENERATED:END -->|<!-- AUTO-GENERATED:START (last_update) -->$(date +%Y-%m-%d)<!-- AUTO-GENERATED:END -->|g" README.md 2>/dev/null || true
+          TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          sed -i "s|<!-- AUTO-GENERATED:START (last_update) -->.*<!-- AUTO-GENERATED:END -->|<!-- AUTO-GENERATED:START (last_update) -->$TIMESTAMP<!-- AUTO-GENERATED:END -->|g" README.md 2>/dev/null || true
       
       - name: 💾 Commit e Push
         run: |
