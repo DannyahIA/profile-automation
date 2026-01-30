@@ -1,49 +1,5 @@
 {
   "daily_stats": {
-    "2025-12": [
-      {
-        "date": "2025-12-03",
-        "commits": 28,
-        "prs": 0,
-        "issues": 0,
-        "reviews": 0
-      },
-      {
-        "date": "2025-12-07",
-        "commits": 15,
-        "prs": 4,
-        "issues": 0,
-        "reviews": 0
-      },
-      {
-        "date": "2025-12-09",
-        "commits": 1,
-        "prs": 0,
-        "issues": 0,
-        "reviews": 0
-      },
-      {
-        "date": "2025-12-10",
-        "commits": 1,
-        "prs": 0,
-        "issues": 0,
-        "reviews": 0
-      },
-      {
-        "date": "2025-12-23",
-        "commits": 2,
-        "prs": 0,
-        "issues": 0,
-        "reviews": 0
-      },
-      {
-        "date": "2025-12-27",
-        "commits": 2,
-        "prs": 0,
-        "issues": 0,
-        "reviews": 0
-      }
-    ],
     "2026-01": [
       {
         "date": "2026-01-26",
@@ -61,7 +17,7 @@
       },
       {
         "date": "2026-01-30",
-        "commits": 4,
+        "commits": 6,
         "prs": 0,
         "issues": 0,
         "reviews": 0
@@ -69,7 +25,9 @@
     ]
   },
   "metadata": {
-    "last_updated": "2026-01-30T12:21:42.967608",
-    "days_collected": 9
+    "last_updated": "2026-01-30T12:31:19.993462",
+    "days_collected": 4,
+    "period_start": "2026-01-01",
+    "period_end": "2026-01-30"
   }
 }
