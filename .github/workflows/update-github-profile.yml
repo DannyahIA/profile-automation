@@ -2,17 +2,11 @@ name: 🚀 Update GitHub Profile
 
 on:
   schedule:
-    # Executa a cada hora
-    - cron: '0 * * * *'
+    # Executa a cada 6 horas (reduzido para evitar sobrecarga)
+    - cron: '0 */6 * * *'
   workflow_dispatch:  # Permite execução manual
-  push:
-    branches:
-      - master
-      - main
-    paths:
-      - 'src/**'
-      - 'themes/**'
-      - 'data/**'
+  # PUSH DESABILITADO para evitar loops infinitos
+  # Se precisar ativar, use apenas com paths específicos e [skip ci] no commit
 
 permissions:
   contents: write
@@ -79,8 +73,33 @@ jobs:
               -m "" \
               -m "Gerado por GitHub Actions"
             
-            git push
-            echo "✅ Mudanças enviadas com sucesso!"
+            # Fazer pull com rebase antes do push para evitar conflitos
+            echo "🔄 Sincronizando com o repositório remoto..."
+            git pull --rebase origin ${{ github.ref_name }} || true
+            
+            # Tentar push com retry
+            MAX_RETRIES=3
+            RETRY_COUNT=0
+            
+            while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+              echo "🚀 Tentativa de push $(($RETRY_COUNT + 1))/$MAX_RETRIES..."
+              
+              if git push origin ${{ github.ref_name }}; then
+                echo "✅ Mudanças enviadas com sucesso!"
+                break
+              else
+                RETRY_COUNT=$(($RETRY_COUNT + 1))
+                
+                if [ $RETRY_COUNT -lt $MAX_RETRIES ]; then
+                  echo "⚠️ Push falhou, aguardando 5 segundos antes de tentar novamente..."
+                  sleep 5
+                  git pull --rebase origin ${{ github.ref_name }} || true
+                else
+                  echo "❌ Falha após $MAX_RETRIES tentativas"
+                  exit 1
+                fi
+              fi
+            done
           fi
       
       - name: 📊 Resumo da execução
