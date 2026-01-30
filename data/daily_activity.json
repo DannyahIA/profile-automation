@@ -22,59 +22,12 @@
         "issues": 0,
         "reviews": 0
       }
-    ],
-    "2025-12": [
-      {
-        "date": "2025-12-03",
-        "commits": 28,
-        "prs": 0,
-        "issues": 0,
-        "reviews": 0
-      },
-      {
-        "date": "2025-12-07",
-        "commits": 15,
-        "prs": 4,
-        "issues": 0,
-        "reviews": 0
-      },
-      {
-        "date": "2025-12-09",
-        "commits": 1,
-        "prs": 0,
-        "issues": 0,
-        "reviews": 0
-      },
-      {
-        "date": "2025-12-10",
-        "commits": 1,
-        "prs": 0,
-        "issues": 0,
-        "reviews": 0
-      },
-      {
-        "date": "2025-12-23",
-        "commits": 2,
-        "prs": 0,
-        "issues": 0,
-        "reviews": 0
-      },
-      {
-        "date": "2025-12-27",
-        "commits": 2,
-        "prs": 0,
-        "issues": 0,
-        "reviews": 0
-      }
     ]
   },
   "metadata": {
-    "last_updated": "2026-01-30T13:13:55.264049",
-    "last_historical_fetch": {
-      "timestamp": "2026-01-30T12:56:01.061773+00:00",
-      "days_back": 30,
-      "since": "2025-12-01T00:00:00+00:00",
-      "days_collected": 9
-    }
+    "last_updated": "2026-01-30T13:37:53.253703",
+    "days_collected": 4,
+    "period_start": "2026-01-01",
+    "period_end": "2026-01-30"
   }
 }
