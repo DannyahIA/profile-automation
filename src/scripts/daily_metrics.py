@@ -104,22 +104,29 @@ def collect_metrics(collector: GitHubCollector) -> Dict[str, Any]:
     print("   → Repositórios...")
     repos = collector.collect_all_repos()
     
-    # Commits dos últimos 30 dias
-    print("   → Commits (últimos 30 dias)...")
-    since = datetime.now(timezone.utc) - timedelta(days=30)
-    commits = collector.collect_commits(since=since)
+    # Coletar commits de TODOS os tempos (não só 30 dias) para métricas gerais
+    print("   → Commits (total histórico)...")
+    all_commits = []
     
-    # Pull Requests
+    # Para métricas, coletar commits dos últimos 6 meses para ter um número realista
+    since_6_months = datetime.now(timezone.utc) - timedelta(days=180)
+    commits_recent = collector.collect_commits(since=since_6_months)
+    
+    print(f"      ✓ {len(commits_recent)} commits nos últimos 6 meses")
+    
+    # Pull Requests (últimos 6 meses)
     print("   → Pull Requests...")
-    prs = collector.collect_pull_requests(since=since)
+    prs = collector.collect_pull_requests(since=since_6_months)
+    print(f"      ✓ {len(prs)} PRs encontrados")
     
-    # Issues
+    # Issues (últimos 6 meses)
     print("   → Issues...")
-    issues = collector.collect_issues(since=since)
+    issues = collector.collect_issues(since=since_6_months)
+    print(f"      ✓ {len(issues)} issues encontrados")
     
-    # Processar commits por dia
+    # Processar commits por dia para calcular streak
     commits_by_date = defaultdict(int)
-    for commit in commits:
+    for commit in commits_recent:
         date = commit['date'][:10]  # YYYY-MM-DD
         commits_by_date[date] += 1
     
@@ -127,37 +134,73 @@ def collect_metrics(collector: GitHubCollector) -> Dict[str, Any]:
     print("   → Calculando streak...")
     streak = calculate_activity_streak(commits_by_date)
     
-    # Linguagens
+    # Linguagens - coletar de TODOS os repositórios com detalhes
+    print("   → Analisando linguagens...")
     languages = {}
     language_bytes = {}
-    for repo in repos:
-        lang = repo.get('language')
-        if lang:
-            languages[lang] = languages.get(lang, 0) + 1
-            # Estimar bytes pela quantidade de repos (aproximação)
-            language_bytes[lang] = language_bytes.get(lang, 0) + repo.get('size', 0) * 1024
     
-    # Ordenar linguagens por uso
-    top_languages = dict(sorted(languages.items(), key=lambda x: x[1], reverse=True)[:12])
+    for repo in repos:
+        try:
+            # Obter o objeto repositório para acessar linguagens detalhadas
+            repo_obj = collector.github.get_repo(repo['full_name'])
+            
+            # get_languages() retorna dict com {linguagem: bytes}
+            repo_languages = repo_obj.get_languages()
+            
+            for lang, bytes_count in repo_languages.items():
+                languages[lang] = languages.get(lang, 0) + 1
+                language_bytes[lang] = language_bytes.get(lang, 0) + bytes_count
+                
+        except Exception as e:
+            # Fallback para o método anterior
+            lang = repo.get('language')
+            if lang:
+                languages[lang] = languages.get(lang, 0) + 1
+                language_bytes[lang] = language_bytes.get(lang, 0) + repo.get('size', 0) * 1024
+    
+    # Ordenar linguagens por bytes (uso real)
+    top_languages = dict(sorted(
+        languages.items(), 
+        key=lambda x: language_bytes.get(x[0], 0), 
+        reverse=True
+    )[:12])
+    
+    print(f"      ✓ {len(languages)} linguagens detectadas")
+    for lang, count in list(top_languages.items())[:5]:
+        print(f"         - {lang}: {count} repos ({language_bytes.get(lang, 0) / 1024 / 1024:.1f} MB)")
     
     # Total de stars e forks recebidos
     total_stars = sum(r.get('stars', 0) for r in repos)
     total_forks = sum(r.get('forks', 0) for r in repos)
     
-    # Colaboradores únicos (estimativa baseada em repos públicos)
-    contributors = max(1, len(repos) // 2)  # Estimativa conservadora
+    print(f"   → Stars totais: {total_stars}")
+    print(f"   → Forks totais: {total_forks}")
+    
+    # Colaboradores únicos - tentar coletar de forma mais precisa
+    all_contributors = set()
+    for repo in repos[:10]:  # Limitar a 10 repos para não estourar rate limit
+        try:
+            repo_obj = collector.github.get_repo(repo['full_name'])
+            contributors = list(repo_obj.get_contributors())
+            for contrib in contributors:
+                all_contributors.add(contrib.login)
+        except:
+            pass
+    
+    contributors_count = max(1, len(all_contributors))
+    print(f"   → Contributors únicos: {contributors_count}")
     
     # Montar métricas
     metrics = {
         'username': profile['login'],
         'name': profile['name'] or profile['login'],
-        'total_commits': len(commits),
-        'total_repos': len([r for r in repos if not r['private']]),  # Apenas públicos
+        'total_commits': len(commits_recent),
+        'total_repos': len(repos),
         'total_prs': len(prs),
         'total_issues': len(issues),
         'total_stars': total_stars,
         'total_forks': total_forks,
-        'contributors': contributors,
+        'contributors': contributors_count,
         'activity_streak': streak,
         'languages': top_languages,
         'language_bytes': language_bytes,
@@ -168,53 +211,76 @@ def collect_metrics(collector: GitHubCollector) -> Dict[str, Any]:
 
 
 def collect_daily_activity(collector: GitHubCollector) -> Dict[str, Any]:
-    """Coleta atividade diária dos últimos 60 dias."""
+    """Coleta atividade diária de todo o mês atual."""
     print("📅 Coletando atividade diária...")
     
-    # Últimos 60 dias para ter dados de 2 meses
-    since = datetime.now(timezone.utc) - timedelta(days=60)
-    commits = collector.collect_commits(since=since)
-    prs = collector.collect_pull_requests(since=since)
-    issues = collector.collect_issues(since=since)
+    # Coletar do primeiro dia do mês atual até agora
+    now = datetime.now(timezone.utc)
+    first_day_of_month = datetime(now.year, now.month, 1, tzinfo=timezone.utc)
+    
+    print(f"   → Período: {first_day_of_month.date()} até {now.date()}")
+    
+    # Coletar dados
+    commits = collector.collect_commits(since=first_day_of_month, until=now)
+    prs = collector.collect_pull_requests(since=first_day_of_month)
+    issues = collector.collect_issues(since=first_day_of_month)
+    
+    print(f"   → Total coletado: {len(commits)} commits, {len(prs)} PRs, {len(issues)} issues")
     
     # Organizar por data
     activity_by_date = defaultdict(lambda: {'commits': 0, 'prs': 0, 'issues': 0, 'reviews': 0})
     
+    # Contar commits por dia
     for commit in commits:
         date = commit['date'][:10]
         activity_by_date[date]['commits'] += 1
     
+    # Contar PRs por dia de criação
     for pr in prs:
         date = pr['created_at'][:10]
         activity_by_date[date]['prs'] += 1
     
+    # Contar issues por dia de criação
     for issue in issues:
         date = issue['created_at'][:10]
         activity_by_date[date]['issues'] += 1
     
-    # Organizar por mês
+    # Preencher todos os dias do mês (incluindo dias sem atividade)
     daily_stats = defaultdict(list)
-    for date_str, stats in sorted(activity_by_date.items()):
+    current_date = first_day_of_month.date()
+    end_date = now.date()
+    
+    while current_date <= end_date:
+        date_str = current_date.strftime('%Y-%m-%d')
         month = date_str[:7]  # YYYY-MM
-        daily_stats[month].append({
-            'date': date_str,
-            'commits': stats['commits'],
-            'prs': stats['prs'],
-            'issues': stats['issues'],
-            'reviews': stats['reviews']
-        })
+        
+        stats = activity_by_date.get(date_str, {'commits': 0, 'prs': 0, 'issues': 0, 'reviews': 0})
+        
+        # Adicionar apenas se houver alguma atividade
+        if stats['commits'] > 0 or stats['prs'] > 0 or stats['issues'] > 0:
+            daily_stats[month].append({
+                'date': date_str,
+                'commits': stats['commits'],
+                'prs': stats['prs'],
+                'issues': stats['issues'],
+                'reviews': stats['reviews']
+            })
+        
+        current_date += timedelta(days=1)
     
     return {
         'daily_stats': dict(daily_stats),
         'metadata': {
             'last_updated': datetime.now().isoformat(),
-            'days_collected': len(activity_by_date)
+            'days_collected': len(activity_by_date),
+            'period_start': first_day_of_month.date().isoformat(),
+            'period_end': now.date().isoformat()
         }
     }
 
 
 def collect_featured_projects(collector: GitHubCollector) -> Dict[str, Any]:
-    """Coleta os projetos mais relevantes."""
+    """Coleta os projetos mais relevantes com dados completos."""
     print("🚀 Coletando projetos destacados...")
     
     repos = collector.collect_all_repos()
@@ -234,20 +300,62 @@ def collect_featured_projects(collector: GitHubCollector) -> Dict[str, Any]:
     # Top 6 projetos
     top_repos = sorted(public_repos, key=lambda r: r['_score'], reverse=True)[:6]
     
-    # Formatar para o JSON de projetos
+    # Formatar para o JSON de projetos com dados detalhados
     featured = []
     for repo in top_repos:
+        print(f"   → Processando {repo['name']}...")
+        
+        # Coletar commits, PRs e contributors do repositório
+        try:
+            # Obter o objeto repositório
+            repo_obj = collector.github.get_repo(repo['full_name'])
+            
+            # Contar commits do autor
+            try:
+                commits = list(repo_obj.get_commits(author=collector.user.login))
+                commit_count = len(commits)
+            except:
+                commit_count = 0
+            
+            # Contar PRs
+            try:
+                prs = list(repo_obj.get_pulls(state='all'))
+                pr_count = len([pr for pr in prs if pr.user.login == collector.user.login])
+            except:
+                pr_count = 0
+            
+            # Contar contributors
+            try:
+                contributors = list(repo_obj.get_contributors())
+                contributor_count = len(contributors)
+            except:
+                contributor_count = 1
+            
+            # Obter topics (tags)
+            try:
+                topics = repo_obj.get_topics()
+            except:
+                topics = []
+                
+        except Exception as e:
+            print(f"      ⚠️  Erro ao coletar detalhes: {e}")
+            commit_count = 0
+            pr_count = 0
+            contributor_count = 1
+            topics = []
+        
         featured.append({
             'name': repo['name'],
             'description': repo.get('description', 'No description available'),
             'language': repo.get('language', 'Unknown'),
             'stars': repo.get('stars', 0),
             'forks': repo.get('forks', 0),
-            'commits': 0,  # Será atualizado depois se necessário
-            'contributors': 1,  # Será atualizado depois se necessário
+            'commits': commit_count,
+            'prs': pr_count,
+            'contributors': contributor_count,
             'created': repo['created_at'][:10],
             'last_updated': repo['updated_at'][:10],
-            'topics': [],  # GitHub API v3 não retorna isso facilmente
+            'topics': topics,
             'status': 'active' if repo.get('pushed_at') else 'archived',
             'url': repo['html_url']
         })
@@ -279,12 +387,15 @@ def update_history(metrics: Dict[str, Any]) -> Dict[str, Any]:
     # Criar snapshot do mês atual
     current_month = datetime.now().strftime('%Y-%m')
     
+    # Para histórico, queremos métricas ACUMULADAS, não do período
     snapshot = {
         'month': current_month,
         'total_commits': metrics['total_commits'],
         'total_repos': metrics['total_repos'],
         'total_prs': metrics['total_prs'],
         'total_stars': metrics['total_stars'],
+        'total_issues': metrics.get('total_issues', 0),
+        'languages': metrics.get('languages', {}),
         'recorded_at': datetime.now().isoformat()
     }
     
