@@ -6,7 +6,7 @@
       "total_repos": 17,
       "total_prs": 6,
       "total_stars": 4,
-      "total_issues": 0,
+      "total_issues": 1,
       "languages": {
         "ZenScript": 2,
         "Go": 5,
@@ -21,7 +21,7 @@
         "JavaScript": 3,
         "Dockerfile": 4
       },
-      "recorded_at": "2026-04-27T19:21:58.915482"
+      "recorded_at": "2026-04-28T02:49:38.861545"
     },
     {
       "month": "2026-03",
